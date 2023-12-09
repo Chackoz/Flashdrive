@@ -9,8 +9,12 @@ const DoodleJumpGame:React.FC<DoodleGameProps> = ({scoreUpdate}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
 useEffect(() => {
-  const canvas = canvasRef.current;
-const context = canvas?.getContext('2d');
+  const canvas = canvasRef.current as HTMLCanvasElement;
+    const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
+    if (!canvas || !context) {
+      console.error('Canvas or context not available');
+      return;
+    }
 
 // width and height of each platform and where platforms start
 const platformWidth = 65;
