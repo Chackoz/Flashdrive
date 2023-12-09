@@ -100,10 +100,6 @@ const PongGame: React.FC = () => {
         ball.resetting = true;
         setPaused(true);
         setGameOver(true);
-
-      
-
-        
       }
 
       if (collides(ball, leftPaddle)) {
@@ -188,7 +184,7 @@ const PongGame: React.FC = () => {
         dy: -ballSpeed,
       };
 
-      // ... (other necessary code for resetting game state)
+
     }, 400);
   };
   return <div className='flex flex-col w-full min-h-screen justify-center items-center '>
