@@ -13,8 +13,8 @@ const page:React.FC = () => {
       setScore(newValue);
   };
   return (
-    <div className='flex flex-col justify-center items-center h-full w-full min-h-screen'>
-      <div className='text-white text-xl'>Score: {score}</div>
+    <div className='flex flex-col justify-center items-center h-full w-full min-h-screen bg-white'>
+      <div className='text-black text-xl'>Score: {score}</div>
     <BreakoutGame scoreUpdate={ScoreUpdate} />
   </div>
   )

@@ -206,7 +206,7 @@ const BreakoutGame: React.FC<BreakoutGameProps> = ({scoreUpdate}) => {
     }
 
     // Listen to keyboard events...
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: { which: number; }) => {
       // left arrow key
       if (e.which === 37) {
         paddle.dx = -3;
@@ -226,7 +226,7 @@ const BreakoutGame: React.FC<BreakoutGameProps> = ({scoreUpdate}) => {
       }
     };
 
-    const handleKeyUp = (e) => {
+    const handleKeyUp = (e: { which: number; }) => {
       if (e.which === 37 || e.which === 39) {
         paddle.dx = 0;
       }
@@ -266,7 +266,7 @@ const BreakoutGame: React.FC<BreakoutGameProps> = ({scoreUpdate}) => {
 
     ></canvas>
 {gameOver && (
-                <div className={`flex flex-col items-center justify-center w-full h-full text-black text-3xl `}>
+                <div className={`flex flex-col items-center justify-center w-full h-full bg-white text-black text-3xl `}>
                     <div className='p-5 text-white'>Game Over. </div>
                     <button onClick={handleRestart} className='bg-blue-600 rounded-md  p-2 text-xl text-white'>Restart</button>
                 </div>
