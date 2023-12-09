@@ -184,6 +184,7 @@ const PongGame: React.FC = () => {
   }, []);
 
   const handleRestart = () => {
+    setPaused(true)
     setGameOver(false);
     setPaused(false);
     setScore(0);
@@ -193,7 +194,7 @@ const PongGame: React.FC = () => {
   return <div className='flex flex-col w-full min-h-screen justify-center items-center '>
     <div className='text-black text-4xl'>Score : {score}</div>
 
-    <canvas ref={canvasRef} width={750} height={585} className={`${gameOver ? 'hidden' : ''}`} />
+    <canvas ref={canvasRef} width={750} height={585} className={`border-black b-2 ${gameOver ? 'hidden' : ''}`} />
 
 
     <div className={`w-hull h-full flex flex-col items-center justify-center text-black text-6xl   ${!gameOver ? 'hidden' : ''}`}>
