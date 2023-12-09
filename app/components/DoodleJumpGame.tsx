@@ -1,3 +1,4 @@
+
 import React,{ useState, useEffect ,useRef } from "react";
 
 interface DoodleGameProps{
@@ -7,7 +8,7 @@ interface DoodleGameProps{
 const DoodleJumpGame:React.FC<DoodleGameProps> = ({scoreUpdate}) => {
   const scoreRef = useRef(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
+  const [gameStart,setGameStart] = useState(false);
 useEffect(() => {
   const canvas = canvasRef.current as HTMLCanvasElement;
     const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
@@ -22,13 +23,13 @@ const platformHeight = 20;
 const platformStart = canvas.height - 50;
 
 // player physics
-const gravity = 0.33;
+const gravity = 0.5;
 const drag = 0.3;
 const bounceVelocity = -12.5;
 
 // minimum and maximum vertical space between each platform
-let minPlatformSpace = 15;
-let maxPlatformSpace = 20;
+let minPlatformSpace = 20;
+let maxPlatformSpace = 55;
 
 // information about each platform. the first platform starts in the
 // bottom middle of the screen
@@ -95,10 +96,13 @@ function loop() {
   // if doodle reaches the middle of the screen, move the platforms down
   // instead of doodle up to make it look like doodle is going up
   if (doodle.y < canvas.height / 2 && doodle.dy < 0) {
+    
+    
+   // scoreUpdate(scoreRef.current);
     platforms.forEach(function(platform) {
       platform.y += -doodle.dy;
     });
-
+    console.log("Platforms are up")
     // add more platforms to the top of the screen as doodle moves up
     while (platforms[platforms.length - 1].y > 0) {
       platforms.push({
@@ -113,6 +117,7 @@ function loop() {
       // cap max space
       maxPlatformSpace = Math.min(maxPlatformSpace, canvas.height / 2);
     }
+  
   }
   else {
     doodle.y += doodle.dy;
@@ -156,6 +161,7 @@ function loop() {
 
     // make doodle jump if it collides with a platform from above
     if (
+      
       // doodle is falling
       doodle.dy > 0 &&
 
@@ -169,11 +175,19 @@ function loop() {
       doodle.y < platform.y + platformHeight &&
       doodle.y + doodle.height > platform.y
     ) {
+      
       // reset doodle position so it's on top of the platform
       doodle.y = platform.y - doodle.height;
       doodle.dy = bounceVelocity;
     }
   });
+  if(doodle.dy < canvas.height){
+    // console.log(doodle.dy);
+    // console.log(canvas.height);
+        
+    // console.log("Doodle is Down");
+    
+  }
 
   // draw doodle
   context.fillStyle = 'yellow';
@@ -189,6 +203,7 @@ function loop() {
 
 // listen to keyboard events to move doodle
 document.addEventListener('keydown', function(e) {
+  setGameStart(true);
   // left arrow key
   if (e.which === 37) {
     keydown = true;
@@ -205,6 +220,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 document.addEventListener('keyup', function(e) {
+  setGameStart(true);
   keydown = false;
 });
 
@@ -220,8 +236,8 @@ requestAnimationFrame(loop);
 
   return (
     <div className="text-white text-2xl">
-      <div> Use Left ⬅ and Right ➡ keys</div>
-      <canvas ref={canvasRef} width="375" height="667" id="game"></canvas>
+      <div className={`${gameStart? 'hidden':''} text-black`}> Use Left ⬅ and Right ➡ keys</div>
+      <canvas ref={canvasRef} width="375" height="667" id="game" className="border-black border-2" ></canvas>
     </div>
   )
 }

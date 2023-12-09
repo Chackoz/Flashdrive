@@ -14,7 +14,7 @@ const page:React.FC = () => {
   };
   return (
     <div className='flex flex-col justify-center items-center h-full bg-white w-full min-h-screen'>
-      <div className='text-white text-xl'>Score: {score}</div>
+      <div className='text-black text-xl'>Score: {score}</div>
       
     <DoodleJumpGame scoreUpdate={ScoreUpdate} />
   </div>
