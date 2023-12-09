@@ -3,7 +3,9 @@ import React from 'react'
 
 function page() {
   return (
-    <div className='flex justify-center items-center h-full bg-white w-full'><PongGame/></div>
+    <div className='flex justify-center items-center h-full bg-white w-full min-h-screen'>
+      <PongGame />
+    </div>
   )
 }
 

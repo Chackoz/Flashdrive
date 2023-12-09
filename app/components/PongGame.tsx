@@ -6,23 +6,37 @@ import { useEffect, useRef, useState } from 'react';
 const PongGame: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [score, setScore] = useState(0);
-  const [gameOver, setGameOver ]= useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current as HTMLCanvasElement;
-    const context = canvas?.getContext('2d') as CanvasRenderingContext2D;;
 
+    const canvas = canvasRef.current as HTMLCanvasElement;
+    const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
     if (!canvas || !context) {
       console.error('Canvas or context not available');
       return;
     }
 
+    let paddleSpeed = 6;
+    let ballSpeed = 5;
     const grid = 15;
     const paddleHeight = grid * 5;
     const maxPaddleY = canvas.height! - grid - paddleHeight;
 
-    let paddleSpeed = 6;
-    let ballSpeed = 5;
+    const ball = {
+      x: canvas.width! / 2,
+      y: canvas.height! / 2,
+      width: grid,
+      height: grid,
+      resetting: false,
+      dx: ballSpeed,
+      dy: -ballSpeed,
+    };
+
+
+
+
 
     const leftPaddle = {
       x: grid * 2,
@@ -40,15 +54,7 @@ const PongGame: React.FC = () => {
       dy: 0,
     };
 
-    const ball = {
-      x: canvas.width! / 2,
-      y: canvas.height! / 2,
-      width: grid,
-      height: grid,
-      resetting: false,
-      dx: ballSpeed,
-      dy: -ballSpeed,
-    };
+
 
     function collides(obj1: any, obj2: any): boolean {
       return (
@@ -60,10 +66,12 @@ const PongGame: React.FC = () => {
     }
 
     function loop() {
-      requestAnimationFrame(loop);
-      
+      if (!paused) {
+        requestAnimationFrame(loop);
+      }
+
       context.clearRect(0, 0, canvas.width!, canvas.height!);
-      
+
 
       leftPaddle.y += leftPaddle.dy;
       rightPaddle.y += rightPaddle.dy;
@@ -97,13 +105,24 @@ const PongGame: React.FC = () => {
 
       if ((ball.x < 0 || ball.x > canvas.width!) && !ball.resetting) {
         ball.resetting = true;
-        
-        setTimeout(() => {
-          ball.resetting = false;
-          ball.x = canvas.width! / 2;
-          ball.y = canvas.height! / 2;
-        }, 400);
+        setPaused(true)
         setGameOver(true);
+
+        const reset = () => {
+          setTimeout(() => {
+            ball.resetting = false;
+            ball.x = canvas.width! / 2;
+            ball.y = canvas.height! / 2;
+          }, 400);
+        }
+
+        if (!paused) {
+          setTimeout(() => {
+            ball.resetting = false;
+            ball.x = canvas.width! / 2;
+            ball.y = canvas.height! / 2;
+          }, 400);
+        }
       }
 
       if (collides(ball, leftPaddle)) {
@@ -115,7 +134,7 @@ const PongGame: React.FC = () => {
         ball.dx *= -1;
         ball.x = rightPaddle.x - ball.width;
       }
-      
+
 
       context.fillRect(ball.x, ball.y, ball.width, ball.height);
 
@@ -123,8 +142,8 @@ const PongGame: React.FC = () => {
       context.fillRect(0, 0, canvas.width!, grid);
       context.fillRect(0, canvas.height! - grid, canvas.width!, canvas.height!);
 
-      context.fillRect(canvas.width, canvas.width , grid, grid);
-      
+      context.fillRect(canvas.width, canvas.width, grid, grid);
+
       for (let i = grid; i < canvas.height! - grid; i += grid * 2) {
         context.fillRect(canvas.width! / 2 - grid / 2, i, grid, grid);
       }
@@ -154,29 +173,35 @@ const PongGame: React.FC = () => {
       }
     });
 
-    requestAnimationFrame(loop);
+    if (!paused) {
+      requestAnimationFrame(loop);
+    }
 
     return () => {
-      document.removeEventListener('keydown', function () {});
-      document.removeEventListener('keyup', function () {});
+      document.removeEventListener('keydown', function () { });
+      document.removeEventListener('keyup', function () { });
     };
   }, []);
+
   const handleRestart = () => {
     setGameOver(false);
+    setPaused(false);
     setScore(0);
-};
-  return <div className='flex  flex-col justify-center items-center w-full h-full'>
-    <div className='text-black text-4xl'>Score : {score}</div>
-   
-    <canvas ref={canvasRef} width={750} height={585} className={`${gameOver ? 'hidden' : ''}`}/>
 
-    {gameOver && (
-                <div className={`flex flex-col items-center justify-center w-full h-full text-black text-6xl   ${!gameOver ? 'hidden' : ''}`}>
-                    <div className='p-5'>Game Over. </div>
-                    <button onClick={handleRestart} className='bg-black rounded-md p-2 text-3xl text-white'>Restart</button>
-                </div>
-            )}
-    
+  };
+
+  return <div className='flex flex-col w-full min-h-screen justify-center items-center '>
+    <div className='text-black text-4xl'>Score : {score}</div>
+
+    <canvas ref={canvasRef} width={750} height={585} className={`${gameOver ? 'hidden' : ''}`} />
+
+
+    <div className={`w-hull h-full flex flex-col items-center justify-center text-black text-6xl   ${!gameOver ? 'hidden' : ''}`}>
+      <div className='p-5'>Game Over. </div>
+      <button onClick={handleRestart} className='bg-black rounded-md p-2 text-3xl text-white'>Restart</button>
+    </div>
+
+
   </div>;
 };
 
