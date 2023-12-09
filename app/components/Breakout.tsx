@@ -96,7 +96,7 @@ const BreakoutGame: React.FC<BreakoutGameProps> = ({scoreUpdate}) => {
     
     // check for collision between two objects using axis-aligned bounding box (AABB)
     // @see https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-    function collides(obj1, obj2) {
+    function collides(obj1: any, obj2: any) {
       return obj1.x < obj2.x + obj2.width &&
              obj1.x + obj1.width > obj2.x &&
              obj1.y < obj2.y + obj2.height &&
