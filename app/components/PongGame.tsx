@@ -9,6 +9,7 @@ const PongGame: React.FC = () => {
   const [gameOver, setGameOver] = useState(false);
   const [paused, setPaused] = useState(false);
 
+
   useEffect(() => {
 
     const canvas = canvasRef.current as HTMLCanvasElement;
@@ -17,7 +18,6 @@ const PongGame: React.FC = () => {
       console.error('Canvas or context not available');
       return;
     }
-
     let paddleSpeed = 6;
     let ballSpeed = 5;
     const grid = 15;
@@ -33,10 +33,6 @@ const PongGame: React.FC = () => {
       dx: ballSpeed,
       dy: -ballSpeed,
     };
-
-
-
-
 
     const leftPaddle = {
       x: grid * 2,
@@ -54,8 +50,6 @@ const PongGame: React.FC = () => {
       dy: 0,
     };
 
-
-
     function collides(obj1: any, obj2: any): boolean {
       return (
         obj1.x < obj2.x + obj2.width &&
@@ -71,7 +65,6 @@ const PongGame: React.FC = () => {
       }
 
       context.clearRect(0, 0, canvas.width!, canvas.height!);
-
 
       leftPaddle.y += leftPaddle.dy;
       rightPaddle.y += rightPaddle.dy;
@@ -105,24 +98,12 @@ const PongGame: React.FC = () => {
 
       if ((ball.x < 0 || ball.x > canvas.width!) && !ball.resetting) {
         ball.resetting = true;
-        setPaused(true)
+        setPaused(true);
         setGameOver(true);
 
-        const reset = () => {
-          setTimeout(() => {
-            ball.resetting = false;
-            ball.x = canvas.width! / 2;
-            ball.y = canvas.height! / 2;
-          }, 400);
-        }
+      
 
-        if (!paused) {
-          setTimeout(() => {
-            ball.resetting = false;
-            ball.x = canvas.width! / 2;
-            ball.y = canvas.height! / 2;
-          }, 400);
-        }
+        
       }
 
       if (collides(ball, leftPaddle)) {
@@ -134,7 +115,6 @@ const PongGame: React.FC = () => {
         ball.dx *= -1;
         ball.x = rightPaddle.x - ball.width;
       }
-
 
       context.fillRect(ball.x, ball.y, ball.width, ball.height);
 
@@ -181,16 +161,36 @@ const PongGame: React.FC = () => {
       document.removeEventListener('keydown', function () { });
       document.removeEventListener('keyup', function () { });
     };
-  }, []);
+  }, [paused, gameOver]);
 
   const handleRestart = () => {
-    setPaused(true)
     setGameOver(false);
-    setPaused(false);
-    setScore(0);
+    setPaused(true);
 
+    setTimeout(() => {
+      setPaused(false);
+      setScore(0);
+
+      const canvas = canvasRef.current as HTMLCanvasElement;
+      let paddleSpeed = 6;
+      let ballSpeed = 5;
+      const grid = 15;
+      const paddleHeight = grid * 5;
+      const maxPaddleY = canvas.height! - grid - paddleHeight;
+
+      const ball = {
+        x: canvas.width! / 2,
+        y: canvas.height! / 2,
+        width: grid,
+        height: grid,
+        resetting: false,
+        dx: ballSpeed,
+        dy: -ballSpeed,
+      };
+
+      // ... (other necessary code for resetting game state)
+    }, 400);
   };
-
   return <div className='flex flex-col w-full min-h-screen justify-center items-center '>
     <div className='text-black text-4xl'>Score : {score}</div>
 
