@@ -33,9 +33,12 @@ const BreakoutGame: React.FC<BreakoutGameProps> = ({scoreUpdate}) => {
       ['Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'],
       ['Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y']
     ];
+    interface ColorMap {
+      [key: string]: string;
+    }
     
     // create a mapping between color short code (R, O, G, Y) and color name
-    const colorMap = {
+    const colorMap: ColorMap = {
       'R': 'red',
       'O': 'orange',
       'G': 'green',
