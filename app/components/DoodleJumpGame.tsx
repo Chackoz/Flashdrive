@@ -7,9 +7,18 @@ interface DoodleGameProps{
 
 const DoodleJumpGame:React.FC<DoodleGameProps> = ({scoreUpdate}) => {
   const scoreRef = useRef(0);
+  const [score, setScore] = useState(0);
+  let prevScore = 0;
+    let currentScore = 0; 
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [gameStart,setGameStart] = useState(false);
+  useEffect(() => {
+    scoreUpdate(score);
+  }, [score, scoreUpdate]);
+
 useEffect(() => {
+
   const canvas = canvasRef.current as HTMLCanvasElement;
     const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
     if (!canvas || !context) {
@@ -28,8 +37,8 @@ const drag = 0.3;
 const bounceVelocity = -12.5;
 
 // minimum and maximum vertical space between each platform
-let minPlatformSpace = 20;
-let maxPlatformSpace = 55;
+let minPlatformSpace = 25;
+let maxPlatformSpace = 50;
 
 // information about each platform. the first platform starts in the
 // bottom middle of the screen
@@ -102,7 +111,14 @@ function loop() {
     platforms.forEach(function(platform) {
       platform.y += -doodle.dy;
     });
-    console.log("Platforms are up")
+    
+    currentScore ++;
+    if(currentScore/20 > prevScore){
+      prevScore = Math.floor(currentScore/20);
+      setScore(prevScore);
+    }
+   // console.log("Platforms are up");
+   // setScore(score + 10);
     // add more platforms to the top of the screen as doodle moves up
     while (platforms[platforms.length - 1].y > 0) {
       platforms.push({
@@ -179,8 +195,12 @@ function loop() {
       // reset doodle position so it's on top of the platform
       doodle.y = platform.y - doodle.height;
       doodle.dy = bounceVelocity;
+      
+
     }
   });
+
+  
   if(doodle.dy < canvas.height){
     // console.log(doodle.dy);
     // console.log(canvas.height);
