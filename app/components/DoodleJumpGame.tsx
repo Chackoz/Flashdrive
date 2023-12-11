@@ -4,13 +4,17 @@ import React,{ useState, useEffect ,useRef } from "react";
 interface DoodleGameProps{
   scoreUpdate: (newValue: number) => void;
 }
+let prevScore = 0;
+let currentScore = 0; 
+let minPlatformSpace = 25;
+let maxPlatformSpace = 50;
 
 const DoodleJumpGame:React.FC<DoodleGameProps> = ({scoreUpdate}) => {
-  const scoreRef = useRef(0);
+ 
   const [score, setScore] = useState(0);
-  let prevScore = 0;
-    let currentScore = 0; 
-
+ 
+  const [gameOver, setGameOver] = useState(false);
+  const aniimationRef = useRef<Function>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [gameStart,setGameStart] = useState(false);
   useEffect(() => {
@@ -37,8 +41,7 @@ const drag = 0.3;
 const bounceVelocity = -12.5;
 
 // minimum and maximum vertical space between each platform
-let minPlatformSpace = 25;
-let maxPlatformSpace = 50;
+
 
 // information about each platform. the first platform starts in the
 // bottom middle of the screen
@@ -95,12 +98,27 @@ let keydown = false;
 let prevDoodleY = doodle.y;
 
 // game loop
-function loop() {
+const loop=()=> {
   requestAnimationFrame(loop);
   context.clearRect(0,0,canvas.width,canvas.height);
 
   // apply gravity to doodle
   doodle.dy += gravity;
+
+
+
+if (doodle.y+doodle.height  > canvas.height  ) {
+  //if(currentScore  > 0 && prevScore > 0){
+   // console.log(gameOver);
+    
+    //console.log("Game Over");
+    
+   // setGameOver(true);
+  //  currentScore = 0;
+ // }
+ 
+}
+
 
   // if doodle reaches the middle of the screen, move the platforms down
   // instead of doodle up to make it look like doodle is going up
@@ -220,15 +238,17 @@ function loop() {
     return platform.y < canvas?.height;
   })
 }
+//aniimationRef.current = loop;
 
 // listen to keyboard events to move doodle
 document.addEventListener('keydown', function(e) {
-  setGameStart(true);
+  
   // left arrow key
   if (e.which === 37) {
     keydown = true;
     playerDir = -1;
     doodle.dx = -3;
+    setGameStart(true);
 
   }
   // right arrow key
@@ -236,28 +256,57 @@ document.addEventListener('keydown', function(e) {
     keydown = true;
     playerDir = 1;
     doodle.dx = 3;
+    setGameStart(true);
   }
 });
 
 document.addEventListener('keyup', function(e) {
-  setGameStart(true);
+  //setGameStart(true);
   keydown = false;
 });
 
 // start the game
-requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
+
+
+
 
   return () => {
     document.removeEventListener('keydown', () => {});
     document.removeEventListener('keyup', () => {});
   }
-}, [])
+}, [gameOver]);
 
+const handleRestart =()=>{
+  console.log(gameOver);
+  
+  setGameOver(false);
+  console.log(gameOver);
+  setGameStart(false);
+  setScore(0);
+
+  minPlatformSpace = 25;
+  maxPlatformSpace = 50;
+  currentScore = 0;
+  prevScore = 0;
+//requestAnimationFrame(aniimationRef.current);
+}
 
   return (
-    <div className="text-white text-2xl">
-      <div className={`${gameStart? 'hidden':''} text-black`}> Use Left ⬅ and Right ➡ keys</div>
-      <canvas ref={canvasRef} width="375" height="667" id="game" className="border-black border-2" ></canvas>
+    <div className="text-white text-2xl flex flex-col items-center">
+      <div className={` ${gameStart ? 'hidden':''} ${gameOver ? 'hidden' :''} text-black`}> Use Left ⬅ and Right ➡ keys</div>
+      <canvas ref={canvasRef} width="375" height="667" id="game" className={`border-black border-2 ${gameOver ?"hidden":''} `} ></canvas>
+    {!gameOver && (<button onClick={()=>{
+      setGameOver(true);
+      console.log(gameOver);
+    }} className='bg-blue-600 rounded-md  p-2 text-xl text-white'>End Game</button> )}
+      {gameOver && (
+                <div className={`flex flex-col items-center justify-center w-full h-full bg-white text-black text-3xl `}>
+                    <div className='p-5 text-black'>Game Over. </div>
+                    <button onClick={handleRestart} className='bg-blue-600 rounded-md  p-2 text-xl text-white'>Restart</button>
+                </div>
+            )}
+
     </div>
   )
 }
