@@ -106,18 +106,18 @@ const loop=()=> {
   doodle.dy += gravity;
 
 
-
-if (doodle.y+doodle.height  > canvas.height  ) {
-  //if(currentScore  > 0 && prevScore > 0){
-   // console.log(gameOver);
+//Wrong Functin
+// if (doodle.y+doodle.height  > canvas.height  ) {
+//   if(currentScore  > 0 && prevScore > 0){
+//    console.log(gameOver);
     
-    //console.log("Game Over");
+//     console.log("Game Over");
     
-   // setGameOver(true);
-  //  currentScore = 0;
- // }
+//    setGameOver(true);
+//    currentScore = 0;
+//  } 
  
-}
+// }
 
 
   // if doodle reaches the middle of the screen, move the platforms down
@@ -219,13 +219,13 @@ if (doodle.y+doodle.height  > canvas.height  ) {
   });
 
   
-  if(doodle.dy < canvas.height){
-    // console.log(doodle.dy);
-    // console.log(canvas.height);
-        
-    // console.log("Doodle is Down");
+  // if(doodle.y > canvas.height){
+  //   console.log(doodle.dy);
+  //   console.log(canvas.height);
+  //       setGameOver(true) 
+  //   console.log("Doodle is Down");
     
-  }
+  // }
 
   // draw doodle
   context.fillStyle = 'yellow';
