@@ -1,9 +1,18 @@
+'use client'
 import Image from "next/image"
 import { spaceGrotesk } from "../fonts"
 import { MdArrowOutward } from "react-icons/md";
 import Link from "next/link";
+import { useState } from "react";
 
 const page = () => {
+  const [email,setEmail] = useState('');
+  const [password,setPassword] =useState('');
+
+  const handleClick = ()=>{
+    console.log("Email is "+ email);
+    console.log("Password is "+password);
+  }
   return (
     <div className={`${spaceGrotesk.className} min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}>
       <div className="w-1/2 h-screen flex items-center justify-center transition-all ease-out duration-500 ">
@@ -27,13 +36,13 @@ const page = () => {
         </div>
         <div className="flex-col flex w-1/2   justify-items-start items-start ">
           <label htmlFor="email" className="text-xl my-3 font-normal ml-2">Login</label>
-          <input type="text" id="email" placeholder="Email"   className="inputField"/>
+          <input type="text" id="email" placeholder="Email" value={email} onChange={(e)=>{setEmail(e.target.value)}}  className="inputField"/>
           <label htmlFor="password" className="text-xl  mb-2 mt-3 font-normal ml-2">Password</label>
-          <input type="text" id="password" placeholder="Password" className="inputField"/>
+          <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="inputField"/>
         </div>
         <div className="flex flex-col mt-4 gap-4 w-[50%]">
           <a href="" className="text-right text-blue-700 hover:text-blue-500 mb-3">Forgot Password?</a>
-        <button className="bg-[#f4fd6b] hover:bg-[#faffaf] transition-all duration-100 ease text-xxl py-4 px-6  rounded-lg">Log In</button>
+        <button className="bg-[#f4fd6b] hover:bg-[#faffaf] transition-all duration-100 ease text-xxl py-4 px-6  rounded-lg" onClick={handleClick}>Log In</button>
         </div>
         <div className="flex justify-between items-center w-[50%] my-5 ">
           <div className="bg-gray-950 w-[80px] h-[1px] opacity-30"></div>
