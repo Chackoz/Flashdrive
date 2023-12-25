@@ -2,13 +2,14 @@
 import Image from "next/image"
 import { spaceGrotesk } from "../fonts"
 import { MdArrowOutward } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
+import { FaEye,FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
 
 const page = () => {
   const [email,setEmail] = useState('');
   const [password,setPassword] =useState('');
+  const [eyeClick,setEyeClick] = useState(true);
 
   const handleClick = ()=>{
     console.log("Email is "+ email);
@@ -39,7 +40,12 @@ const page = () => {
           <label htmlFor="email" className="text-xl my-3 font-normal ml-2">Email</label>
           <input type="text" id="email" placeholder="Email" value={email} onChange={(e)=>{setEmail(e.target.value)}}  className="inputField"/>
           <label htmlFor="password" className="text-xl  mb-2 mt-3 font-normal ml-2">Password</label>
-          <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="inputField"></input>
+          <div className="w-full relative flex">
+        <input type={eyeClick? 'password':'text'} id="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="inputField"></input>
+        {
+          eyeClick?<FaEye onClick={()=>{setEyeClick(!eyeClick)}} className="absolute right-0 mr-4 mt-3 text-xl text-gray-950 opacity-50 hover:opacity-100 cursor-pointer"/> :<FaEyeSlash onClick={()=>{setEyeClick(!eyeClick)}} className="absolute right-0 mr-4 mt-3 text-xl text-gray-950 opacity-50 hover:opacity-100 cursor-pointer"/>
+        }
+        </div>
         </div>
         <div className="flex flex-col mt-4 gap-4 w-[50%]">
           <a href="" className="text-right text-blue-700 hover:text-blue-500 mb-3">Forgot Password?</a>
