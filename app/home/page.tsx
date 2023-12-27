@@ -11,7 +11,7 @@ const Home = () => {
   console.log(user);
   
     if(!user){
-      router.push('/')
+      
     }
   return (
    <div className="flex flex-col gap-6">

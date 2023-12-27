@@ -37,44 +37,47 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const handleScroll = throttle(() => {
-      const scrollPosition = window.scrollY;
+    let scrollPosition = 0;
+    if (typeof window !== "undefined" && window.innerWidth <= 768) {
+      const handleScroll = throttle(() => {
+        scrollPosition = window.scrollY;
 
-      const width = interpolate(scrollPosition, [0, 300], [60, 100]);
-      const height = interpolate(scrollPosition, [0, 300], [500, 800]);
-      const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
-      const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
+        const width = interpolate(scrollPosition, [0, 300], [60, 100]);
+        const height = interpolate(scrollPosition, [0, 300], [500, 800]);
+        const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
+        const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
 
-      controls.set({
-        width: `${width}%`,
-        height: `${height}px`,
-        transition: { duration: 0.5 },
-      });
-
-      if (window.innerWidth <= 768) {
         controls.set({
-          width: `90%`,
-          height: `500px`,
-          transition: { duration: 0.5 },
-        });
-
-        controls.start({
-          width: `90%`,
-          height: `500px`,
-        });
-      } else {
-        controls.start({
           width: `${width}%`,
           height: `${height}px`,
           transition: { duration: 0.5 },
-          marginTop: `${marginTop}px`,
-          transform: `translateY(${translateY}px)`,
         });
-      }
-    }, 16);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+        if (window.innerWidth <= 768) {
+          controls.set({
+            width: `90%`,
+            height: `500px`,
+            transition: { duration: 0.5 },
+          });
+
+          controls.start({
+            width: `90%`,
+            height: `500px`,
+          });
+        } else {
+          controls.start({
+            width: `${width}%`,
+            height: `${height}px`,
+            transition: { duration: 0.5 },
+            marginTop: `${marginTop}px`,
+            transform: `translateY(${translateY}px)`,
+          });
+        }
+      }, 16);
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, [controls]);
 
   return (
