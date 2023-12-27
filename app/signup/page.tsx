@@ -3,7 +3,7 @@ import Image from "next/image"
 import { spaceGrotesk } from "../fonts"
 import { MdArrowOutward } from "react-icons/md";
 import { FaEye,FaEyeSlash } from "react-icons/fa";
-
+import signupPic from '@/public/images/signup.png'
 import Link from "next/link";
 import { useState } from "react";
 
@@ -21,7 +21,7 @@ export default function Page () {
       <div className="w-1/2 h-screen flex items-center justify-center transition-all ease-out duration-500 ">
         <div  className=" group  flex justify-center items-center">
         {/* <div className="text-4xl  text-black group-hover:text-5xl transition-all ease-in-out duration-500 font-bold">NAMMADA LOGO</div> */}
-        <Image src={'/../images/signup.png'} alt="signup" width={1800} height={1800} className="scale-110">
+        <Image src={signupPic} alt="signup" width={1800} height={1800} className="scale-110">
 
         </Image>
         </div>

@@ -5,6 +5,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { FaEye,FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
+import loginPic from '@/public/images/login.png'
 
 export default function Page () {
   const [email,setEmail] = useState('');
@@ -21,7 +22,7 @@ export default function Page () {
       <div className="w-1/2 h-screen flex items-center justify-center transition-all ease-out duration-500 ">
         <div  className=" group  flex justify-center items-center">
         {/* <div className="text-4xl  text-black group-hover:text-5xl transition-all ease-in-out duration-500 font-bold">NAMMADA LOGO</div> */}
-        <Image src={'/../images/login.png'} alt="login" width={1800} height={1800} className="scale-110">
+        <Image src={loginPic} alt="login" width={1800} height={1800} className="scale-110">
 
         </Image>
         </div>
