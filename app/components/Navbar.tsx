@@ -1,0 +1,18 @@
+import React from 'react'
+
+function Navbar() {
+  return (
+    <div className=' flex p-5 justify-between items-center font-poppins md:max-w-[1500px] w-full mx-auto'>
+        <div className='font-logo text-xl '>SERIES EIGHT</div>
+        <div className='md:flex hidden gap-4'>
+            <div>Home</div>
+            <div>Home</div>
+            <div>Home</div>
+            <div>Home</div>
+        </div>
+        <div className='border-black border-[1px] px-2 rounded-full'>CONTACT</div>
+    </div>
+  )
+}
+
+export default Navbar

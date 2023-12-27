@@ -11,10 +11,18 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
     const scoreRef = useRef(0);
     const grid = 20;
     let count = 0;
+    let speed=0;
 
     function getRandomInt(min: number, max: number): number {
         return Math.floor(Math.random() * (max - min)) + min;
     }
+
+    const isColliding = (obj1: { x: number; y: number }, obj2: { x: number; y: number }) => {
+        return obj1.x < obj2.x + grid &&
+               obj1.x + grid > obj2.x &&
+               obj1.y < obj2.y + grid &&
+               obj1.y + grid > obj2.y;
+    };
 
     useEffect(() => {
         interface Snake {
@@ -35,8 +43,8 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
             maxCells: 4,
         };
         const apple = {
-            x: 60,
-            y: 60,
+            x: 200,
+            y: 200,
         };
 
         function loop() {
@@ -47,7 +55,7 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
                 }
 
                 gameOver = false;
-                count = 0;
+                count = speed;
                 const canvas = document.getElementById('game') as HTMLCanvasElement;
                 const context = canvas.getContext('2d') as CanvasRenderingContext2D;
 
@@ -81,9 +89,10 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
                 snake.cells.forEach(function (cell, index) {
                     context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
 
-                    if (cell.x === apple.x && cell.y === apple.y) {
+                    if (isColliding(cell, apple)) {
                         snake.maxCells++;
                         scoreRef.current = scoreRef.current + 1;
+                       
                         onValueChange(scoreRef.current);
                         console.log(scoreRef.current);
                         apple.x = getRandomInt(0, 25) * grid;
@@ -100,8 +109,12 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
                             snake.dx = grid;
                             snake.dy = 0;
 
-                            apple.x = getRandomInt(0, 25) * grid;
-                            apple.y = getRandomInt(0, 25) * grid;
+                            apple.x = getRandomInt(0, canvas.width / grid) * grid;
+                            apple.y = getRandomInt(0, canvas.height / grid) * grid;
+                            while (snake.cells.some(c => isColliding(c, apple))) {
+                                apple.x = getRandomInt(0, canvas.width / grid) * grid;
+                                apple.y = getRandomInt(0, canvas.height / grid) * grid;
+                            }
                             gameOver = true;
                         }
                     }
@@ -135,7 +148,6 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
             const deltaY = clientY - snake.y;
 
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                // Horizontal swipe
                 if (deltaX > 0 && snake.dx === 0) {
                     snake.dx = grid;
                     snake.dy = 0;
@@ -144,7 +156,6 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
                     snake.dy = 0;
                 }
             } else {
-                // Vertical swipe
                 if (deltaY > 0 && snake.dy === 0) {
                     snake.dy = grid;
                     snake.dx = 0;
@@ -158,18 +169,16 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
         const handleTouchEnd = () => {
             // Handle touch end if needed
         };
+
         const handleResize = () => {
             const canvas = document.getElementById('game') as HTMLCanvasElement;
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
         };
-    
-        // Call handleResize once to set initial dimensions
-        handleResize();
-    
-        // Add event listener for window resize
-        window.addEventListener('resize', handleResize);
 
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('touchstart', handleTouchStart);
         document.addEventListener('touchend', handleTouchEnd);
@@ -182,11 +191,10 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
             document.removeEventListener('touchend', handleTouchEnd);
             window.removeEventListener('resize', handleResize);
         };
-    }, [gameOver]);
+    }, []);
 
     const handleRestart = () => {
         setGo(false);
-        
         scoreRef.current = 0;
         onValueChange(scoreRef.current);
         localStorage.setItem('score', '0');
@@ -194,10 +202,10 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
 
     return (
         <div className="flex w-full justify-center items-center bg-white">
-            <canvas id="game" width="1000" height="700" className={`bg-[#f8f8f8] ${go ? 'hidden' : ''} `}></canvas>
+            <canvas id="game" width="1000" height="1000" className={`bg-[#f8f8f8] ${go ? 'hidden' : ''}`}></canvas>
             {go && (
-                <div className={`flex flex-col items-center justify-center w-full h-full text-black text-6xl   ${!go ? 'hidden' : ''}`}>
-                    <div className='p-5'>Game Over. </div>
+                <div className={`flex flex-col items-center justify-center w-full h-full text-black text-6xl ${!go ? 'hidden' : ''}`}>
+                    <div className='p-5'>Game Over.</div>
                     <button onClick={handleRestart} className='bg-black rounded-md p-2 text-3xl text-white'>Restart</button>
                 </div>
             )}

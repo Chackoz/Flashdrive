@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className='flex flex-col min-h-screen  bg-white justify-center items-center'>
+        <div className='flex flex-col w-full min-h-screen  bg-white justify-center items-center'>
             <div className='bg-white text-green-600 text-6xl'>Score: {variable}</div>
             <SnakeGame onValueChange={handleVariableChange} />
         </div>

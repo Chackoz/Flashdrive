@@ -1,25 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans&family=Francois+One&family=Montserrat:wght@100&family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
 
-  .inputField{
-    @apply outline-none border-black border border-opacity-30 px-3 py-2 text-lg rounded-md font-extralight w-full bg-transparent
+
+@layer components {
+  .inputField {
+    @apply outline-none border-black border border-opacity-30 px-3 py-2 text-lg rounded-md font-extralight w-full bg-transparent;
   }
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
 
 body {
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 canvas {
   border: 1px solid white;
+}
+
+.font-arone {
+  font-family: "AR One Sans", sans-serif;
+}
+
+.font-poppins{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  
+}
+
+.font-logo{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
 }
