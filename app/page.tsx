@@ -101,7 +101,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="md:max-w-[40%]   text-lg translate-y-[200px]  p-5">
+            <div className="md:max-w-[40%]    text-lg translate-y-[200px]  p-5">
               Where dreams ignite and visions soar, In radiant hues and tales
               galore.
               <div className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
@@ -110,7 +110,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col md:max-w-[60%] h-[80%] justify-between items-start font-poppins ">
+          <div className="flex flex-col md:w-[80%] h-[80%] justify-start items-start font-poppins ">
             <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] p-5">
               <div className="md:h-[100px] overflow-hidden">
                 <FadeText className=" flex text-black  font-poppins ">
