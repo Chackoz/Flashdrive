@@ -7,7 +7,7 @@ import { FaEye,FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
 
-const page = () => {
+export default function Page () {
   const [email,setEmail] = useState('');
   const [password,setPassword] =useState('');
   const [eyeClick,setEyeClick] = useState(true);
@@ -33,7 +33,7 @@ const page = () => {
         </div>
         <div className="text-gray-950 text-2xl font-medium flex-col mb-3 text-left w-1/2 justify-start flex ">
   
-          Let's go...
+          Let &apos;s go... 
   
 
         </div>
@@ -72,4 +72,3 @@ const page = () => {
     </div>
   )
 }
-export default page

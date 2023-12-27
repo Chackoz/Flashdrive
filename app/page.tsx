@@ -52,6 +52,12 @@ export default function Home() {
       });
 
       if (window.innerWidth <= 768) {
+        controls.set({
+          width: `90%`,
+          height: `500px`,
+          transition: { duration: 0.5 },
+        });
+
         controls.start({
           width: `90%`,
           height: `500px`,

@@ -6,7 +6,7 @@ import { FaEye,FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
 
-const page = () => {
+export default function Page () {
   const [email,setEmail] = useState('');
   const [password,setPassword] =useState('');
   const [eyeClick,setEyeClick] = useState(true);
@@ -15,6 +15,7 @@ const page = () => {
     console.log("Email is "+ email);
     console.log("Password is "+password);
   }
+
   return (
     <div className={`${spaceGrotesk.className} min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}>
       <div className="w-1/2 h-screen flex items-center justify-center transition-all ease-out duration-500 ">
@@ -71,4 +72,3 @@ const page = () => {
     </div>
   )
 }
-export default page
