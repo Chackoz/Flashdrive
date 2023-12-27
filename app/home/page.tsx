@@ -11,6 +11,10 @@ const Home = () => {
   console.log(user);
   
     if(!user){
+<<<<<<< HEAD
+=======
+      
+>>>>>>> dc00fe2ccebc43c76840f456df0d7c4c1f927ca6
     }
   
   return (

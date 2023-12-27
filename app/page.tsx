@@ -37,44 +37,47 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const handleScroll = throttle(() => {
-      const scrollPosition = window.scrollY;
+    let scrollPosition = 0;
+    
+      const handleScroll = throttle(() => {
+        scrollPosition = window.scrollY;
 
-      const width = interpolate(scrollPosition, [0, 300], [60, 100]);
-      const height = interpolate(scrollPosition, [0, 300], [500, 800]);
-      const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
-      const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
+        const width = interpolate(scrollPosition, [0, 300], [60, 100]);
+        const height = interpolate(scrollPosition, [0, 300], [500, 800]);
+        const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
+        const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
 
-      controls.set({
-        width: `${width}%`,
-        height: `${height}px`,
-        transition: { duration: 0.5 },
-      });
-
-      if (window.innerWidth <= 768) {
         controls.set({
-          width: `90%`,
-          height: `500px`,
-          transition: { duration: 0.5 },
-        });
-
-        controls.start({
-          width: `90%`,
-          height: `500px`,
-        });
-      } else {
-        controls.start({
           width: `${width}%`,
           height: `${height}px`,
           transition: { duration: 0.5 },
-          marginTop: `${marginTop}px`,
-          transform: `translateY(${translateY}px)`,
         });
-      }
-    }, 16);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+        if (window.innerWidth <= 768) {
+          controls.set({
+            width: `90%`,
+            height: `500px`,
+            transition: { duration: 0.5 },
+          });
+
+          controls.start({
+            width: `90%`,
+            height: `500px`,
+          });
+        } else {
+          controls.start({
+            width: `${width}%`,
+            height: `${height}px`,
+            transition: { duration: 0.5 },
+            marginTop: `${marginTop}px`,
+            transform: `translateY(${translateY}px)`,
+          });
+        }
+      }, 16);
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    
   }, [controls]);
 
   return (
@@ -98,7 +101,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="md:max-w-[40%]   text-lg translate-y-[200px]  p-5">
+            <div className="md:max-w-[40%]    text-lg translate-y-[200px]  p-5">
               Where dreams ignite and visions soar, In radiant hues and tales
               galore.
               <div className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
@@ -107,7 +110,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col md:max-w-[60%] h-[80%] justify-between items-start font-poppins ">
+          <div className="flex flex-col md:w-[80%] h-[80%] justify-start items-start font-poppins ">
             <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] p-5">
               <div className="md:h-[100px] overflow-hidden">
                 <FadeText className=" flex text-black  font-poppins ">
