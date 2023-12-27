@@ -41,9 +41,15 @@ export default function Home() {
       const scrollPosition = window.scrollY;
 
       const width = interpolate(scrollPosition, [0, 300], [60, 100]);
-      const height = interpolate(scrollPosition, [0, 300], [500, 1000]);
+      const height = interpolate(scrollPosition, [0, 300], [500, 800]);
       const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
-      const translateY = interpolate(scrollPosition, [0, 300], [0, 60]);
+      const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
+
+      controls.set({
+        width: `${width}%`,
+        height: `${height}px`,
+        transition: { duration: 0.5 },
+      });
 
       if (window.innerWidth <= 768) {
         controls.start({
@@ -67,15 +73,15 @@ export default function Home() {
 
   return (
     <main className="flex flex-col min-h-screen h-full w-full bg-[#EEEAEA] ">
-      <section className="w-full min-h-full flex flex-col justify-between">
+      <section className="flex flex-col h-max w-full   justify-between bg-green-200 pb-[200px]">
         <Navbar />
 
         <div className="flex md:flex-row flex-col  mx-auto h-full items-start justify-between mt-[100px] md:max-w-[1500px]">
           <div className="md:flex flex-col hidden h-full mx-auto justify-start max-w-[40%] ">
             <div className="flex items-start justify-start">
               <div className="flex md:rotate-90 h-[5px] items-start justify-start text-start ">
-                <div className="bg-black h-[25px] w-[35px] rounded-full text-white text-center">
-                  S8
+                <div className="bg-black h-[25px] w-[35px] rounded-full text-white text-center rotate-90">
+                  ⚡
                 </div>
                 <div className="border-black border-[1px] h-[25px] w-[25px] rounded-full text-white text-center">
                   .
@@ -87,8 +93,8 @@ export default function Home() {
             </div>
 
             <div className="md:max-w-[40%]   text-lg translate-y-[200px]  p-5">
-              People creating websites, developing brands and building eCommerce
-              stores for people.
+            Where dreams ignite and visions soar,
+In radiant hues and tales galore.
               <div className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
                 About Us
               </div>
@@ -97,18 +103,18 @@ export default function Home() {
 
           <div className="flex flex-col md:max-w-[60%] h-[80%] justify-between items-start font-poppins ">
             <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] p-5">
-              <div className="md:h-[90px] overflow-hidden">
-                <FadeText className="  text-black  font-poppins ">
-                  We know the
+              <div className="md:h-[100px] overflow-hidden">
+                <FadeText className=" flex text-black  font-poppins ">
+                Captured scenes,
                 </FadeText>
               </div>
-              <div className="md:h-[90px] overflow-hidden">
+              <div className="md:h-[100px] overflow-hidden">
                 <FadeText className="  text-black   ">
-                  internet and people
+                Shared stories,
                 </FadeText>
               </div>
-              <div className="md:h-[90px] overflow-hidden">
-                <FadeText className=" text-black   ">in equal measure</FadeText>
+              <div className="md:h-[100px] overflow-hidden">
+                <FadeText className=" text-black   ">Timeless frames.</FadeText>
               </div>
             </div>
           </div>
@@ -116,7 +122,7 @@ export default function Home() {
           <div className="flex   md:hidden h-full  justify-start items-center  ">
             <div className="flex rotate-90 h-[5px] items-start justify-start text-start ">
               <div className="bg-black h-[25px] w-[35px] rounded-full text-white text-center">
-                S8
+                ⚡
               </div>
               <div className="border-black border-[1px] h-[25px] w-[25px] rounded-full text-white text-center">
                 .
@@ -134,24 +140,23 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div></div>
         </div>
-        <div className="flex w-full justify-end">
+        <div className="flex h-full w-full justify-end ">
           <div
-            className={`flex md:w-[90%] w-full items-center md:justify-end justify-center mt-20 md:m-20 md:p-0 p-5 `}
+            className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center mt-20 md:mx-20 md:p-0 p-5 `}
           >
             <motion.div
               animate={controls}
-              className="flex bg-[#1b1b1b] md:w-[60%] w-[90%] h-[500px] rounded-2xl text-center items-center justify-around px-10"
+              className="flex bg-[#1b1b1b] opacity-[100%] md:w-[60%] w-[90%] h-[500px] rounded-2xl text-center items-center justify-around px-10"
             >
-              <div className="text-white text-[4rem] uppercase font-semibold">
-                Series Eight
+              <div className="text-white text-[4rem] uppercase font-logo">
+                Flash Drive
               </div>
               <div
                 className="flex w-[100px] h-[100px] rounded-full bg-yellow-200 animate-spin justify-center items-center"
                 style={{ animationDuration: "4s" }}
               >
-                😉
+                ⚡
                 <svg
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   role="image"
@@ -228,9 +233,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="flex md:w-[80%] mx-auto h-full min-h-full items-end justify-end text-[5rem] font-poppins leading-none tracking-tight -translate-y-40">
-        <div className="md:w-[50%]">Mixing up work and play, every day </div>
-      </section>
+
+      <section className="flex w-full mx-auto h-full min-h-screen bg-blue-300 items-end justify-end text-[5rem] font-poppins leading-none tracking-tight  "></section>
     </main>
   );
 }
