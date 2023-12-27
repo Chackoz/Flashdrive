@@ -38,7 +38,7 @@ export default function Home() {
 
   useEffect(() => {
     let scrollPosition = 0;
-    if (typeof window !== "undefined" && window.innerWidth <= 768) {
+    
       const handleScroll = throttle(() => {
         scrollPosition = window.scrollY;
 
@@ -77,7 +77,7 @@ export default function Home() {
 
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
-    }
+    
   }, [controls]);
 
   return (
