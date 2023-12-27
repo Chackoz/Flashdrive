@@ -4,9 +4,9 @@ const navbarProps={
   mode : String
 }
 
-function Navbar() {
+function NavDar() {
   return (
-    <div className=' flex p-5 justify-between items-center font-poppins md:max-w-[1500px] w-full mx-auto'>
+    <div className=' flex p-5 justify-between items-center font-poppins md:max-w-[1500px] w-full mx-auto text-white bg-[#1d1d1d] rounded-xl'>
         <div className='font-logo text-xl '>⚡FLASH DRIVE</div>
         <div className='md:flex hidden gap-4'>
             <div>Home</div>
@@ -19,4 +19,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default NavDar

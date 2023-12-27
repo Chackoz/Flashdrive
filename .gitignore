@@ -13,6 +13,8 @@
 /.next/
 /out/
 
+/public/art
+
 # production
 /build
 

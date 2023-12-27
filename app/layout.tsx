@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import {inter} from './fonts'
 import './globals.css'
+import Script from 'next/script'
 
 
 export const metadata: Metadata = {
@@ -14,7 +15,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='bg-green-200'>
+    
+    <html lang="en" className='bg-green-200 '>
+      
+
       <body className={inter.className}>{children}</body>
     </html>
   )

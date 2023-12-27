@@ -78,8 +78,8 @@ export default function Home() {
   }, [controls]);
 
   return (
-    <main className="flex flex-col min-h-screen h-full w-full bg-[#EEEAEA] ">
-      <section className="flex flex-col h-max w-full   justify-between bg-green-200 pb-[200px]">
+    <main className="flex flex-col min-h-screen h-full w-full bg-green-200 md:pt-0 pt-10">
+      <section className="flex flex-col h-max w-full   justify-between  pb-[200px]">
         <Navbar />
 
         <div className="flex md:flex-row flex-col  mx-auto h-full items-start justify-between mt-[100px] md:max-w-[1500px]">
@@ -99,8 +99,8 @@ export default function Home() {
             </div>
 
             <div className="md:max-w-[40%]   text-lg translate-y-[200px]  p-5">
-            Where dreams ignite and visions soar,
-In radiant hues and tales galore.
+              Where dreams ignite and visions soar, In radiant hues and tales
+              galore.
               <div className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
                 About Us
               </div>
@@ -111,13 +111,11 @@ In radiant hues and tales galore.
             <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] p-5">
               <div className="md:h-[100px] overflow-hidden">
                 <FadeText className=" flex text-black  font-poppins ">
-                Captured scenes,
+                  Captured scenes,
                 </FadeText>
               </div>
               <div className="md:h-[100px] overflow-hidden">
-                <FadeText className="  text-black   ">
-                Shared stories,
-                </FadeText>
+                <FadeText className="  text-black   ">Shared stories,</FadeText>
               </div>
               <div className="md:h-[100px] overflow-hidden">
                 <FadeText className=" text-black   ">Timeless frames.</FadeText>
@@ -240,7 +238,11 @@ In radiant hues and tales galore.
         </div>
       </section>
 
-      <section className="flex w-full mx-auto h-full min-h-screen bg-blue-300 items-end justify-end text-[5rem] font-poppins leading-none tracking-tight  "></section>
+      <section className="flex w-[80%] mx-auto h-full min-h-screen  text-[5rem] font-poppins2 leading-none tracking-tight bg-green-200 ">
+        <div className="flex w-[45%] text-[4.5rem] justify-end items-start">
+          Mixing up work and play, every day
+        </div>
+      </section>
     </main>
   );
 }
