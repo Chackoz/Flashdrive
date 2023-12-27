@@ -4,7 +4,7 @@ import { spaceGrotesk } from "../fonts"
 import { MdArrowOutward } from "react-icons/md";
 import { FaEye,FaEyeSlash } from "react-icons/fa";
 import {auth} from '@/app/firebase/config'
-import {useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth'
+import {useSignInWithEmailAndPassword,useSignInWithGoogle,useSignInWithGithub} from 'react-firebase-hooks/auth'
 import Link from "next/link";
 import Image from "next/image"
 import loginPic from '@/public/images/login.png'
@@ -16,6 +16,8 @@ export default function Page () {
   const [password,setPassword] =useState('');
   const [eyeClick,setEyeClick] = useState(true);
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [signInWithGithub] = useSignInWithGithub(auth);
 
   const handleLogin = async()=>{
     console.log("Email is "+ email);
@@ -26,6 +28,32 @@ export default function Page () {
       setPassword('');
       console.log(res);
       router.push('/home')
+      
+    } catch (error) {
+      console.error(error);
+      
+    }
+  }
+  const googleSignIn = async()=>{
+    try {
+      const res = await signInWithGoogle();
+      setEmail('');
+      setPassword('');
+      console.log(res);
+      router.push('/home')
+      
+    } catch (error) {
+      console.error(error);
+      
+    }
+  }
+  const githubSignIn = async()=>{
+    try {
+      const res = await signInWithGithub();
+      setEmail('');
+      setPassword('');
+      console.log(res);
+     router.push('/home')
       
     } catch (error) {
       console.error(error);
@@ -75,8 +103,8 @@ export default function Page () {
           <div className="bg-gray-950 w-[80px] h-[1px] opacity-30"></div>
         </div>
         <div className=" flex justify-between w-[50%] ">
-          <button className="bg-blue-300 w-[48%] py-3 hover:bg-blue-200 rounded-lg">Google</button>
-          <button className="bg-blue-300 w-[48%]  py-3 hover:bg-blue-200 rounded-lg">GitHub</button>
+          <button onClick={googleSignIn} className="bg-blue-300 w-[48%] py-3 hover:bg-blue-200 rounded-lg">Google</button>
+          <button onClick={githubSignIn} className="bg-blue-300 w-[48%]  py-3 hover:bg-blue-200 rounded-lg">GitHub</button>
         </div>
         <div className="  w-1/2 mt-10 flex  justify-center items-center">
           <p className="mr-2">Newbie??</p>

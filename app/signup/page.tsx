@@ -5,13 +5,16 @@ import { MdArrowOutward } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import {useCreateUserWithEmailAndPassword} from "react-firebase-hooks/auth"
-import {auth} from '@/app/firebase/config'
+import {auth,googleAuthProvider,githubAuthProvider} from '@/app/firebase/config'
+import { signInWithPopup } from "firebase/auth";
 import Image from "next/image";
 import signupPic from "@/public/images/signup.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
  // const [userName, setUserName] = useState("");
+ const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [eyeClick, setEyeClick] = useState(true);
@@ -25,12 +28,38 @@ const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
      console.log(res);
      setEmail('');
      setPassword('')
+     router.push('/login');
      
    } catch (error) {
     console.error(error);
     
    }
   };
+  const googleSignUp = async()=>{
+    try {
+      const res = await signInWithPopup(auth,googleAuthProvider);
+      console.log(res);
+      setEmail('');
+      setPassword('');
+      router.push('/login');
+    } catch (err) {
+      console.error(err);
+      
+    }
+  }
+  const githubSignUp = async()=>{
+    try {
+      const res = await signInWithPopup(auth,githubAuthProvider);
+      console.log(res);
+      setEmail('');
+      setPassword('');
+      router.push('/login');
+    } catch (err) {
+      console.error(err);
+      
+    }
+  }
+
   return (
     <div
       className={`${spaceGrotesk.className}  relative flex justify-center items-center min-w-full bg-gray-50`}
@@ -129,10 +158,10 @@ const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
           <div className="bg-gray-950 w-[80px] h-[1px] opacity-30"></div>
         </div>
         <div className=" flex justify-between w-[50%] ">
-          <button className="bg-blue-300 w-[48%] py-3 hover:bg-blue-200 rounded-lg">
+          <button onClick={googleSignUp} className="bg-blue-300 w-[48%] py-3 hover:bg-blue-200 rounded-lg">
             Google
           </button>
-          <button className="bg-blue-300 w-[48%]  py-3 hover:bg-blue-200 rounded-lg">
+          <button onClick={githubSignUp} className="bg-blue-300 w-[48%]  py-3 hover:bg-blue-200 rounded-lg">
             GitHub
           </button>
         </div>
