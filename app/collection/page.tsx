@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useCallback } from "react";
 import Masonry from "react-masonry-css";
 import Navbar from "../components/Navbar";
@@ -26,6 +26,15 @@ function Page() {
     return array;
   };
 
+  const debounce = (func: (...args: any[]) => void, delay: number) => {
+    let debounceTimer: NodeJS.Timeout;
+    return (...args: any[]) => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => func(...args), delay);
+    };
+  };
+  
+
   const fetchMoreImages = useCallback(async () => {
     const startIndex = images.length + 1;
     const newImages = Array.from({ length: 400 }, (_, i) => i + startIndex);
@@ -33,21 +42,28 @@ function Page() {
     setPage(prevPage => prevPage + 1);
   }, [images]);
 
-  useEffect(() => {
-    fetchMoreImages();
-  }, []); // Initial fetch
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop + 10 >= document.documentElement.offsetHeight) {
+  const handleScroll = useCallback(
+    debounce(() => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 300
+      ) {
         console.log("end reached");
         fetchMoreImages();
       }
-    };
+    }, 1200), // 300ms debounce delay
+    [fetchMoreImages]
+  );
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [fetchMoreImages]);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  useEffect(() => {
+    fetchMoreImages();
+  }, []);
+
   return (
     <main className="relative flex flex-col w-full h-full p-5 items-center">
       <Navbar />
@@ -87,3 +103,4 @@ function Page() {
 }
 
 export default Page;
+
