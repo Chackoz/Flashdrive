@@ -1,13 +1,15 @@
 "use client";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import FadeText from "./components/FadeText";
 
 export default function Home() {
   const controls = useAnimation();
-  const [justifyContent, setalign] = useState("end");
+
+  const rocketControl = useAnimation();
+  const rocketRef = useRef<HTMLDivElement>(null);
 
   const throttle = (callback: Function, delay: number) => {
     let lastTime = 0;
@@ -38,46 +40,84 @@ export default function Home() {
 
   useEffect(() => {
     let scrollPosition = 0;
-    
-      const handleScroll = throttle(() => {
-        scrollPosition = window.scrollY;
 
+    const rocketScroll = throttle(() => {
+      if (rocketRef.current) {
+        const yPos = rocketRef.current.getBoundingClientRect().top;
+
+        // Use the scroll position to determine the trigger position
+        const scrollPosition = window.scrollY;
+
+        const triggerPosition = window.innerHeight * 1.0;
         const width = interpolate(scrollPosition, [0, 300], [60, 100]);
-        const height = interpolate(scrollPosition, [0, 300], [500, 800]);
-        const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
-        const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
+        console.log(scrollPosition - 1000);
+        if (scrollPosition > triggerPosition) {
+          rocketControl.start({
+            x: window.innerWidth-800,
+            transition: {
+              duration: 1.0,
+              ease: "easeOut",
+            },
+          });
+        } else if (scrollPosition > triggerPosition + 10) {
+          rocketControl.set({
+            x: 0,
+            transition: {
+              duration: 1.0,
+              ease: "easeOut",
+            },
+          });
+        } else {
+          rocketControl.start({
+            x: 0, // Reset to the original position
+            transition: {
+              duration: 1.0,
+              ease: "easeOut",
+            },
+          });
+        }
+      }
+    }, 10);
 
+    const handleScroll = throttle(() => {
+      scrollPosition = window.scrollY;
+
+      const width = interpolate(scrollPosition, [0, 300], [60, 100]);
+      const height = interpolate(scrollPosition, [0, 300], [500, 800]);
+      const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
+      const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
+
+      controls.set({
+        width: `${width}%`,
+        height: `${height}px`,
+        transition: { duration: 0.5 },
+      });
+
+      if (window.innerWidth <= 768) {
         controls.set({
-          width: `${width}%`,
-          height: `${height}px`,
+          width: `90%`,
+          height: `500px`,
           transition: { duration: 0.5 },
         });
 
-        if (window.innerWidth <= 768) {
-          controls.set({
-            width: `90%`,
-            height: `500px`,
-            transition: { duration: 0.5 },
-          });
+        controls.start({
+          width: `90%`,
+          height: `500px`,
+        });
+      } else {
+        controls.start({
+          width: `${width}%`,
+          height: `${height}px`,
+          transition: { duration: 0.5 },
+          marginTop: `${marginTop}px`,
+          transform: `translateY(${translateY}px)`,
+        });
+      }
+    }, 16);
 
-          controls.start({
-            width: `90%`,
-            height: `500px`,
-          });
-        } else {
-          controls.start({
-            width: `${width}%`,
-            height: `${height}px`,
-            transition: { duration: 0.5 },
-            marginTop: `${marginTop}px`,
-            transform: `translateY(${translateY}px)`,
-          });
-        }
-      }, 16);
-
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", rocketScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [controls]);
 
   return (
@@ -241,11 +281,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex w-[80%] mx-auto h-full min-h-screen  text-[5rem] font-poppins2 leading-none tracking-tight  ">
+      <section className="flex flex-col w-[80%] mx-auto h-full  text-[5rem] font-poppins2 leading-none tracking-tight  ">
         <div className="flex w-[45%] text-[4.5rem] justify-end items-start">
           Mixing up work and play, every day
         </div>
+
+        <motion.div
+        ref={rocketRef}
+        animate={rocketControl}
+        className="p-5 w-full items-start justify-start"
+      >
+        <img src="/rocket.png" />
+      </motion.div>
       </section>
+     
+      <section className="min-h-screen">.</section>
     </main>
   );
 }

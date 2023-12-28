@@ -17,11 +17,12 @@ export default function Error({
 
   return (
     <div className="flex flex-col w-full h-full justify-center items-center">
-      <h2 className="font-poppins text-[3rem] tracking-tighter">
+      <img src="/404.png" className="w-[300px] md:w-auto"></img>
+      <h2 className="font-poppins text-[1.5rem] md:text-[3rem] tracking-tighter">
        404: I think you might be a little lost....
       </h2>
-      <div className="flex gap-2 text-[1rem] font-medium ">
-        <div className="p-1 text-[1.1rem] font-light">Why not visit our</div>
+      <div className="flex md:flex-row flex-col gap-2 text-[1rem] font-medium ">
+        <div className="p-1  text-lg md:text-[1.1rem] font-light">Why not visit our</div>
 
         <Link
          href="/"
