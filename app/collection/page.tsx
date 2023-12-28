@@ -11,7 +11,7 @@ function Page() {
   const [page, setPage] = useState(1);
 
   const breakpointColumnsObj = {
-    default: 6,
+    default: 8,
     1100: 5,
     700: 4,
     500: 2,

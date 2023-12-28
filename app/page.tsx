@@ -81,7 +81,7 @@ export default function Home() {
   }, [controls]);
 
   return (
-    <main className="flex flex-col min-h-screen h-full w-full bg-green-200 md:pt-0 pt-10">
+    <main className="flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10">
       <section className="flex flex-col h-max w-full   justify-between  pb-[200px]">
         <Navbar />
 
@@ -241,7 +241,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex w-[80%] mx-auto h-full min-h-screen  text-[5rem] font-poppins2 leading-none tracking-tight bg-green-200 ">
+      <section className="flex w-[80%] mx-auto h-full min-h-screen  text-[5rem] font-poppins2 leading-none tracking-tight  ">
         <div className="flex w-[45%] text-[4.5rem] justify-end items-start">
           Mixing up work and play, every day
         </div>
