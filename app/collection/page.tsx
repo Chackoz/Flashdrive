@@ -1,12 +1,15 @@
-"use client";
-import React from "react";
+"use client"
+import React, { useState, useEffect, useCallback } from "react";
 import Masonry from "react-masonry-css";
 import Navbar from "../components/Navbar";
-import NavDar from "../components/NavDar";
 import Image from "next/image";
+import { LazyMotion, domAnimation, m, motion } from "framer-motion";
+import LazyLoad from "react-lazy-load";
 
-function page() {
-  const images = Array.from({ length: 125 }, (_, i) => i + 1);
+function Page() {
+  const [images, setImages] = useState<number[]>([]);
+  const [page, setPage] = useState(1);
+
   const breakpointColumnsObj = {
     default: 6,
     1100: 5,
@@ -14,8 +17,8 @@ function page() {
     500: 2,
   };
 
+  // Shuffle function
   const shuffleArray = (array: number[]): number[] => {
-    // Specify the type for the array parameter
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -23,40 +26,64 @@ function page() {
     return array;
   };
 
-  const shuffledImages = shuffleArray([...images]);
+  const fetchMoreImages = useCallback(async () => {
+    const startIndex = images.length + 1;
+    const newImages = Array.from({ length: 400 }, (_, i) => i + startIndex);
+    setImages(prevImages => [...prevImages, ...shuffleArray(newImages)]);
+    setPage(prevPage => prevPage + 1);
+  }, [images]);
 
+  useEffect(() => {
+    fetchMoreImages();
+  }, []); // Initial fetch
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop + 10 >= document.documentElement.offsetHeight) {
+        console.log("end reached");
+        fetchMoreImages();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [fetchMoreImages]);
   return (
-    <main className="realtive flex flex-col w-full h-full p-5 items-center ">
+    <main className="relative flex flex-col w-full h-full p-5 items-center">
       <Navbar />
 
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid m-5 k "
-        columnClassName="my-masonry-grid_column"
-      >
-        {shuffledImages.map((index) => (
-          // eslint-disable-next-line react/jsx-no-undef
-          <Image
-            className="h-auto max-w-full rounded-lg m-4  "
-            src={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${index}).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
-            alt={`Image ${index}`}
-            key={index}
-            width={512}
-            height={512}
-            layout="responsive"
-            loading="lazy" // Enable lazy loading
-        
-            ></Image>
-        ))}
-      </Masonry>
-
-      <div className="items-end  text-black text-[4rem] flex justify-center  w-full min-h-[1000px] bg-gradient-to-t from-[#bbf7d0] via-[#bbf7d0] to-tranparent -translate-y-[1000px]">
-        <div className="m-10 -translate-y-10">
-        Coming Soon..
-        </div>
-      </div>
+      <LazyMotion features={domAnimation}>
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {images.map((index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ ease: "easeInOut", duration: 0.5 }}
+              className="relative rounded-lg overflow-hidden bg-green-300"
+            >
+              <LazyLoad offset={400}>
+                <Image
+                  className="object-cover w-full h-full"
+                  src={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${index % 125 == 0 ? (index % 125) + 1 : index % 125}).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
+                  alt={`Image ${index % 125 == 0 ? (index % 125) + 1 : index % 125}`}
+                  width={512}
+                  height={512}
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${index % 125 == 0 ? (index % 125) + 1 : index % 125}).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
+                />
+              </LazyLoad>
+            </motion.div>
+          ))}
+        </Masonry>
+      </LazyMotion>
     </main>
   );
 }
 
-export default page;
+export default Page;
