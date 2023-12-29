@@ -13,7 +13,7 @@ function ProjBox() {
   }, [controls]);
 
   return (
-    <div
+    <a href="/collection"
       className="w-full h-full  z-10 "
       onMouseOver={() =>
         controls.start({
@@ -52,7 +52,7 @@ function ProjBox() {
         <div className="text-[2rem] font-semibold">Stable Diffusion</div>
         <div className="text-[1.5rem] font-light text-center">Web API</div>
       </div>
-    </div>
+    </a>
   );
 }
 

@@ -53,7 +53,7 @@ export default function Home() {
         
         console.log(scrollPosition - 1000);
         if (window.innerWidth <= 768) {
-          if (yPos<400 ) {
+          if (yPos<500 ) {
             rocketControl.start({
               rotate: 90,
               transition: {
