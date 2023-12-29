@@ -6,8 +6,8 @@ const navbarProps={
 
 function Navbar() {
   return (
-    <div className=' flex p-5 justify-between items-center font-poppins md:max-w-[1500px] w-full mx-auto'>
-        <div className='font-logo text-xl '>⚡FLASH DRIVE</div>
+    <div className=' flex  justify-between items-center font-poppins md:max-w-[1500px] w-full mx-auto md:p-0 pr-5'>
+        <div className='flex'><img src='/logo.png' className='w-[50px]'/><div className='font-logo text-xl py-5'>FLASH DRIVE</div></div>
         <div className='md:flex hidden gap-4'>
             <div>Home</div>
             <div>Home</div>

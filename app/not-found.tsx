@@ -18,7 +18,7 @@ export default function Error({
   return (
     <div className="flex flex-col w-full h-full justify-center items-center">
       <img src="/404.png" className="w-[300px] md:w-auto"></img>
-      <h2 className="font-poppins text-[1.5rem] md:text-[3rem] tracking-tighter">
+      <h2 className="font-poppins text-[1.5rem] md:text-[3rem] tracking-tighter text-center md:p-0 px-5">
        404: I think you might be a little lost....
       </h2>
       <div className="flex md:flex-row flex-col gap-2 text-[1rem] font-medium ">

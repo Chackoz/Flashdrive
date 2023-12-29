@@ -36,7 +36,7 @@ function Page() {
   }, []);
 
   return (
-    <main className="w-full h-full min-h-screen">
+    <main className="w-full h-full min-h-screen md:p-0 py-5">
       <Navbar />
       <div className="flex md:flex-row flex-col md:w-[80%] w-full h-full justify-center items-center mx-auto">
         <div className="flex flex-col md:hidden md:w-[50%] w-full items-center justify-center p-5">
@@ -64,7 +64,7 @@ function Page() {
                   <p className="text-white text-3xl">Creating...</p>
                 </div>
               ) : (
-                // Display the image if it exists
+               
                 imageSrc && (
                   <img src={imageSrc} alt="Converted" className="rounded-3xl h-[256px] w-[256px]" />
                 )
@@ -75,14 +75,14 @@ function Page() {
 
         <div className="flex flex-col md:w-[50%] justify-center items-center ">
           {error && (
-            <div className="md:flex hidden text-[3rem] text-black p-5">
-              Sorry the server is currenlty
-              <span className="text-red-700"> Offline</span>
+            <div className="md:flex hidden text-[3rem] text-black ">
+              Sorry the server is currently-
+              <span className="text-red-700">Offline</span>
             </div>
           )}
           {!error && (
             <div className="md:flex hidden text-[3rem] text-black p-5">
-              {" "}
+              
               Let your dreams meet -
               <span className="text-green-700">Reality</span>
             </div>
@@ -109,7 +109,7 @@ function Page() {
                   <p className="text-white text-3xl">Creating...</p>
                 </div>
               ) : (
-                // Display the image if it exists
+             
                 imageSrc && (
                   <img src={imageSrc} alt="Converted" className="rounded-3xl" />
                 )

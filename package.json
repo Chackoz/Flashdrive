@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "proxy": "https://b4a888d1c25864ae4b.gradio.live",
-
   "dependencies": {
     "@firebase/app": "^0.9.25",
     "@firebase/storage": "^0.12.0",
@@ -19,6 +18,7 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-fast-marquee": "^1.6.2",
     "react-firebase-hooks": "^5.1.1",
     "react-icons": "^4.12.0",
     "react-lazy-load": "^4.0.1",

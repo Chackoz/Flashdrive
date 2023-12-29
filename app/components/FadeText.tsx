@@ -1,5 +1,3 @@
-// components/FadeUp.tsx
-
 import { motion, HTMLMotionProps } from "framer-motion";
 
 interface FadeUpProps extends HTMLMotionProps<"div"> {}

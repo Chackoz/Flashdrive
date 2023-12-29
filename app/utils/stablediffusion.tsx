@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const convertTextToImage = async (text: string): Promise<string> => {
-  const api = "https://bd6bdc498cee4a4823.gradio.live";
+  const api = "https://f2036f46becbe0e35a.gradio.live";
   const url = `${api}/sdapi/v1/txt2img`;
 
   const option_payload = {

@@ -4,13 +4,14 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import FadeText from "./components/FadeText";
+import ProjBox from "./components/ProjBox";
 
 export default function Home() {
   const controls = useAnimation();
 
   const rocketControl = useAnimation();
   const rocketRef = useRef<HTMLDivElement>(null);
-
+  const constraintsRef = useRef<HTMLDivElement>(null);
   const throttle = (callback: Function, delay: number) => {
     let lastTime = 0;
     return function (...args: any[]) {
@@ -45,39 +46,52 @@ export default function Home() {
       if (rocketRef.current) {
         const yPos = rocketRef.current.getBoundingClientRect().top;
 
-        // Use the scroll position to determine the trigger position
+        
         const scrollPosition = window.scrollY;
 
-        const triggerPosition = window.innerHeight * 1.0;
-        const width = interpolate(scrollPosition, [0, 300], [60, 100]);
+        let triggerPosition = yPos;
+        
         console.log(scrollPosition - 1000);
-        if (scrollPosition > triggerPosition) {
-          rocketControl.start({
-            x: window.innerWidth-800,
-            transition: {
-              duration: 1.0,
-              ease: "easeOut",
-            },
-          });
-        } else if (scrollPosition > triggerPosition + 10) {
-          rocketControl.set({
-            x: 0,
-            transition: {
-              duration: 1.0,
-              ease: "easeOut",
-            },
-          });
+        if (window.innerWidth <= 768) {
+          if (yPos<400 ) {
+            rocketControl.start({
+              rotate: 90,
+              transition: {
+                duration: 0.5,
+                ease: "easeOut",
+              },
+            });
+          } else {
+            rocketControl.start({
+              rotate: 0,
+              transition: {
+                duration: 0.5,
+                ease: "easeOut",
+              },
+            });
+          }
         } else {
-          rocketControl.start({
-            x: 0, // Reset to the original position
-            transition: {
-              duration: 1.0,
-              ease: "easeOut",
-            },
-          });
+         console.log(scrollPosition,'-',yPos)
+          if (yPos<400 ) {
+            rocketControl.start({
+              x: window.innerWidth - 800,
+              transition: {
+                duration: 1.0,
+                ease: "easeOut",
+              },
+            });
+          }else {
+            rocketControl.start({
+              x: 0, // Reset to the original position
+              transition: {
+                duration: 1.0,
+                ease: "easeOut",
+              },
+            });
+          }
         }
       }
-    }, 10);
+    }, 0);
 
     const handleScroll = throttle(() => {
       scrollPosition = window.scrollY;
@@ -121,7 +135,7 @@ export default function Home() {
   }, [controls]);
 
   return (
-    <main className="flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10">
+    <main className="flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 ">
       <section className="flex flex-col h-max w-full   justify-between  pb-[200px]">
         <Navbar />
 
@@ -193,14 +207,22 @@ export default function Home() {
             className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center mt-20 md:mx-20 md:p-0 p-5 `}
           >
             <motion.div
+              ref={constraintsRef}
               animate={controls}
               className="flex bg-[#1b1b1b] opacity-[100%] md:w-[60%] w-[90%] h-[500px] rounded-2xl text-center items-center justify-around px-10"
             >
-              <div className="text-white text-[4rem] uppercase font-logo">
-                Flash Drive
+              <div className="flex md:flex-row flex-col text-white text-[4rem] uppercase font-logo items-center justify-center ">
+                <motion.div
+                  whileHover={{ rotate: [0, 20, 0, -20, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <img src="/logo.png" className="w-[150px]" />
+                </motion.div>
+
+                <div className="py-5">Flash Drive</div>
               </div>
               <div
-                className="flex w-[100px] h-[100px] rounded-full bg-yellow-200 animate-spin justify-center items-center"
+                className="md:flex hidden w-[100px] h-[100px] rounded-full bg-yellow-200 animate-spin justify-center items-center"
                 style={{ animationDuration: "4s" }}
               >
                 ⚡
@@ -281,21 +303,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col w-[80%] mx-auto h-full  text-[5rem] font-poppins2 leading-none tracking-tight  ">
-        <div className="flex w-[45%] text-[4.5rem] justify-end items-start">
+      <section className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  ">
+        <div className="flex md:w-[45%] text-[4.5rem] justify-end items-start">
           Mixing up work and play, every day
         </div>
 
+        
+
+        <div className="flex md:flex-row flex-col justify-around items-center  p-5 ">
+          <div className="flex flex-col gap-6">
+            <ProjBox />
+            <ProjBox />
+          </div>
+          <div className="flex flex-col gap-6 md:mt-[200px]">
+            <ProjBox />
+            <ProjBox />
+          </div>
+        </div>
         <motion.div
-        ref={rocketRef}
-        animate={rocketControl}
-        className="p-5 w-full items-start justify-start"
-      >
-        <img src="/rocket.png" />
-      </motion.div>
+          ref={rocketRef}
+          animate={rocketControl}
+          className=" items-start justify-start  max-w-[500px]"
+        >
+          <img src="/rocket.png"  />
+        </motion.div>
       </section>
-     
-      <section className="min-h-screen">.</section>
+
+      <section className="min-h-screen">s.</section>
     </main>
   );
 }
