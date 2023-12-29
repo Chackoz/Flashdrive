@@ -4,33 +4,47 @@ import { spaceGrotesk } from "../fonts";
 import { MdArrowOutward } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-import {useCreateUserWithEmailAndPassword} from "react-firebase-hooks/auth"
-import {auth} from '@/app/firebase/config'
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "@/app/firebase/config";
 import Image from "next/image";
-import signupPic from "@/public/images/signup.png";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
+import signupPic from "@/public/images/hand2.png";
 import Link from "next/link";
 
 export default function Page() {
- // const [userName, setUserName] = useState("");
+  // const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState(""); // Step 1: Add state for username
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [eyeClick, setEyeClick] = useState(true);
 
-const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword] =
+    useCreateUserWithEmailAndPassword(auth);
 
-  const handleSignUp = async() => {
-   try {
-   
-     const res =await createUserWithEmailAndPassword(email,password)
-     console.log(res);
-     setEmail('');
-     setPassword('')
-     
-   } catch (error) {
-    console.error(error);
-    
-   }
+  const handleSignUp = async () => {
+    const auth = getAuth(); // Get the auth instance
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await updateProfile(user, { displayName: username });
+        setUsername(""); // Reset the username after updating the profile
+      }
+    });
+    try {
+      const res = await createUserWithEmailAndPassword( email, password);
+
+      if (res && res.user) {
+        await updateProfile(res.user, { displayName: username }); // Update the profile
+
+        console.log(res);
+        setEmail("");
+        setPassword("");
+        setUsername(""); // Reset the username
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <div
       className={`${spaceGrotesk.className}  relative flex justify-center items-center min-w-full bg-gray-50`}
@@ -41,15 +55,18 @@ const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
           <Image
             src={signupPic}
             alt="signup"
-            width={1800}
-            height={1800}
+            width={600}
+            height={600}
             className="scale-110"
           ></Image>
         </div>
       </div>
       {/* <div className="w-[1px] absolute bg-gray-950 opacity-30 h-[90%]"></div> */}
       <div className="w-1/2 h-screen flex flex-col items-center justify-center">
-        <div className="w-1/2 font-bold text-4xl mb-10 text-left">🚀Logo</div>
+        <div className="flex w-[50%] font-poppins text-4xl justify-start items-start">
+          <img src="/logo.png" className="w-[80px] -mt-4 -ml-6" />
+          <div className="">Flash Drive</div>
+        </div>
         <div className="text-gray-950 text-2xl font-medium flex-col mb-3 text-left w-1/2 justify-start flex ">
           Let &apos;s go...
         </div>
@@ -67,6 +84,19 @@ const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
             }}
             className="inputField"
           /> */}
+          <label htmlFor="username" className="text-xl my-3 font-normal ml-2"> {/* Add username label */}
+        Username
+      </label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => {
+          setUsername(e.target.value); // Set the username
+        }}
+        className="inputField"
+      />
           <label htmlFor="email" className="text-xl my-3 font-normal ml-2">
             Email
           </label>

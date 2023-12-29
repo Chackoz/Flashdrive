@@ -194,8 +194,8 @@ export default function Home() {
             </div>
 
             <div className=" text-lg translate-y-[20%]">
-              People creating websites, developing brands and building eCommerce
-              stores for people.
+            Where dreams ignite and visions soar, In radiant hues and tales
+              galore.
               <div className="w-[50%] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
                 About Us
               </div>
@@ -304,8 +304,8 @@ export default function Home() {
       </section>
 
       <section className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  ">
-        <div className="flex md:w-[45%] text-[4.5rem] justify-end items-start">
-          Mixing up work and play, every day
+        <div className="flex md:w-[50%] text-[4.5rem] justify-end items-start">
+          Mixing up work and play , proffesionaly 😉.
         </div>
 
         

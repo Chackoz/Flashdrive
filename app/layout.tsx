@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import {inter} from './fonts'
 import './globals.css'
 import Script from 'next/script'
-
+import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
   title: 'Flash Drive',
@@ -17,9 +17,11 @@ export default function RootLayout({
   return (
     
     <html lang="en" className='bg-[#e0e0e0] '>
-      
+     
 
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      <ToastContainer />
+        {children}</body>
     </html>
   )
 }
