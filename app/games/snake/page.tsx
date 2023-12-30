@@ -72,9 +72,8 @@ const Home: React.FC = () => {
         setHighscore(docData.highscore);
       } else {
         console.log("No highscore found for user:", currentUser);
-        query(userRef, where("username", "==", "Anonymous"));
-        const docData = querySnapshot.docs[0].data();
-        setHighscore(docData.highscore);
+       
+        
       }
     } catch (error) {
       console.error("Error fetching highscore:", error);
