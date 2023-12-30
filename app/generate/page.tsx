@@ -45,11 +45,54 @@ function Page() {
     } finally {
       setIsConverting(false);
 
+      //
+      // NSFW HANDLIMG
+      //
+
+      const nsfwArray = [
+        "nsfw",
+        "nigga",
+        "nigger",
+        "faggot",
+        "hitler",
+        "Israel",
+        "negrito",
+        "negro",
+        "nggar",
+        "ni**a",
+        "nig",
+        "nig**",
+        "nigga",
+        "niggah",
+        "niggar",
+        "niggas",
+        "nigger",
+        "Palestine",
+        "rape",
+        "raped",
+        "retard",
+        "retarded",
+      ];
+
+      for (let word of nsfwArray) {
+        if (text.includes(word)) {
+          setWarning(true);
+          break;
+        }
+      }
+      //
+      //
+
+      //
+      //   GOOGLE PERSPECTIVE API FOR TOXICITY DETECTION IT SHOULD WORK IG......
+      //
+      //
       const API_ENDPOINT =
         "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyBBug83H1rEFVwbQgyIzJEbY4Q1q6eyDRg";
 
+      console.log("Passed Text:", text);
       const requestBody = {
-        comment: { text },
+        comment: { text: text },
         requestedAttributes: { SEXUALLY_EXPLICIT: {} },
       };
       try {
@@ -60,28 +103,26 @@ function Page() {
           },
           body: JSON.stringify(requestBody),
         });
-
+        console.log("API RESPONCE ", response);
         const data = await response.json();
-
-        if (data.attributeScores.TOXICITY.summaryScore.value > 0.7) {
+        console.log("DATA RESPONCE", data);
+        if (data.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value > 0.35) {
           console.log(
-            `The text is toxic with a score of ${data.attributeScores.TOXICITY.summaryScore.value}`
+            `The text is toxic with a score of ${data.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value}`
           );
           setWarning(true);
         } else {
-          console.log(`The text is not toxic.`);
+          console.log(
+            `The text is not toxic with a score of ${data.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value}`
+          );
         }
       } catch (error) {
         console.error("Error analyzing the text:", error);
-        const nsfwArray = ["nude", "nsfw", "sex", "naked",];
-
-        for (let word of nsfwArray) {
-          if (text.includes(word)) {
-            setWarning(true);
-            break;
-          }
-        }
       }
+
+      //
+      // END OF API
+      //
     }
   };
   useEffect(() => {
@@ -151,7 +192,7 @@ function Page() {
               </div>
             )}
             <textarea
-              className=" flex text-xl md:w-[500px] h-[100px] m-5 rounded-[10px] bg-[#cfcfcf]  text-center p-2 items-center justify-center border-black border-1"
+              className=" flex text-xl md:w-[600px] md:h-[150px] h-[100px] m-5 rounded-[10px] bg-[#cfcfcf]  text-center p-2 items-center justify-center border-black border-1"
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Enter the prompt for generation"
@@ -163,6 +204,10 @@ function Page() {
               {isConverting && <div className="animate-pulse">Generate</div>}
               {!isConverting && <div>Generate</div>}
             </button>
+            <div className="font-light text-center p-10">
+              {" "}
+              *We are using Google Perspective AI to identify vulgar contents
+            </div>
           </div>
           <div className="md:flex hidden w-[50%] items-center justify-center">
             <div>
