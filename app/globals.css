@@ -12,6 +12,10 @@
   .inputField {
     @apply outline-none border-black border border-opacity-30 px-3 py-2 text-lg rounded-md font-extralight w-full bg-transparent;
   }
+
+  .error-message{
+    @apply text-red-300 font-normal text-xl
+  }
 }
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
