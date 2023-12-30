@@ -15,6 +15,8 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
+import Navbar from "@/app/components/Navbar";
+import { getHighScoreAnon, setHighScoreAnon } from "@/app/utils/localStorage";
 
 let displayName = "Anonymous";
 
@@ -28,8 +30,12 @@ const Home: React.FC = () => {
 
   const handleVariableChange = async (newValue: number) => {
     setVariable(newValue);
+    if (currentUser === "Anonymous") {
+      setHighscore(getHighScoreAnon());
+    }
     if (newValue > highscore) {
       setHighscore(newValue);
+      setHighScoreAnon(newValue);
 
       const querySnapshot = await getDocs(
         query(userRef, where("username", "==", currentUser))
@@ -71,31 +77,15 @@ const Home: React.FC = () => {
       } catch (error) {
         console.error("Error fetching highscore:", error);
       }
-    };
-    const fetchAnonscore = async () => {
-      try {
-        const querySnapshot = await getDocs(
-          query(userRef, where("username", "==", "Anonymous"))
-        );
-
-        if (!querySnapshot.empty) {
-          const docData = querySnapshot.docs[0].data();
-          console.log("Fetched Highscore:", docData.highscore); // Log to see if data is fetched
-          setHighscore(docData.highscore);
-        } else {
-          console.log("Error");
-        }
-      } catch (error) {
-        console.error("Error fetching highscore:", error);
+      if (currentUser === "Anonymous") {
+        setHighscore(0);
       }
     };
 
     if (user && currentUser) {
       fetchHighscore();
-    } else {
-      fetchAnonscore();
     }
-  }, [user, currentUser,highscore]);
+  }, [user, currentUser, highscore]);
 
   useEffect(() => {
     console.log("Variable:", variable);
@@ -124,24 +114,36 @@ const Home: React.FC = () => {
   }, [user]);
 
   return (
-    <div className="flex md:flex-row flex-col w-full min-h-screen  justify-center items-center transition-all ease-linear ">
-      <div className="flex h-full flex-col md:w-[50%] justify-start items-start md:p-10 order-1 md:order-0">
-        <div className=" font-poppins">
-          <div className="text-[4rem]">{currentUser}</div>
-          <div className="text-[3rem] text-[#2d2d2d]">
-            {" "}
-            Current Score : <span className="text-green-800">{variable}</span>
+    <div className="flex flex-col justify-between w-full min-h-screen">
+      <Navbar />
+      <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
+        <div className="flex h-full flex-col md:w-[50%] justify-start items-start md:p-10 order-1 md:order-0">
+          <div className=" font-poppins">
+            <div className="text-[4rem]">{currentUser}</div>
+            <div className="text-[3rem] text-[#2d2d2d]">
+              {" "}
+              Current Score : <span className="text-green-800">{variable}</span>
+            </div>
+
+            {currentUser === "Anonymous" ? (
+              <a href='/login' className="text-[3rem] text-[#f08181] hover:text-[#ff7373] hover:scale-[110%]">
+                Log in to view highscore
+              </a>
+            ) : (
+              <div className="text-[3rem] text-[#2d2d2d]">
+                High Score : <span className="text-green-800">{highscore}</span>
+              </div>
+            )}
           </div>
-          <div className="text-[3rem] text-[#2d2d2d]">
-            {" "}
-            High Score : <span className="text-green-800">{highscore}</span>
-          </div>
+          <div className=""> </div>
         </div>
-        <div className=""> </div>
+        <div className="flex md:w-[50%] order-0 md:order-1 items-center justify-center">
+          <SnakeGame onValueChange={handleVariableChange} />
+        </div>
       </div>
-      <div className="flex md:w-[50%] order-0 md:order-1 items-center justify-center">
-        <SnakeGame onValueChange={handleVariableChange} />
-      </div>
+      <footer className="flex w-full justify-center items-center font-poppins text-[2rem] pb-10">
+        Copyright @ F^2 AN
+      </footer>
     </div>
   );
 };

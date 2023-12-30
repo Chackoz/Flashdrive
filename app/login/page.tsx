@@ -45,11 +45,11 @@ export default function Page() {
 
   return (
     <div
-      className={`${spaceGrotesk.className} min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}
+      className={` min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}
     >
       <div className="w-1/2 h-screen flex items-center justify-center transition-all ease-out duration-500 ">
         <div className=" group  flex justify-center items-center">
-          {/* <div className="text-4xl  text-black group-hover:text-5xl transition-all ease-in-out duration-500 font-bold">NAMMADA LOGO</div> */}
+         
           <Image
             src={loginPic}
             alt="login"
@@ -59,7 +59,7 @@ export default function Page() {
           ></Image>
         </div>
       </div>
-      {/* <div className="w-[1px] absolute bg-gray-950 opacity-30 h-[90%]"></div> */}
+      
       <div className="w-1/2 h-screen flex flex-col items-center justify-center">
         <div className="flex w-[50%] font-poppins text-4xl justify-start items-start">
           <img src="/logo.png" className="w-[80px] -mt-4 -ml-6" />

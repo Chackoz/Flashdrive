@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import FadeText from "./components/FadeText";
 import ProjBox from "./components/ProjBox";
+import { smoothScroll } from "./utils/smoothScroll";
 
 export default function Home() {
   const controls = useAnimation();
@@ -38,7 +39,9 @@ export default function Home() {
     const outputValue = outputMin + percent * (outputMax - outputMin);
     return outputValue;
   };
-
+  useEffect(() => {
+    smoothScroll();
+  }, []);
   useEffect(() => {
     let scrollPosition = 0;
 
@@ -303,7 +306,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  ">
+      <section className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  " id="portfolio">
         <div className="flex md:w-[50%] text-[4.5rem] justify-end items-start">
           Mixing up work and play , proffesionaly 😉.
         </div>
@@ -312,12 +315,12 @@ export default function Home() {
 
         <div className="flex md:flex-row flex-col justify-around items-center  p-5 ">
           <div className="flex flex-col gap-6">
-            <ProjBox />
-            <ProjBox />
+            <ProjBox ImageUrl="https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(11).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9" header="Stable Diffusion" desc="Web Ui" href="/collection"/>
+            <ProjBox ImageUrl="https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(11).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9" header="Stable Diffusion" desc="Web Ui" href="/collection"/>
           </div>
           <div className="flex flex-col gap-6 md:mt-[200px]">
-            <ProjBox />
-            <ProjBox />
+            <ProjBox ImageUrl="/snake.png" header="Snake Game" desc="Game" href="/games/snake"/>
+            <ProjBox ImageUrl="https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(11).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9" header="Stable Diffusion" desc="Web Ui" href="/collection"/>
           </div>
         </div>
         <motion.div
