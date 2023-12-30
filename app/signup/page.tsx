@@ -68,7 +68,7 @@ export default function Page() {
           <div className="font-bold -ml-3">Flash Drive</div>
         </div>
         <div className="text-gray-950 md:text-2xl text-xl opacity-80 font-medium flex-col mb-3 text-left md:w-1/2 w-full md:px-0 px-8 justify-start flex">
-       Let's go...
+       Let&apos;s go...
         </div>
         <div className="flex-col flex md:w-1/2   justify-items-start items-start ">
           {/* <label htmlFor="name" className="text-xl my-3 font-normal ml-2">
