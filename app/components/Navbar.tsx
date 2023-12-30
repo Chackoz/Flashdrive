@@ -27,7 +27,7 @@ useEffect(() => {
 }, [user])
 
   return (
-    <div className=" flex  justify-between items-center font-poppins md:max-w-[1500px] w-full mx-auto md:p-0 pr-5">
+    <div className=" flex  justify-between items-center font-poppins mx-auto w-[90%]">
       <a href="/" className="flex cursor-pointer">
         <img src="/logo.png" className="w-[50px]" />
         <div className="font-logo text-xl py-5">FLASH DRIVE</div>
