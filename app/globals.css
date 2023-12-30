@@ -49,6 +49,9 @@ body {
   justify-content: center;
   scroll-behavior: smooth;
 }
+body::-webkit-scrollbar{
+display: none;
+}
 
 .font-arone {
   font-family: "AR One Sans", sans-serif;
@@ -59,6 +62,7 @@ body {
   font-weight: 400;
   
 }
+
 
 .font-poppins2{
   font-family: 'Poppins', sans-serif;
