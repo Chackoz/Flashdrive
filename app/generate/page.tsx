@@ -22,11 +22,20 @@ function Page() {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [text, setText] = useState<string>(""); // Default text
+
+  const [nsfwWarning, setWarning] = useState(false);
+
   const handleConvert = async () => {
     setIsConverting(true);
+    setWarning(false);
+
     try {
       const imageData = await convertTextToImage(text);
       const base64Data = imageData;
+      if (imageData === "") {
+        setImageSrc("/images/duck.png");
+        return;
+      }
       const decodedData = base64ToDataUrl(base64Data);
       setImageSrc(decodedData);
       setError(null);
@@ -35,6 +44,44 @@ function Page() {
       console.error(err);
     } finally {
       setIsConverting(false);
+
+      const API_ENDPOINT =
+        "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyBBug83H1rEFVwbQgyIzJEbY4Q1q6eyDRg";
+
+      const requestBody = {
+        comment: { text },
+        requestedAttributes: { SEXUALLY_EXPLICIT: {} },
+      };
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        });
+
+        const data = await response.json();
+
+        if (data.attributeScores.TOXICITY.summaryScore.value > 0.7) {
+          console.log(
+            `The text is toxic with a score of ${data.attributeScores.TOXICITY.summaryScore.value}`
+          );
+          setWarning(true);
+        } else {
+          console.log(`The text is not toxic.`);
+        }
+      } catch (error) {
+        console.error("Error analyzing the text:", error);
+        const nsfwArray = ["nude", "nsfw", "sex", "naked",];
+
+        for (let word of nsfwArray) {
+          if (text.includes(word)) {
+            setWarning(true);
+            break;
+          }
+        }
+      }
     }
   };
   useEffect(() => {
@@ -64,7 +111,14 @@ function Page() {
             )}
 
             <div>
-              <h3>Converted Image:</h3>
+              <h3 className="flex w-full justify-center text-xl p-5">
+                {nsfwWarning && (
+                  <div className="text-red-500 text-2xl font-semibold text-center">
+                    {" "}
+                    NSFW Warning
+                  </div>
+                )}
+              </h3>
               <div className="flex h-[256px] w-[256px] bg-black rounded-3xl">
                 {isConverting ? (
                   <div className="flex items-center justify-center h-full w-full">
@@ -104,18 +158,29 @@ function Page() {
             />
             <button
               onClick={handleConvert}
-              className="bg-black px-5 p-2 text-white rounded-lg text-[2rem]"
+              className="bg-black px-5 p-2 text-white rounded-2xl text-[2rem] font-poppins hover:bg-[#e0e0e0] border-[1px] hover:border-black hover:text-black transition-all delay-75 duration-150"
             >
-              Generate
+              {isConverting && <div className="animate-pulse">Generate</div>}
+              {!isConverting && <div>Generate</div>}
             </button>
           </div>
           <div className="md:flex hidden w-[50%] items-center justify-center">
             <div>
-              <h3>Converted Image:</h3>
+              <h3 className="flex w-full justify-end text-xl p-5">
+                {nsfwWarning && (
+                  <div className="text-red-500 text-2xl font-semibold">
+                    {" "}
+                    NSFW Warning
+                  </div>
+                )}
+              </h3>
+
               <div className="flex h-[512px] w-[512px] bg-black rounded-3xl">
                 {isConverting ? (
                   <div className="flex items-center justify-center h-full w-full">
-                    <p className="text-white text-3xl">Creating...</p>
+                    <p className="text-white text-3xl animate-pulse">
+                      Creating...
+                    </p>
                   </div>
                 ) : (
                   imageSrc && (
@@ -131,13 +196,20 @@ function Page() {
           </div>
         </div>
       )}
-      {!user &&
-     
-      <div className="flex flex-col justify-center items-center w-full h-full text-6xl ">
-         <img src="/images/gaurddog.png"/>
-         <div className="font-poppins p-5 text-center text-[3rem] md:text-[4rem]">Please Log In to use the web service</div>
-         <a href='/login' className="text-[1.5rem] border-black border-[1px] rounded-full px-5 p-1">Log In</a>
-         </div>}
+      {!user && (
+        <div className="flex flex-col justify-center items-center w-full h-full text-6xl ">
+          <img src="/images/gaurddog.png" />
+          <div className="font-poppins p-5 text-center text-[3rem] md:text-[4rem]">
+            Please Log In to use the web service
+          </div>
+          <a
+            href="/login"
+            className="text-[1.5rem] border-black border-[1px] rounded-full px-5 p-1"
+          >
+            Log In
+          </a>
+        </div>
+      )}
     </main>
   );
 }

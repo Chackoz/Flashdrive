@@ -3,26 +3,17 @@ import { useAuth } from "../hooks/useAuth";
 import { getUsername } from "./localStorage";
 import { addDoc, collection } from "firebase/firestore";
 import { db, FetchValue, UpdateValue } from "../firebase/config";
-import { connectStorageEmulator, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import {
+  connectStorageEmulator,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 
 const storage = getStorage();
-const storageRef = ref(storage);
 
-const dataUrlToUint8Array = (dataUrl: string): Uint8Array => {
-  // Extract Base64 portion from the Data URL
-  const base64String = dataUrl.split(",")[1];
 
-  // Decode the Base64 string
-  const binaryString = atob(base64String);
-  const length = binaryString.length;
-  const bytes = new Uint8Array(length);
-
-  for (let i = 0; i < length; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
-
-  return bytes;
-};
 
 const convertTextToImage = async (text: string): Promise<string> => {
   const api = "https://2c1326c3dd253fbc9d.gradio.live";
@@ -41,6 +32,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
 
   let payload = {
     prompt: `Mononoke hime studio image of ${text} ,stylized volumetric lighting, 4k beautifull detailled painting, --ar 2:3 --uplight`,
+    negative_prompt: " nsfw , nude , sex , rape ,naked  ",
     steps: 20,
     sampler_name: "DPM++ 2M Karras",
     seed: -1,
@@ -54,6 +46,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
     };
     payload = {
       prompt: ` ${text} `,
+      negative_prompt:'',
       steps: 20,
       sampler_name: "DPM++ 2M Karras",
       seed: -1,
@@ -68,7 +61,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
       prompt: text,
       time: Date(),
     });
-  }
+  
   try {
     const responsesetting = await axios.post(
       `${api}/sdapi/v1/options`,
@@ -81,30 +74,31 @@ const convertTextToImage = async (text: string): Promise<string> => {
     const base64Data = imageData;
     const decodedData = base64ToDataUrl(base64Data);
 
+    if (text !== "" &&text[0] !== "*") {
+      const storage = getStorage();
 
-    const storage = getStorage();
-
-    const blob = await fetch(decodedData ).then((res) => res.blob());
-    let result=1000;
-    try {
-      const imgcount = await FetchValue();
-      result = imgcount; // You can further process 'result' if needed
-      console.log(result);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-    result=result+1
-    UpdateValue(result)
-  // Create a storage reference
-    const storageRef = ref(storage, `art (${result}).png`); // You can adjust the filename as needed
-    try {
-      // Upload the blob
-      const snapshot = await uploadBytes(storageRef, blob);
-      const downloadURL = await getDownloadURL(storageRef);
-      console.log("Uploaded Url :",downloadURL);
-    } catch (error) {
-      console.error("Error uploading image to Firebase:", error);
-      throw error;
+      const blob = await fetch(decodedData).then((res) => res.blob());
+      let result = 1000;
+      try {
+        const imgcount = await FetchValue();
+        result = imgcount; // You can further process 'result' if needed
+        console.log(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+      result = result + 1;
+      UpdateValue(result);
+      // Create a storage reference
+      const storageRef = ref(storage, `art (${result}).png`); // You can adjust the filename as needed
+      try {
+        // Upload the blob
+        const snapshot = await uploadBytes(storageRef, blob);
+        const downloadURL = await getDownloadURL(storageRef);
+        console.log("Uploaded Url :", downloadURL);
+      } catch (error) {
+        console.error("Error uploading image to Firebase:", error);
+        throw error;
+      }
     }
 
     return imageData;
@@ -151,6 +145,9 @@ const convertTextToImage = async (text: string): Promise<string> => {
     // }
     throw error;
   }
+}else{
+  return ""
+}
 };
 
 export default convertTextToImage;
