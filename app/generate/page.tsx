@@ -72,6 +72,8 @@ function Page() {
         "raped",
         "retard",
         "retarded",
+        "slut",
+        "whore",
       ];
 
       for (let word of nsfwArray) {

@@ -34,9 +34,16 @@ const Home: React.FC = () => {
     if (newValue > highscore) {
       setHighscore(newValue);
    
+      let whereClause;
+
+      if (currentUser === "anonymous") {
+          whereClause = where("username", "==", "");
+      } else {
+          whereClause = where("username", "==", currentUser);
+      }
 
       const querySnapshot = await getDocs(
-        query(userRef, where("username", "==", currentUser))
+        query(userRef, whereClause)
       );
 
       if (!querySnapshot.empty) {
@@ -75,9 +82,7 @@ const Home: React.FC = () => {
       } catch (error) {
         console.error("Error fetching highscore:", error);
       }
-      if (currentUser === "Anonymous") {
-        setHighscore(0);
-      }
+      
     };
 
     if (user && currentUser) {
