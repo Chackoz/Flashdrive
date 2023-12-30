@@ -10,23 +10,28 @@ import Image from "next/image";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import signupPic from "@/public/images/hand2.png";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router=useRouter();
   // const [userName, setUserName] = useState("");
   const [username, setUsername] = useState(""); // Step 1: Add state for username
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [eyeClick, setEyeClick] = useState(true);
+  const [error, setError] = useState(false);
 
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
 
   const handleSignUp = async () => {
     const auth = getAuth(); // Get the auth instance
+
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         await updateProfile(user, { displayName: username });
-        setUsername(""); // Reset the username after updating the profile
+        setUsername(""); 
+        router.back();
       }
     });
     try {
@@ -38,10 +43,15 @@ export default function Page() {
         console.log(res);
         setEmail("");
         setPassword("");
-        setUsername(""); // Reset the username
+        setUsername("");
+        setError(false) ;// Reset the username
+      }else{
+        setError(true)
       }
     } catch (error) {
-      console.error(error);
+      setError(true)
+      console.error("Error:",error);
+      
     }
   };
 
@@ -68,7 +78,7 @@ export default function Page() {
           <div className="font-bold -ml-3">Flash Drive</div>
         </div>
         <div className="text-gray-950 md:text-2xl text-xl opacity-80 font-medium flex-col mb-3 text-left md:w-1/2 w-full md:px-0 px-8 justify-start flex">
-       Let&apos;s go...
+     {error && <div className="text-red-500">User already exists</div>}  {!error && <div className=""> Let&apos;s go...</div>} 
         </div>
         <div className="flex-col flex md:w-1/2   justify-items-start items-start ">
           {/* <label htmlFor="name" className="text-xl my-3 font-normal ml-2">

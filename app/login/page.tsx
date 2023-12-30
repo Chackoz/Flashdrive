@@ -9,6 +9,8 @@ import Link from "next/link";
 import Image from "next/image";
 import loginPic from "@/public/images/space.png";
 import { useRouter } from "next/navigation";
+import { usePathname } from 'next/navigation';
+import { useSearchParams } from 'next/navigation'
 import { toast } from "react-toastify";
 import { setUsername } from "../utils/localStorage";
 
@@ -20,6 +22,7 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const [eyeClick, setEyeClick] = useState(true);
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const searchParams = useSearchParams()
 
   const handleLogin = async () => {
     console.log("Email is " + email);
@@ -33,7 +36,7 @@ export default function Page() {
       if (res && res.user) {
 
         setUsername(email)
-        router.push("/generate");
+        router.back()
         setError("")
       } else {
         setError("Login failed. ");

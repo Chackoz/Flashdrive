@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { signOut } from "firebase/auth";
 import { auth } from "@/app/firebase/config";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
   
   const user = useAuth();
+  const router = useRouter();
   
   const checkUser = async () => {
     if(!user) {
@@ -50,6 +53,8 @@ useEffect(() => {
         <button
           onClick={() => {
             signOut(auth);
+            router.refresh();
+          
             
           }}
           className="border-black border-[1px] px-4 rounded-full cursor-pointer p-1 hover:bg-[#2d2d2d] hover:text-white transition-all duration-75"
