@@ -1,8 +1,12 @@
-
 import { initializeApp,getApp,getApps } from "firebase/app";
 import {getAuth} from "firebase/auth"
-import { getFirestore } from "firebase/firestore";
+import { collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+
+import { getDatabase } from "firebase/database";
+import { useState } from "react";
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCvdkLZEyeFkYtnngqQ7xpPsaoUMFTMj1g",
@@ -20,5 +24,32 @@ const app =!getApps.length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 // const analytics = getAnalytics(app);
 const db = getFirestore(app)
+const database=getDatabase();
+let val1=0;
+const FetchValue = async (path) => {
 
-export {app,auth,db}
+
+  try {
+    // Fetch the current value from the database
+    const numberDoc = collection(db, "imgCount");
+    const docSnapshot = await getDocs(numberDoc);
+    const val = docSnapshot.docs[0].data().imgCount;
+    val1=val;
+  } catch (error) {
+    console.error("Error updating value:", error);
+    throw error;
+  }
+
+  return val1;
+};
+
+
+const UpdateValue =async(number)=>{
+  const numberDoc = doc(db, "imgCount", "MwgsCuWhuN7zElYo8ddi");
+ 
+  await updateDoc(numberDoc, {
+    imgCount: number
+  });
+}
+
+export {app,auth,db,FetchValue,UpdateValue}

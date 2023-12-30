@@ -5,10 +5,12 @@ import Navbar from "../components/Navbar";
 import Image from "next/image";
 import { LazyMotion, domAnimation, m, motion } from "framer-motion";
 import LazyLoad from "react-lazy-load";
+import { FetchValue } from "../firebase/config";
 
 function Page() {
   const [images, setImages] = useState<number[]>([]);
   const [page, setPage] = useState(1);
+  const [imgc, updateImgcount] = useState(125);
 
   const breakpointColumnsObj = {
     default: 8,
@@ -33,13 +35,18 @@ function Page() {
       debounceTimer = setTimeout(() => func(...args), delay);
     };
   };
-  
+
+  const countUpdate = async () => {
+    const imgCount = await FetchValue();
+    updateImgcount(imgCount);
+    console.log("Image Count= ", imgc);
+  };
 
   const fetchMoreImages = useCallback(async () => {
     const startIndex = images.length + 1;
     const newImages = Array.from({ length: 400 }, (_, i) => i + startIndex);
-    setImages(prevImages => [...prevImages, ...shuffleArray(newImages)]);
-    setPage(prevPage => prevPage + 1);
+    setImages((prevImages) => [...prevImages, ...shuffleArray(newImages)]);
+    setPage((prevPage) => prevPage + 1);
   }, [images]);
 
   const handleScroll = useCallback(
@@ -56,6 +63,7 @@ function Page() {
   );
 
   useEffect(() => {
+    countUpdate();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
@@ -67,7 +75,7 @@ function Page() {
   return (
     <main className="relative flex flex-col w-full h-full p-5 items-center">
       <Navbar />
-
+      <div> Image : {imgc}</div>
       <LazyMotion features={domAnimation}>
         <Masonry
           breakpointCols={breakpointColumnsObj}
@@ -85,13 +93,19 @@ function Page() {
               <LazyLoad offset={400}>
                 <Image
                   className="object-cover w-full h-full"
-                  src={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${index % 125 == 0 ? (index % 125) + 1 : index % 125}).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
-                  alt={`Image ${index % 125 == 0 ? (index % 125) + 1 : index % 125}`}
+                  src={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${
+                    index % imgc == 0 ? (index % imgc) + 1 : index % imgc
+                  }).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
+                  alt={`Image ${
+                    index % 125 == 0 ? (index % 125) + 1 : index % 125
+                  }`}
                   width={512}
                   height={512}
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${index % 125 == 0 ? (index % 125) + 1 : index % 125}).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
+                  blurDataURL={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${
+                    index % imgc == 0 ? (index % imgc) + 1 : index % imgc
+                  }).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
                 />
               </LazyLoad>
             </motion.div>
@@ -103,4 +117,3 @@ function Page() {
 }
 
 export default Page;
-
