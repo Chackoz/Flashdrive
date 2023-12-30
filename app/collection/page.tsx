@@ -75,7 +75,12 @@ function Page() {
   return (
     <main className="relative flex flex-col w-full h-full p-5 items-center">
       <Navbar />
-      <div> Image : {imgc}</div>
+      <div className="flex items-center justify-around w-[70%] min-h-[200px] mx-auto"> 
+      <a href='/generate' className="flex items-center justify-center w-fit p-5 h-[70px] bg-[#1d1d1d] rounded-[20px] text-white font-poppins text-xl hover:scale-110 transition-all">Generate Your Own</a>
+    
+  
+      
+      </div>
       <LazyMotion features={domAnimation}>
         <Masonry
           breakpointCols={breakpointColumnsObj}
