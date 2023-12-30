@@ -4,20 +4,34 @@ const convertTextToImage = async (text: string): Promise<string> => {
   const api = "https://c018332de31394d507.gradio.live";
   const url = `${api}/sdapi/v1/txt2img`;
 
-  const option_payload = {
+  let option_payload = {
     sd_model_checkpoint: "dreamshaper_5-inpainting.safetensors [498c18f2a5]",
     CLIP_stop_at_last_layers: 2,
   };
-
+ 
+  
   
 
-  const payload = {
+  let payload = {
     prompt: `Mononoke hime studio image of ${text} ,stylized volumetric lighting, 4k beautifull detailled painting, --ar 2:3 --uplight`,
     steps: 20,
     sampler_name: "DPM++ 2M Karras",
     seed: -1,
   };
-
+  
+  if(text[0]=="*"){
+    option_payload = {
+      sd_model_checkpoint: "epicrealism_pureEvolutionV3.safetensors [52484e6845]",
+      CLIP_stop_at_last_layers: 2,
+    };
+    payload = {
+      prompt: ` ${text} `,
+      steps: 20,
+      sampler_name: "DPM++ 2M Karras",
+      seed: -1,
+    };
+  
+  }
   try {
 
     const responsesetting = await axios.post(`${api}/sdapi/v1/options`, option_payload);
