@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuth } from "../hooks/useAuth";
 import { getUsername } from "./localStorage";
 import { addDoc, collection } from "firebase/firestore";
-import { db, FetchValue, UpdateValue } from "../firebase/config";
+import { db, FetchAPi, FetchValue, UpdateValue } from "../firebase/config";
 import {
   connectStorageEmulator,
   getDownloadURL,
@@ -11,12 +11,11 @@ import {
   uploadBytes,
 } from "firebase/storage";
 
-const storage = getStorage();
-
-
 
 const convertTextToImage = async (text: string): Promise<string> => {
-  const api = "https://2c1326c3dd253fbc9d.gradio.live";
+  
+  let api = "";
+  api=await FetchAPi();
   const url = `${api}/sdapi/v1/txt2img`;
 
   let option_payload = {
@@ -79,8 +78,11 @@ const convertTextToImage = async (text: string): Promise<string> => {
 
       const blob = await fetch(decodedData).then((res) => res.blob());
       let result = 1000;
+
+      //
       try {
         const imgcount = await FetchValue();
+        
         result = imgcount; // You can further process 'result' if needed
         console.log(result);
       } catch (error) {
@@ -88,6 +90,9 @@ const convertTextToImage = async (text: string): Promise<string> => {
       }
       result = result + 1;
       UpdateValue(result);
+      //
+
+
       // Create a storage reference
       const storageRef = ref(storage, `art (${result}).png`); // You can adjust the filename as needed
       try {

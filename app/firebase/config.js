@@ -27,6 +27,8 @@ console.log("AUth data", auth)
 const db = getFirestore(app)
 const database=getDatabase();
 let val1=0;
+let val2="";
+
 const FetchValue = async (path) => {
 
 
@@ -43,6 +45,21 @@ const FetchValue = async (path) => {
 
   return val1;
 };
+const FetchAPi = async (path) => {
+
+  try {
+    // Fetch the current value from the database
+    const numberDoc = collection(db, "api");
+    const docSnapshot = await getDocs(numberDoc);
+    const val = docSnapshot.docs[0].data().api;
+    val2=val;
+  } catch (error) {
+    console.error("Error updating value:", error);
+    throw error;
+  }
+
+  return val2;
+};
 
 
 const UpdateValue =async(number)=>{
@@ -53,4 +70,4 @@ const UpdateValue =async(number)=>{
   });
 }
 
-export {app,auth,db,FetchValue,UpdateValue}
+export {app,auth,db,FetchValue,UpdateValue,FetchAPi}
