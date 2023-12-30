@@ -47,8 +47,6 @@ const Home: React.FC = () => {
       );
 
       if (!querySnapshot.empty) {
-        // Update the existing document
-
         const docId = querySnapshot.docs[0].id;
         await updateDoc(doc(userRef, docId), {
           highscore: newValue,
@@ -62,48 +60,42 @@ const Home: React.FC = () => {
       }
     }
   };
-  useEffect(() => {
-    const fetchHighscore = async () => {
-      try {
-        const querySnapshot = await getDocs(
-          query(userRef, where("username", "==", currentUser))
-        );
+  const fetchHighscore = async () => {
+    try {
+      const querySnapshot = await getDocs(
+        query(userRef, where("username", "==", currentUser))
+      );
 
-        if (!querySnapshot.empty) {
-          const docData = querySnapshot.docs[0].data();
-          console.log("Fetched Highscore:", docData.highscore); // Log to see if data is fetched
-          setHighscore(docData.highscore);
-        } else {
-          console.log("No highscore found for user:", currentUser);
-          query(userRef, where("username", "==", "Anonymous"));
-          const docData = querySnapshot.docs[0].data();
-          setHighscore(docData.highscore);
-        }
-      } catch (error) {
-        console.error("Error fetching highscore:", error);
+      if (!querySnapshot.empty) {
+        const docData = querySnapshot.docs[0].data();
+        console.log("Fetched Highscore:", docData.highscore); // Log to see if data is fetched
+        setHighscore(docData.highscore);
+      } else {
+        console.log("No highscore found for user:", currentUser);
+        query(userRef, where("username", "==", "Anonymous"));
+        const docData = querySnapshot.docs[0].data();
+        setHighscore(docData.highscore);
       }
-      
-    };
+    } catch (error) {
+      console.error("Error fetching highscore:", error);
+    }
+    
+  };
+  useEffect(() => {
+   
 
-    if (user && currentUser) {
+    if (user && (variable >= highscore) ) {
       fetchHighscore();
     }
   }, [user, currentUser, highscore]);
 
   useEffect(() => {
-    console.log("Variable:", variable);
-    console.log("Highscore:", highscore);
-
     if (user) {
       if (variable >= highscore) {
-        console.log("test");
         setHighscore(variable);
       }
 
       displayName = currentUser;
-      console.log(`User Email: ${user.email}`);
-      console.log(`User ID: ${user.uid}`);
-      console.log(`User Name", ${user.displayName}`);
       setCurrentUser(user.displayName);
       setIsLoading(false);
     } else {
@@ -113,8 +105,9 @@ const Home: React.FC = () => {
       }
 
       displayName = currentUser;
+      
     }
-  }, [user]);
+  }, );
 
   return (
     <div className="flex flex-col justify-between w-full min-h-screen">
