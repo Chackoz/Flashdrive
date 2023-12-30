@@ -17,7 +17,6 @@ import {
 } from "firebase/firestore";
 import Navbar from "@/app/components/Navbar";
 
-
 let displayName = "Anonymous";
 
 const Home: React.FC = () => {
@@ -30,34 +29,32 @@ const Home: React.FC = () => {
 
   const handleVariableChange = async (newValue: number) => {
     setVariable(newValue);
-   
+
     if (newValue > highscore) {
-      setHighscore(newValue);
-   
-      let whereClause;
+      // setHighscore(newValue);
 
-      if (currentUser === "anonymous") {
-          whereClause = where("username", "==", "");
-      } else {
-          whereClause = where("username", "==", currentUser);
-      }
+      // let whereClause;
 
-      const querySnapshot = await getDocs(
-        query(userRef, whereClause)
-      );
+      // if (currentUser === "anonymous") {
+      //   whereClause = where("username", "==", "");
+      // } else {
+      //   whereClause = where("username", "==", currentUser);
+      // }
 
-      if (!querySnapshot.empty) {
-        const docId = querySnapshot.docs[0].id;
-        await updateDoc(doc(userRef, docId), {
-          highscore: newValue,
-        });
-      } else {
-        // Add a new document
-        await addDoc(userRef, {
-          highscore: newValue,
-          username: currentUser,
-        });
-      }
+      // const querySnapshot = await getDocs(query(userRef, whereClause));
+
+      // if (!querySnapshot.empty) {
+      //   const docId = querySnapshot.docs[0].id;
+      //   await updateDoc(doc(userRef, docId), {
+      //     highscore: newValue,
+      //   });
+      // } else {
+      //   // Add a new document
+      //   await addDoc(userRef, {
+      //     highscore: newValue,
+      //     username: currentUser,
+      //   });
+      // }
     }
   };
   const fetchHighscore = async () => {
@@ -72,30 +69,45 @@ const Home: React.FC = () => {
         setHighscore(docData.highscore);
       } else {
         console.log("No highscore found for user:", currentUser);
-       
-        
       }
     } catch (error) {
       console.error("Error fetching highscore:", error);
     }
-    
   };
   useEffect(() => {
-   
-
-    if (user && (variable >= highscore) ) {
+    if (user && variable >= highscore) {
       fetchHighscore();
     }
   }, [user, currentUser, highscore]);
+
+const updatehighscore=async(newValue:number,passuser:string)=>{
+  const querySnapshot = await getDocs(query(userRef, where("username", "==", passuser)));
+
+      if (!querySnapshot.empty) {
+        const docId = querySnapshot.docs[0].id;
+        await updateDoc(doc(userRef, docId), {
+          highscore: newValue,
+        });
+      } else {
+        // Add a new document
+        await addDoc(userRef, {
+          highscore: newValue,
+          username: currentUser,
+        });
+      }
+}
 
   useEffect(() => {
     if (user) {
       if (variable >= highscore) {
         setHighscore(variable);
+        updatehighscore(variable,currentUser);
       }
 
       displayName = currentUser;
       setCurrentUser(user.displayName);
+   
+      
       setIsLoading(false);
     } else {
       if (variable >= highscore) {
@@ -104,9 +116,8 @@ const Home: React.FC = () => {
       }
 
       displayName = currentUser;
-      
     }
-  }, );
+  });
 
   return (
     <div className="flex flex-col justify-between w-full min-h-screen">
@@ -121,7 +132,10 @@ const Home: React.FC = () => {
             </div>
 
             {currentUser === "Anonymous" ? (
-              <a href='/login' className="text-[3rem] text-[#f08181] hover:text-[#ff7373] hover:scale-[110%]">
+              <a
+                href="/login"
+                className="text-[3rem] text-[#f08181] hover:text-[#ff7373] hover:scale-[110%]"
+              >
                 Log in to view highscore
               </a>
             ) : (
