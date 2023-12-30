@@ -29,6 +29,9 @@ export default function Page() {
 
     onAuthStateChanged(auth, async (user) => {
       if (user) {
+        if(username===""){
+          setUsername(email);
+        }
         await updateProfile(user, { displayName: username });
         setUsername(""); 
         router.back();
