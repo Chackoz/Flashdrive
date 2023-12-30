@@ -47,9 +47,9 @@ export default function Page() {
 
   return (
     <div
-      className={`${spaceGrotesk.className}  relative flex justify-center items-center min-w-full bg-gray-50`}
+      className={`  relative flex justify-center items-center min-w-full bg-gray-50`}
     >
-      <div className="w-1/2 h-screen flex items-center justify-center transition-all ease-out duration-500 ">
+      <div className="md:flex hidden w-1/2 h-screen  items-center justify-center transition-all ease-out duration-500 ">
         <div className=" group  flex justify-center items-center">
           {/* <div className="text-4xl  text-black group-hover:text-5xl transition-all ease-in-out duration-500 font-bold">NAMMADA LOGO</div> */}
           <Image
@@ -62,15 +62,15 @@ export default function Page() {
         </div>
       </div>
       {/* <div className="w-[1px] absolute bg-gray-950 opacity-30 h-[90%]"></div> */}
-      <div className="w-1/2 h-screen flex flex-col items-center justify-center">
-        <div className="flex w-[50%] font-poppins text-4xl justify-start items-start">
+      <div className="md:w-1/2 h-screen flex flex-col items-center justify-center">
+        <div className="flex md:w-[50%] font-poppins text-4xl justify-start items-start">
           <img src="/logo.png" className="w-[80px] -mt-4 -ml-6" />
           <div className="">Flash Drive</div>
         </div>
         <div className="text-gray-950 text-2xl font-medium flex-col mb-3 text-left w-1/2 justify-start flex ">
           Let &apos;s go...
         </div>
-        <div className="flex-col flex w-1/2   justify-items-start items-start ">
+        <div className="flex-col flex md:w-1/2   justify-items-start items-start ">
           {/* <label htmlFor="name" className="text-xl my-3 font-normal ml-2">
             Username
           </label>
@@ -166,7 +166,7 @@ export default function Page() {
             GitHub
           </button>
         </div>
-        <div className="  w-1/2 mt-10 flex  justify-center items-center">
+        <div className=" md:w-1/2 mt-10 flex  justify-center items-center">
           <p className="mr-2">Already an user?</p>
           <button className=" mr-1 flex rounded-full px-3 py-[2px] text-sm justify-center items-center bg-transparent border border-gray-950">
             <Link href={"/login"}>Log In</Link>

@@ -1,17 +1,17 @@
 
-export const setHighScoreAnon = (score:number) => {
+  
+  export const setUsername = (username :string) => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('highScore', score.toString());
-      console.log("done")
+      localStorage.setItem('username', username );
+      console.log(username)
     }
   };
-  
-export const getHighScoreAnon = (): number => {
+
+  export const getUsername = (): string=> {
     if (typeof window !== 'undefined') {
         console.log("value:",localStorage.getItem('highScore') )
-      return parseInt(localStorage.getItem('highScore') || '0',);
+      return localStorage.getItem('username') || `Anon`;
       
     }
-    return 0;
+    return "Anon";
   };
-  

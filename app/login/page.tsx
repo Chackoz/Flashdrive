@@ -10,6 +10,7 @@ import Image from "next/image";
 import loginPic from "@/public/images/space.png";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { setUsername } from "../utils/localStorage";
 
 
 export default function Page() {
@@ -30,7 +31,9 @@ export default function Page() {
       setPassword("");
       console.log(res);
       if (res && res.user) {
-        router.push("/home");
+
+        setUsername(email)
+        router.push("/generate");
         setError("")
       } else {
         setError("Login failed. ");
@@ -47,8 +50,8 @@ export default function Page() {
     <div
       className={` min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}
     >
-      <div className="w-1/2 h-screen flex items-center justify-center transition-all ease-out duration-500 ">
-        <div className=" group  flex justify-center items-center">
+      <div className="hidden md:flex md:w-1/2 h-screen items-center justify-center transition-all ease-out duration-500 ">
+        <div className=" group   justify-center items-center">
          
           <Image
             src={loginPic}
@@ -60,15 +63,15 @@ export default function Page() {
         </div>
       </div>
       
-      <div className="w-1/2 h-screen flex flex-col items-center justify-center">
-        <div className="flex w-[50%] font-poppins text-4xl justify-start items-start">
-          <img src="/logo.png" className="w-[80px] -mt-4 -ml-6" />
+      <div className="md:w-1/2 w-full h-screen flex flex-col items-center justify-center">
+        <div className="flex md:w-[50%] font-poppins text-4xl justify-start items-start">
+          <img src="/logo.png" className="w-[80px] -mt-4 md:-ml-6" />
           <div className="">Flash Drive</div>
         </div>
         <div className="text-gray-950 text-2xl font-medium flex-col mb-3 text-left w-1/2 justify-start flex ">
         {error && <div className="error-message">{error}</div>} {!error && <div>Nice to see you again.</div> }   
         </div>
-        <div className="flex-col flex w-1/2   justify-items-start items-start ">
+        <div className="flex-col flex md:w-1/2   justify-items-start items-start ">
           <label htmlFor="email" className="text-xl my-3 font-normal ml-2">
             Email
           </label>
@@ -143,7 +146,7 @@ export default function Page() {
             GitHub
           </button>
         </div>
-        <div className="  w-1/2 mt-10 flex  justify-center items-center">
+        <div className="  md:w-1/2 mt-10 flex  justify-center items-center">
           <p className="mr-2">Newbie??</p>
           <button className=" mr-1 flex rounded-full px-3 py-[2px] text-sm justify-center items-center bg-transparent border border-gray-950">
             <Link href={"/signup"}>Sign Up</Link>

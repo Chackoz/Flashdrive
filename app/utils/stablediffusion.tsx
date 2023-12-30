@@ -1,14 +1,23 @@
 import axios from "axios";
+import { useAuth } from "../hooks/useAuth";
+import { getUsername } from "./localStorage";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const convertTextToImage = async (text: string): Promise<string> => {
-  const api = "https://c018332de31394d507.gradio.live";
+  const api = "https://2c1326c3dd253fbc9d.gradio.live";
   const url = `${api}/sdapi/v1/txt2img`;
 
   let option_payload = {
     sd_model_checkpoint: "dreamshaper_5-inpainting.safetensors [498c18f2a5]",
     CLIP_stop_at_last_layers: 2,
   };
- 
+  const base64ToDataUrl = (
+    base64String: string,
+    mimeType: string = "image/png"
+  ): string => {
+    return `data:${mimeType};base64,${base64String}`;
+  };
   
   
 
@@ -18,7 +27,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
     sampler_name: "DPM++ 2M Karras",
     seed: -1,
   };
-  
+
   if(text[0]=="*"){
     option_payload = {
       sd_model_checkpoint: "epicrealism_pureEvolutionV3.safetensors [52484e6845]",
@@ -32,12 +41,28 @@ const convertTextToImage = async (text: string): Promise<string> => {
     };
   
   }
+const username=getUsername();
+if(text!==""){
+  console.log("Username",username," Prompt",text);
+  const userRef = collection(db, "log");
+  await addDoc(userRef, {
+    username:username,
+    prompt:text,
+    time:Date()
+    
+  });
+}
   try {
 
     const responsesetting = await axios.post(`${api}/sdapi/v1/options`, option_payload);
     const response = await axios.post(url, payload);
     console.log("Response:", response.data);
     const imageData = response.data.images[0];
+
+    const base64Data = imageData;
+    const decodedData = base64ToDataUrl(base64Data);
+
+
     return imageData;
   }
    catch (error) {

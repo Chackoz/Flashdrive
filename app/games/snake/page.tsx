@@ -16,7 +16,7 @@ import {
   doc,
 } from "firebase/firestore";
 import Navbar from "@/app/components/Navbar";
-import { getHighScoreAnon, setHighScoreAnon } from "@/app/utils/localStorage";
+
 
 let displayName = "Anonymous";
 
@@ -30,12 +30,10 @@ const Home: React.FC = () => {
 
   const handleVariableChange = async (newValue: number) => {
     setVariable(newValue);
-    if (currentUser === "Anonymous") {
-      setHighscore(getHighScoreAnon());
-    }
+   
     if (newValue > highscore) {
       setHighscore(newValue);
-      setHighScoreAnon(newValue);
+   
 
       const querySnapshot = await getDocs(
         query(userRef, where("username", "==", currentUser))
