@@ -16,7 +16,7 @@ function Navbar() {
  }
 
   return (
-    <div className=' flex  justify-between items-center font-poppins md:max-w-[1500px] w-full mx-auto md:p-0 pr-5'>
+    <div className=' flex  justify-between items-center font-poppins mx-auto w-[90%] '>
         <div className='flex'><img src='/logo.png' className='w-[50px]'/><div className='font-logo text-xl py-5'>FLASH DRIVE</div></div>
         <div className='md:flex hidden gap-6'>
             <a href='/'>Home</a>
