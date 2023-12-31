@@ -1,9 +1,10 @@
 # The Flash Drive
   
 ## What is  Flash Drive?
-  Well it's a mini project for our DBMS ( Database Management Systems ) in Semester 5 of btech. Flash Drive is simply a website that showcases a few projects that we build based on the stuffs we learned this year. Rather than focusing on a socailly relevant theme we just decided to have fun and focus more on the development side.
+  Well it's a mini project for our DBMS ( Database Management Systems ) in Semester 5 of Btech in CSE 🚶‍♀️. <br>
+  Flash Drive is simply a website that showcases a few projects that we build based on the stuffs we learned this year. Rather than focusing on a socailly relevant theme we just decided to have fun and focus more on the development side.
    
-## Tech Stuffs used
+## Technical Stuffs
  ```markdown
 # Website
 
@@ -12,10 +13,6 @@ Fireabse (Firebase Storage,Realtime Database and Firestore) as Database
 Google's Perspective API for recognizing vulgar or nsfw prompts
 
   ```
-
-
-## Acknowledgments
-
 
 
  ```markdown
@@ -32,6 +29,19 @@ Prompt Used for Website Assets:
 Cute hand drawn { prompt here } doodle icon ,
 Children drawing. Isolated vector illustration in doodle style on white background
 
+Sampling Steps  : 25
+Sampling Method : DPM++ 2M Karras
+Negative Prompts : basic nsfw wordlisr
+
+
+  ```
+
+ ```markdown
+# Snake Game
+
+Basic HTMl Canvas Game inspired from [straker](https://gist.github.com/straker)
+Modified [Html Snake Game](https://gist.github.com/straker/ff00b4b49669ad3dec890306d348adc4) for nextjs 
+and added highscore,leaderboard and some cool annimations.
   ```
 
 # Contributors
