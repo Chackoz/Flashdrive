@@ -4,14 +4,37 @@
   Well it's a mini project for our DBMS ( Database Management Systems ) in Semester 5 of btech. Flash Drive is simply a website that showcases a few projects that we build based on the stuffs we learned this year. Rather than focusing on a socailly relevant theme we just decided to have fun and focus more on the development side.
    
 ## Tech Stuffs used
- ``` 
-  
+ ```markdown
+# Website
+
+Nextjs as the main framework with tailwind css.
+Fireabse (Firebase Storage,Realtime Database and Firestore) as Database
+Google's Perspective API for recognizing vulgar or nsfw prompts
+
   ```
 
 
+## Acknowledgments
 
 
-## Contributors
+
+ ```markdown
+# Stable Diffusion
+
+Thanks to  HuggingFace and AUTOMATIC1111 for the models and api tools for the stable diffusion
+Model used : Custom trained version of DreamShaper 5
+
+Prompt used :
+Mononoke hime studio image of { prompt here } ,
+stylized volumetric lighting, 4k beautifull detailled painting, --ar 2:3 --uplight
+
+Prompt Used for Website Assets:
+Cute hand drawn { prompt here } doodle icon ,
+Children drawing. Isolated vector illustration in doodle style on white background
+
+  ```
+
+# Contributors
 
 <table>
 <tr>
