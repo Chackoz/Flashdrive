@@ -39,6 +39,7 @@ const Home: React.FC = () => {
         setScreenHeight(window.innerHeight);
       };
       handleResize();
+      window.addEventListener("resize", handleResize);
     }
 
     return () => {};
@@ -138,8 +139,8 @@ const Home: React.FC = () => {
   });
 
   return (
-    <div className="relative flex flex-col justify-between w-full min-h-screen md:p-10">
-      <div className="">
+    <div className="relative flex flex-col justify-between w-full min-h-screen md:p-10 transition-all">
+      <div className={`${screenHeight > 770 ? "mt-0" : "mt-10"}`}>
         <Navbar />
       </div>
       <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
@@ -192,7 +193,7 @@ const Home: React.FC = () => {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 * index, duration: 0.5 }}
                             className={`flex w-full  ${
-                              screenHeight > 770 ? "min-w-[400px]" : "w-[280px]"
+                              screenHeight > 770 ? "min-w-[39%]" : "w-[280px]"
                             } justify-between hover:scale-110 transition-all duration-200 px-3 shadow-xl ${
                               index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"
                             }`}
