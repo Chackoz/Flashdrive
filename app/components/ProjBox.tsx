@@ -1,19 +1,17 @@
+// Optimised 
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 
-
-
 type ItemProps = {
   ImageUrl: string;
   header: string;
   desc: string;
-  href:string
-}
+  href: string;
+};
 
-
-function ProjBox(props: ItemProps) {
+const useProjBoxAnimation = () => {
   const controls = useAnimation();
 
   useEffect(() => {
@@ -22,21 +20,32 @@ function ProjBox(props: ItemProps) {
     });
   }, [controls]);
 
+  return controls;
+};
+
+function ProjBox(props: ItemProps) {
+  const controls = useProjBoxAnimation();
+
+  const handleMouseOver = () => {
+    controls.start({
+      transform: `translateY(0px)`,
+      transition: { duration: 0.7, ease: "easeInOut" },
+    });
+  };
+
+  const handleMouseOut = () => {
+    controls.start({
+      transform: `translateY(150px)`,
+      transition: { duration: 0.7, ease: "easeInOut" },
+    });
+  };
+
   return (
-    <a href={props.href}
+    <a
+      href={props.href}
       className="w-full h-full z-10 "
-      onMouseOver={() =>
-        controls.start({
-          transform: `translateY(0px)`,
-          transition: { duration: 0.7, ease: "easeInOut" },
-        })
-      }
-      onMouseOut={() =>
-        controls.start({
-          transform: `translateY(150px)`,
-          transition: { duration: 0.7, ease: "easeInOut" },
-        })
-      }
+      onMouseOver={() => handleMouseOver()}
+      onMouseOut={() => handleMouseOut()}
     >
       <div className="relative  flex justify-center items-center max-w-[590px] md:min-h-[720px]  bg-black rounded-[20px] overflow-hidden m-[10px] my-[20px]">
         <Image
@@ -53,7 +62,11 @@ function ProjBox(props: ItemProps) {
             animate={controls}
             className="text-white text-6xl text-center overflow-hidden"
           >
-            <Marquee speed={200} className="overflow-hidden text-[4rem] font-poppins">{props.header}&nbsp;- View Project -&nbsp;
+            <Marquee
+              speed={200}
+              className="overflow-hidden text-[4rem] font-poppins"
+            >
+              {props.header}&nbsp;- View Project -&nbsp;
             </Marquee>
           </motion.div>
         </div>
