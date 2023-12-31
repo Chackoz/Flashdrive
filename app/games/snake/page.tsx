@@ -129,7 +129,7 @@ const Home: React.FC = () => {
         <Navbar />
       </div>
       <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
-        <div className="flex h-full flex-col md:w-[50%] justify-start items-start md:px-[120px] order-1 md:order-0">
+        <div className="flex h-full flex-col md:w-[30%]  justify-start items-start  order-1 md:order-0">
           <div className=" font-poppins">
             <div className="text-[4rem]">{currentUser}</div>
             <div className="text-[3rem] text-[#2d2d2d]">
@@ -145,16 +145,26 @@ const Home: React.FC = () => {
                 Log in to view highscore
               </a>
             ) : (
-              <div>
+              <div className="">
                 <div className="text-[3rem] text-[#2d2d2d]">
                   High Score :
                   <span className="text-green-800">{highscore}</span>
                 </div>
-                <div className="text-[3rem] text-[#2d2d2d] mt-8 transition-all delay-75 duration-200 my-10   rounded-2xl hidden md:flex flex-col">
+               
+              </div>
+            )}
+          </div>
+          <div className=""> </div>
+        </div>
+        <div className="flex md:w-[50%] order-0 md:order-1 items-center justify-center">
+          <SnakeGame onValueChange={handleVariableChange} />
+          
+        </div>
+        <div className="w-[33%] text-[3rem] text-[#2d2d2d] mt-8 transition-all delay-75 duration-200 my-10  rounded-2xl hidden md:flex flex-col order-2 m-10">
                   <div className="text-[3.5rem] uppercase py-2 ">
                     Leaderboard 🏆
                   </div>
-                  <ul className="">
+                  <ul className="flex flex-col">
                     <AnimatePresence>
                       {leaderboard.map((leader, index) => (
                         <motion.li
@@ -163,7 +173,7 @@ const Home: React.FC = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: 0.5 }}
-                          className="flex rounded-2xl font-poppins text-[1.4rem] h-[80px] text-black"
+                          className="flex rounded-2xl font-poppins text-[1.4rem]  text-black"
                         >
                           <motion.div
                             initial={{ opacity: 0 }}
@@ -173,7 +183,7 @@ const Home: React.FC = () => {
                               index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"
                             }`}
                           >
-                            <td className="flex text-[3rem] w-[50px] font-poppins items-center text-center p-2">
+                            <td className="flex text-[3rem] w-[50px] font-poppins items-center text-center ">
                               {index + 1}
                             </td>
                             <td className="text-[2rem] font-poppins min-w-[250px] items-center py-2">
@@ -188,14 +198,6 @@ const Home: React.FC = () => {
                     </AnimatePresence>
                   </ul>
                 </div>
-              </div>
-            )}
-          </div>
-          <div className=""> </div>
-        </div>
-        <div className="flex md:w-[50%] order-0 md:order-1 items-center justify-center">
-          <SnakeGame onValueChange={handleVariableChange} />
-        </div>
       </div>
       <footer className="flex w-full justify-center items-center font-poppins text-[2rem] pb-10">
         Copyright @ F^2 AN

@@ -12,6 +12,8 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
   let count = 0;
   let speed = 0;
   const [screenWidth, setScreenWidth] = useState<number>(800);
+  const [screenHeight, setScreenHeight] = useState<number>(600);
+
 
   function getRandomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -182,9 +184,12 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
     };
 
     handleResize();
+ 
+    
     if (typeof window !== "undefined") {
       const handleResize = () => {
         setScreenWidth(window.innerWidth);
+        setScreenHeight(window.innerHeight);
       };
 
       // Initial setup
@@ -211,6 +216,8 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
     };
   }, []);
 
+
+ 
   const handleRestart = () => {
     setGo(false);
     scoreRef.current = 0;
@@ -220,27 +227,36 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
 
   return (
     <div className="flex w-full justify-center items-center  ">
-      <canvas
-        id="game"
-        width={screenWidth > 768 ? "700" : "200"}
-        height={screenWidth  > 768 ? "700" : "200"}
-        className={` bg-[#f8f8f8] ${go ? "hidden" : ""} p-5`}
-      ></canvas>
-      {go && (
-        <div
-          className={`flex flex-col items-center justify-center w-[700px] h-[700px] text-black text-6xl bg-[#f8f8f8] ${
-            !go ? "hidden" : ""
+     
+      <div>
+        <canvas
+          id="game"
+          width={
+            screenWidth > 770 && screenHeight > 770 ? "700" : `${screenHeight  - 400}px`
+          }
+          height={
+            screenWidth > 770 && screenHeight  > 770 ? "700" : `${screenHeight  - 400}px`
+          }
+          className={` bg-[#f8f8f8] ${go ? "hidden" : ""} p-5 ${
+            screenWidth < 770 ? "hidden" : "flex"
           }`}
-        >
-          <div className="p-5">Game Over.</div>
-          <button
-            onClick={handleRestart}
-            className="bg-black rounded-md p-2 text-3xl text-white"
+        ></canvas>
+        {go && (
+          <div
+            className={`flex flex-col items-center justify-center min-h-[500px] min-w-[500px] text-black text-6xl bg-[#f8f8f8] ${
+              !go ? "hidden" : ""
+            }`}
           >
-            Restart
-          </button>
-        </div>
-      )}
+            <div className="p-5">Game Over.</div>
+            <button
+              onClick={handleRestart}
+              className="bg-black rounded-md p-2 text-3xl text-white"
+            >
+              Restart
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
