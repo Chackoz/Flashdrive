@@ -29,40 +29,13 @@ const Home: React.FC = () => {
 
   const handleVariableChange = async (newValue: number) => {
     setVariable(newValue);
-
-    if (newValue > highscore) {
-      // setHighscore(newValue);
-
-      // let whereClause;
-
-      // if (currentUser === "anonymous") {
-      //   whereClause = where("username", "==", "");
-      // } else {
-      //   whereClause = where("username", "==", currentUser);
-      // }
-
-      // const querySnapshot = await getDocs(query(userRef, whereClause));
-
-      // if (!querySnapshot.empty) {
-      //   const docId = querySnapshot.docs[0].id;
-      //   await updateDoc(doc(userRef, docId), {
-      //     highscore: newValue,
-      //   });
-      // } else {
-      //   // Add a new document
-      //   await addDoc(userRef, {
-      //     highscore: newValue,
-      //     username: currentUser,
-      //   });
-      // }
-    }
   };
+
   const fetchHighscore = async () => {
     try {
       const querySnapshot = await getDocs(
         query(userRef, where("username", "==", currentUser))
       );
-
       if (!querySnapshot.empty) {
         const docData = querySnapshot.docs[0].data();
         console.log("Fetched Highscore:", docData.highscore); // Log to see if data is fetched

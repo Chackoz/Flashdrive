@@ -36,7 +36,10 @@
   margin-bottom: 30px;
 }
 
-
+*{
+  -webkit-user-drag: none; /* Safari and older versions of Chrome */
+  user-drag: none; /* Standard */
+}
 html,
 body {
   height: 100%;
@@ -49,6 +52,8 @@ body {
   align-items: center;
   justify-content: center;
   scroll-behavior: smooth;
+  -webkit-user-drag: none; 
+  
 }
 body::-webkit-scrollbar{
 display: none;
