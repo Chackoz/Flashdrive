@@ -8,6 +8,7 @@ import FadeText from "./components/FadeText";
 import ProjBox from "./components/ProjBox";
 import { smoothScroll } from "./utils/smoothScroll";
 import Marquee from "react-fast-marquee";
+import Link from "next/link";
 
 export default function Home() {
   const controls = useAnimation();
@@ -139,8 +140,8 @@ export default function Home() {
 
   return (
     <main className="realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 ">
-      <div className="z-1  ">
-        <section className="flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] ">
+      <div className=" z-10 ">
+        <section className="flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10">
           <Navbar />
 
           <div className="flex md:flex-row flex-col  mx-auto h-full items-start justify-between mt-[100px] md:max-w-[1500px]">
@@ -315,7 +316,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full  bg-[#e0e0e0]">
+        <section className="z-10 w-full  bg-[#e0e0e0] ">
           <div
             className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  "
             id="portfolio"
@@ -363,25 +364,93 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-        <section className="min-h-screen bg-transparent ">.</section>
       </div>
-
+      <section className="min-h-screen bg-transparent z-[-1] ">.</section>
       <section
         id="Footer"
         ref={footerRef}
-        className=" fixed   flex flex-col min-h-screen w-full h-full justify-between items-center z-[-1] bg-[#1c1c1c] text-[#e0e0e0]"
+        className=" fixed   flex flex-col min-h-screen w-full h-full justify-between items-center  bg-[#1c1c1c] z-1 text-[#e0e0e0] "
       >
         <div className="text-black">.</div>
         <div className="flex flex-col justify-center items-center text-center">
           <div className="md:text-[4rem] text-[3rem] font-poppins opacity-75">
             So this it it..
           </div>
-          <div className="md:text-[4.5rem] text-[3.5rem] font-poppins ">
-            The Flash Drive
+          <div className="flex group md:text-[6.5rem] text-[4.5rem] font-poppins cursor-pointer">
+            <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
+              T
+            </div>
+            <div className="group-hover:rotate-45 group-hover:-translate-x-[50px] group-hover:translate-y-20 transition-all duration-[400] delay-200 letter">
+              h
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-70px] group-hover:translate-y-[60px] transition-all duration-[400] delay-200 letter">
+              e
+            </div>
+            <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
+            &nbsp;
+            <div className="group-hover:rotate-90 group-hover:translate-x-[40px] group-hover:translate-y-[80px] transition-all duration-[400] delay-200 letter">
+              F
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[10px] group-hover:translate-y-[-40px] transition-all duration-[400] delay-200 letter">
+              l
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-90px] group-hover:translate-y-[30px] transition-all duration-[400] delay-200 letter">
+              a
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[70px] group-hover:translate-y-[-20px] transition-all duration-[400] delay-200 letter">
+              s
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-20px] group-hover:translate-y-[90px] transition-all duration-[400] delay-200 letter">
+              h
+            </div>
+            <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
+            &nbsp;
+            <div className="group-hover:rotate-90 group-hover:translate-x-[80px] group-hover:translate-y-[10px] transition-all duration-[400] delay-200 letter">
+              D
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-50px] group-hover:translate-y-[50px] transition-all duration-[400] delay-200 letter">
+              r
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[60px] group-hover:translate-y-[70px] transition-all duration-[400] delay-200 letter">
+              i
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-30px] group-hover:translate-y-[-60px] transition-all duration-[400] delay-200 letter">
+              v
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[20px] group-hover:translate-y-[40px] transition-all duration-[400] delay-200 letter">
+              e
+            </div>
           </div>
         </div>
         <div className="w-full text-[3rem] font-logo mb-10">
-          <Marquee autoFill={true}>©️ F^2 NT 2023 &nbsp;</Marquee>
+          <div className="flex text-[2rem] text-center justify-center items-center gap-6 p-5">
+            <Link
+              href="https://github.com/F-2AN"
+              className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+            >
+              Github{" "}
+            </Link>
+            -
+            <Link
+              href="https://github.com/F-2AN"
+              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+            >
+              Github{" "}
+            </Link>
+            -
+            <Link
+              href="https://github.com/F-2AN"
+              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+            >
+              Github{" "}
+            </Link>
+          </div>
+          <Marquee
+            className=" animate-pulse md:text-[5rem] text-[4rem]"
+            autoFill={true}
+          >
+            ©️ F^2 NT 2023 &nbsp;
+          </Marquee>
         </div>
       </section>
     </main>
