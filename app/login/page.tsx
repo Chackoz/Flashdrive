@@ -36,7 +36,7 @@ export default function Page() {
       if (res && res.user) {
 
         setUsername(email)
-        router.back()
+        router.push("/")
         setError("")
       } else {
         setError("Login failed. ");

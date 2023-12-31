@@ -34,7 +34,7 @@ export default function Page() {
         }
         await updateProfile(user, { displayName: username });
         setUsername(""); 
-        router.back();
+        router.push("/")
       }
     });
     try {
@@ -81,7 +81,7 @@ export default function Page() {
           <div className="font-bold -ml-3">Flash Drive</div>
         </div>
         <div className="text-gray-950 md:text-2xl text-xl opacity-80 font-medium flex-col mb-3 text-left md:w-1/2 w-full md:px-0 px-8 justify-start flex">
-     {error && <div className="text-red-500">User already exists</div>}  {!error && <div className=""> Let&apos;s go...</div>} 
+     {error && <div className="text-red-500">Error in SIgnup</div>}  {!error && <div className=""> Let&apos;s go...</div>} 
         </div>
         <div className="flex-col flex md:w-1/2   justify-items-start items-start ">
           {/* <label htmlFor="name" className="text-xl my-3 font-normal ml-2">
@@ -133,7 +133,7 @@ export default function Page() {
             <input
               type={eyeClick ? "password" : "text"}
               id="password"
-              placeholder="Password"
+              placeholder="Password (8 + chars)"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);

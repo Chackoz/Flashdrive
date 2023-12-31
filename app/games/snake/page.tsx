@@ -68,14 +68,12 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (user && variable >= highscore) {
       fetchHighscore();
-      
-      const loadLeaderboard = async () => {
-        const leaderboardData = await fetchLeaderboard();
-        setLeaderboard(leaderboardData);
-      };
-
-      loadLeaderboard();
     }
+    const loadLeaderboard = async () => {
+      const leaderboardData = await fetchLeaderboard();
+      setLeaderboard(leaderboardData);
+    };
+    loadLeaderboard();
   }, [user, currentUser, highscore]);
 
   const updatehighscore = async (newValue: number, passuser: string) => {
@@ -83,20 +81,24 @@ const Home: React.FC = () => {
       query(userRef, where("username", "==", passuser))
     );
 
-    if (!querySnapshot.empty ) {
+    if (!querySnapshot.empty) {
       const docId = querySnapshot.docs[0].id;
-      if(newValue>0){
+      if (newValue > 0) {
         await updateDoc(doc(userRef, docId), {
           highscore: newValue,
         });
       }
-      
     } else {
       // Add a new document
-      await addDoc(userRef, {
-        highscore: newValue,
-        username: currentUser,
-      });
+      const querySnapshot = await getDocs(
+        query(userRef, where("username", "==", passuser))
+      );
+      if (querySnapshot.empty) {
+        await addDoc(userRef, {
+          highscore: newValue,
+          username: currentUser,
+        });
+      }
     }
   };
 
@@ -122,8 +124,10 @@ const Home: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col justify-between w-full min-h-screen md:p-10">
-      <Navbar />
+    <div className="relative flex flex-col justify-between w-full min-h-screen md:p-10">
+      <div className="">
+        <Navbar />
+      </div>
       <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
         <div className="flex h-full flex-col md:w-[50%] justify-start items-start md:px-[120px] order-1 md:order-0">
           <div className=" font-poppins">

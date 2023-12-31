@@ -55,7 +55,7 @@ useEffect(() => {
         <button
           onClick={() => {
             signOut(auth);
-            router.refresh();
+            router.push("/");
           
             
           }}
