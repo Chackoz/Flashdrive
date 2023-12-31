@@ -122,7 +122,7 @@ const Home: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col justify-between w-full min-h-screen">
+    <div className="flex flex-col justify-between w-full min-h-screen md:p-10">
       <Navbar />
       <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
         <div className="flex h-full flex-col md:w-[50%] justify-start items-start md:px-[120px] order-1 md:order-0">
@@ -146,8 +146,8 @@ const Home: React.FC = () => {
                   High Score :
                   <span className="text-green-800">{highscore}</span>
                 </div>
-                <div className="text-[3rem] text-[#2d2d2d] mt-8 transition-all delay-75 duration-200 my-10   rounded-2xl">
-                  <div className="text-[3.5rem] uppercase py-2">
+                <div className="text-[3rem] text-[#2d2d2d] mt-8 transition-all delay-75 duration-200 my-10   rounded-2xl hidden md:flex flex-col">
+                  <div className="text-[3.5rem] uppercase py-2 ">
                     Leaderboard 🏆
                   </div>
                   <ul className="">
