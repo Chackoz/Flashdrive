@@ -373,10 +373,10 @@ export default function Home() {
       >
         <div className="text-black">.</div>
         <div className="flex flex-col justify-center items-center text-center">
-          <div className="md:text-[4rem] text-[3rem] font-poppins opacity-75">
+          <div className="md:text-[4rem] text-[2.5rem] font-poppins opacity-75">
             So this it it..
           </div>
-          <div className="flex group md:text-[6.5rem] text-[4.5rem] font-poppins cursor-pointer">
+          <div className="flex group md:text-[6.5rem] text-[3.2rem] font-poppins cursor-pointer">
             <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
               T
             </div>
@@ -423,7 +423,7 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full text-[3rem] font-logo mb-10">
-          <div className="flex text-[2rem] text-center justify-center items-center gap-6 p-5">
+          <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5">
             <Link
               href="https://github.com/F-2AN"
               className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
