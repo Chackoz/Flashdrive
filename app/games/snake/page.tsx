@@ -29,6 +29,20 @@ const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const userRef = collection(db, "snake");
   const user = useAuth();
+  const [screenWidth, setScreenWidth] = useState<number>(800);
+  const [screenHeight, setScreenHeight] = useState<number>(800);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+        setScreenHeight(window.innerHeight);
+      };
+      handleResize();
+    }
+
+    return () => {};
+  });
 
   const fetchLeaderboard = async () => {
     try {
@@ -129,7 +143,7 @@ const Home: React.FC = () => {
         <Navbar />
       </div>
       <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
-        <div className="flex h-full flex-col md:w-[30%]  justify-start items-start  order-1 md:order-0">
+        <div className="flex h-full flex-col md:w-[50%]  justify-start items-start  order-1 md:order-1 px-[50px]">
           <div className=" font-poppins">
             <div className="text-[4rem]">{currentUser}</div>
             <div className="text-[3rem] text-[#2d2d2d]">
@@ -150,18 +164,14 @@ const Home: React.FC = () => {
                   High Score :
                   <span className="text-green-800">{highscore}</span>
                 </div>
-               
-              </div>
-            )}
-          </div>
-          <div className=""> </div>
-        </div>
-        <div className="flex md:w-[50%] order-0 md:order-1 items-center justify-center">
-          <SnakeGame onValueChange={handleVariableChange} />
-          
-        </div>
-        <div className="w-[33%] text-[3rem] text-[#2d2d2d] mt-8 transition-all delay-75 duration-200 my-10  rounded-2xl hidden md:flex flex-col order-2 m-10">
-                  <div className="text-[3.5rem] uppercase py-2 ">
+                <div
+                  className={` text-[3rem] text-[#2d2d2d] mt-8 transition-all delay-75 duration-200 my-10  rounded-2xl hidden  md:flex flex-col order-0 `}
+                >
+                  <div
+                    className={` uppercase py-2 ${
+                      screenHeight > 770 ? "text-[3.0rem]" : "text-[2rem]"
+                    }`}
+                  >
                     Leaderboard 🏆
                   </div>
                   <ul className="flex flex-col">
@@ -173,23 +183,27 @@ const Home: React.FC = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: 0.5 }}
-                          className="flex rounded-2xl font-poppins text-[1.4rem]  text-black"
+                          className={`flex rounded-2xl font-poppins ${
+                            screenHeight > 770 ? "text-[1.5rem]" : "text-[1rem]"
+                          }  text-black`}
                         >
                           <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 * index, duration: 0.5 }}
-                            className={`flex w-full min-w-[500px] justify-between hover:scale-110 transition-all duration-200 px-3 shadow-xl ${
+                            className={`flex w-full  ${
+                              screenHeight > 770 ? "min-w-[400px]" : "w-[280px]"
+                            } justify-between hover:scale-110 transition-all duration-200 px-3 shadow-xl ${
                               index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"
                             }`}
                           >
-                            <td className="flex text-[3rem] w-[50px] font-poppins items-center text-center ">
+                            <td className="flex  w-[50px] font-poppins items-center text-center ">
                               {index + 1}
                             </td>
-                            <td className="text-[2rem] font-poppins min-w-[250px] items-center py-2">
+                            <td className="font-poppins min-w-[200px] items-center py-2">
                               {leader.username}
                             </td>
-                            <td className="text-[2rem] font-semibold w-[50px] py-2">
+                            <td className=" font-semibold w-[50px] py-2">
                               {leader.highscore}
                             </td>
                           </motion.div>
@@ -198,6 +212,14 @@ const Home: React.FC = () => {
                     </AnimatePresence>
                   </ul>
                 </div>
+              </div>
+            )}
+          </div>
+          <div className=""> </div>
+        </div>
+        <div className="flex md:w-[60%] order-0 md:order-2 items-center justify-center m-5">
+          <SnakeGame onValueChange={handleVariableChange} />
+        </div>
       </div>
       <footer className="flex w-full justify-center items-center font-poppins text-[2rem] pb-10">
         Copyright @ F^2 AN
