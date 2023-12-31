@@ -53,7 +53,7 @@ export default function Home() {
 
         let triggerPosition = yPos;
 
-        console.log(scrollPosition - 1000);
+   
         if (window.innerWidth <= 768) {
           if (yPos < 500) {
             rocketControl.start({
@@ -73,7 +73,7 @@ export default function Home() {
             });
           }
         } else {
-          console.log(scrollPosition, "-", yPos);
+     
           if (yPos < 400) {
             rocketControl.start({
               x: window.innerWidth - 800,
