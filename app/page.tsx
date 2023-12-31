@@ -49,14 +49,13 @@ export default function Home() {
       if (rocketRef.current) {
         const yPos = rocketRef.current.getBoundingClientRect().top;
 
-        
         const scrollPosition = window.scrollY;
 
         let triggerPosition = yPos;
-        
+
         console.log(scrollPosition - 1000);
         if (window.innerWidth <= 768) {
-          if (yPos<500 ) {
+          if (yPos < 500) {
             rocketControl.start({
               rotate: 90,
               transition: {
@@ -74,8 +73,8 @@ export default function Home() {
             });
           }
         } else {
-         console.log(scrollPosition,'-',yPos)
-          if (yPos<400 ) {
+          console.log(scrollPosition, "-", yPos);
+          if (yPos < 400) {
             rocketControl.start({
               x: window.innerWidth - 800,
               transition: {
@@ -83,7 +82,7 @@ export default function Home() {
                 ease: "easeOut",
               },
             });
-          }else {
+          } else {
             rocketControl.start({
               x: 0, // Reset to the original position
               transition: {
@@ -158,9 +157,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="md:max-w-[40%]    text-lg translate-y-[200px]  p-5">
-              Where dreams ignite and visions soar, In radiant hues and tales
-              galore.
+            <div className="md:max-w-[45%]    text-lg translate-y-[200px]  p-5 font-poppins">
+              What&apos;s Flash Drive?<br></br>
+              <span className="text-slate-600">
+                well a place where dumb projects meets professional display.
+              </span>
               <div className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
                 About Us
               </div>
@@ -197,8 +198,10 @@ export default function Home() {
             </div>
 
             <div className=" text-lg translate-y-[20%]">
-            Where dreams ignite and visions soar, In radiant hues and tales
-              galore.
+              What&apos;s Flash Drive?<br></br>
+              <span className="text-slate-600">
+                well a place where dumb projects meets professional display.
+              </span>
               <div className="w-[50%] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
                 About Us
               </div>
@@ -306,21 +309,42 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  " id="portfolio">
+      <section
+        className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  "
+        id="portfolio"
+      >
         <div className="flex md:w-[50%] text-[4.5rem] justify-end items-start">
           Mixing up work and play , proffesionaly 😉.
         </div>
 
-        
-
         <div className="flex md:flex-row flex-col justify-around items-center  p-5 ">
           <div className="flex flex-col gap-6">
-            <ProjBox ImageUrl="https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(11).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9" header="Stable Diffusion" desc="Web Ui" href="/collection"/>
-            <ProjBox ImageUrl="https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(11).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9" header="Stable Diffusion" desc="Web Ui" href="/collection"/>
+            <ProjBox
+              ImageUrl="/stb2.png"
+              header="Stable Diffusion"
+              desc="Web Ui"
+              href="/collection"
+            />
+            <ProjBox
+              ImageUrl="/stb.png"
+              header="Ferwin will add it.."
+              desc="Coming Soon"
+              href="/"
+            />
           </div>
           <div className="flex flex-col gap-6 md:mt-[200px]">
-            <ProjBox ImageUrl="/snake.png" header="Snake Game" desc="Game" href="/games/snake"/>
-            <ProjBox ImageUrl="https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(11).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9" header="Stable Diffusion" desc="Web Ui" href="/collection"/>
+            <ProjBox
+              ImageUrl="/snake.png"
+              header="Snake Game"
+              desc="Game"
+              href="/games/snake"
+            />
+            <ProjBox
+              ImageUrl="/stb6.png"
+              header="The Duck"
+              desc="Coming Soon"
+              href="/"
+            />
           </div>
         </div>
         <motion.div
@@ -328,7 +352,7 @@ export default function Home() {
           animate={rocketControl}
           className=" items-start justify-start  max-w-[500px]"
         >
-          <img src="/rocket.png"  />
+          <img src="/rocket.png" />
         </motion.div>
       </section>
 

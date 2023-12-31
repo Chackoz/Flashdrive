@@ -42,9 +42,10 @@ function ProjBox(props: ItemProps) {
         <Image
           src={props.ImageUrl}
           alt=""
-          width={7000}
+          width={590}
           height={720}
           className="-z-5 md:min-w-[590px] md:min-h-[720px] "
+          unoptimized={true}
         ></Image>
 
         <div className="absolute h-[80px] overflow-hidden ">

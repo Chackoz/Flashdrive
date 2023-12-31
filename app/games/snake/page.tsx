@@ -14,8 +14,11 @@ import {
   where,
   updateDoc,
   doc,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 import Navbar from "@/app/components/Navbar";
+import { AnimatePresence, motion } from "framer-motion";
 
 let displayName = "Anonymous";
 
@@ -26,6 +29,21 @@ const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const userRef = collection(db, "snake");
   const user = useAuth();
+
+  const fetchLeaderboard = async () => {
+    try {
+      const leaderboardSnapshot = await getDocs(
+        query(userRef, orderBy("highscore", "desc"), limit(5))
+      );
+      const leaderboardData = leaderboardSnapshot.docs.map((doc) => doc.data());
+      return leaderboardData;
+    } catch (error) {
+      console.error("Error fetching leaderboard:", error);
+      return [];
+    }
+  };
+
+  const [leaderboard, setLeaderboard] = useState<any[]>([]);
 
   const handleVariableChange = async (newValue: number) => {
     setVariable(newValue);
@@ -50,37 +68,48 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (user && variable >= highscore) {
       fetchHighscore();
+      
+      const loadLeaderboard = async () => {
+        const leaderboardData = await fetchLeaderboard();
+        setLeaderboard(leaderboardData);
+      };
+
+      loadLeaderboard();
     }
   }, [user, currentUser, highscore]);
 
-const updatehighscore=async(newValue:number,passuser:string)=>{
-  const querySnapshot = await getDocs(query(userRef, where("username", "==", passuser)));
+  const updatehighscore = async (newValue: number, passuser: string) => {
+    const querySnapshot = await getDocs(
+      query(userRef, where("username", "==", passuser))
+    );
 
-      if (!querySnapshot.empty) {
-        const docId = querySnapshot.docs[0].id;
+    if (!querySnapshot.empty ) {
+      const docId = querySnapshot.docs[0].id;
+      if(newValue>0){
         await updateDoc(doc(userRef, docId), {
           highscore: newValue,
         });
-      } else {
-        // Add a new document
-        await addDoc(userRef, {
-          highscore: newValue,
-          username: currentUser,
-        });
       }
-}
+      
+    } else {
+      // Add a new document
+      await addDoc(userRef, {
+        highscore: newValue,
+        username: currentUser,
+      });
+    }
+  };
 
   useEffect(() => {
     if (user) {
       if (variable >= highscore) {
         setHighscore(variable);
-        updatehighscore(variable,currentUser);
+        updatehighscore(variable, currentUser);
       }
 
       displayName = currentUser;
       setCurrentUser(user.displayName);
-   
-      
+
       setIsLoading(false);
     } else {
       if (variable >= highscore) {
@@ -96,7 +125,7 @@ const updatehighscore=async(newValue:number,passuser:string)=>{
     <div className="flex flex-col justify-between w-full min-h-screen">
       <Navbar />
       <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
-        <div className="flex h-full flex-col md:w-[50%] justify-start items-start md:p-10 order-1 md:order-0">
+        <div className="flex h-full flex-col md:w-[50%] justify-start items-start md:px-[120px] order-1 md:order-0">
           <div className=" font-poppins">
             <div className="text-[4rem]">{currentUser}</div>
             <div className="text-[3rem] text-[#2d2d2d]">
@@ -112,8 +141,49 @@ const updatehighscore=async(newValue:number,passuser:string)=>{
                 Log in to view highscore
               </a>
             ) : (
-              <div className="text-[3rem] text-[#2d2d2d]">
-                High Score : <span className="text-green-800">{highscore}</span>
+              <div>
+                <div className="text-[3rem] text-[#2d2d2d]">
+                  High Score :
+                  <span className="text-green-800">{highscore}</span>
+                </div>
+                <div className="text-[3rem] text-[#2d2d2d] mt-8 transition-all delay-75 duration-200 my-10   rounded-2xl">
+                  <div className="text-[3.5rem] uppercase py-2">
+                    Leaderboard 🏆
+                  </div>
+                  <ul className="">
+                    <AnimatePresence>
+                      {leaderboard.map((leader, index) => (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.5 }}
+                          className="flex rounded-2xl font-poppins text-[1.4rem] h-[80px] text-black"
+                        >
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 * index, duration: 0.5 }}
+                            className={`flex w-full min-w-[500px] justify-between hover:scale-110 transition-all duration-200 px-3 shadow-xl ${
+                              index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"
+                            }`}
+                          >
+                            <td className="flex text-[3rem] w-[50px] font-poppins items-center text-center p-2">
+                              {index + 1}
+                            </td>
+                            <td className="text-[2rem] font-poppins min-w-[250px] items-center py-2">
+                              {leader.username}
+                            </td>
+                            <td className="text-[2rem] font-semibold w-[50px] py-2">
+                              {leader.highscore}
+                            </td>
+                          </motion.div>
+                        </motion.li>
+                      ))}
+                    </AnimatePresence>
+                  </ul>
+                </div>
               </div>
             )}
           </div>
