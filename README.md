@@ -31,7 +31,11 @@ Children drawing. Isolated vector illustration in doodle style on white backgrou
 
 Sampling Steps  : 25
 Sampling Method : DPM++ 2M Karras
-Negative Prompts : basic nsfw wordlisr
+Negative Prompts : basic nsfw wordlist
+
+Api Hosted in our personal computer.
+GPU : NVIDIA RTX 4060 (Laptop)
+Processor : Amd Ryzen 7 7800HS
 
 
   ```
