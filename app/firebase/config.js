@@ -20,12 +20,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app =!getApps.length ? initializeApp(firebaseConfig) : getApp();
-
 const auth = getAuth(app);
-console.log("AUth data", auth)
-// const analytics = getAnalytics(app);
+
 const db = getFirestore(app)
-const database=getDatabase();
+
 let val1=0;
 let val2="";
 

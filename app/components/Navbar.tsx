@@ -4,12 +4,16 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/app/firebase/config";
 import { Router } from "next/router";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 function Navbar() {
   
   const user = useAuth();
   const router = useRouter();
   
+ 
+  
+useEffect(() => {
   const checkUser = async () => {
     if(!user) {
       console.log("Navbar Not logged in");
@@ -18,8 +22,6 @@ function Navbar() {
      
     }
   };
-  
-useEffect(() => {
   
   checkUser();
   
@@ -32,7 +34,7 @@ useEffect(() => {
   return (
     <div className=" flex  justify-between items-center font-poppins mx-auto w-[90%]">
       <a href="/" className="flex cursor-pointer">
-        <img src="/logo.png" className="w-[50px]" />
+        <Image src="/logo.png" className="w-[50px]" alt="" width={50} height={50} />
         <div className="font-logo text-xl py-5">FLASH DRIVE</div>
       </a>
       <div className="md:flex hidden gap-6">
