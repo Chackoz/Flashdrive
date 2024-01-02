@@ -217,7 +217,7 @@ export default function Home() {
           </div>
           <div className="flex h-full w-full justify-end ">
             <div
-              className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center mt-20 md:mx-20 md:p-0 p-5 `}
+              className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center mt-[4.4rem] md:mx-20 md:p-0 p-5 `}
             >
               <motion.div
                 ref={constraintsRef}
