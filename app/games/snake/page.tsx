@@ -1,10 +1,9 @@
 // pages/index.tsx
 "use client";
 import SnakeGame from "@/app/components/SnakeGame";
-
 import { db } from "@/app/firebase/config";
-
 import { useAuth } from "@/app/hooks/useAuth";
+
 import React, { useEffect, useState } from "react";
 import {
   collection,
@@ -17,6 +16,7 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore";
+
 import Navbar from "@/app/components/Navbar";
 import { AnimatePresence, motion } from "framer-motion";
 

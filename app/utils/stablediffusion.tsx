@@ -32,7 +32,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
   let payload = {
     prompt: `Mononoke hime studio image of ${text} ,stylized volumetric lighting, 4k beautifull detailled painting, --ar 2:3 --uplight`,
     negative_prompt: " nsfw , nude , sex , rape ,naked  ",
-    steps: 20,
+    steps: 25,
     sampler_name: "DPM++ 2M Karras",
     seed: -1,
   };
@@ -46,7 +46,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
     payload = {
       prompt: ` ${text} `,
       negative_prompt:'',
-      steps: 20,
+      steps: 25,
       sampler_name: "DPM++ 2M Karras",
       seed: -1,
     };
