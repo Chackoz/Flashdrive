@@ -139,7 +139,7 @@ export default function Home() {
   }, [controls, rocketControl]);
 
   return (
-    <main className="realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 ">
+    <main className="realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 scroll-smooth transition-all duration-200 " style={{scrollBehavior:'smooth'}}>
       <div className=" z-10 ">
         <section className="flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10">
           <Navbar />
@@ -165,9 +165,10 @@ export default function Home() {
                 <span className="text-slate-600">
                   well a place where dumb projects meets professional display.
                 </span>
-                <div className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
-                  About Us
-                </div>
+                <br/>
+                <Link href="https://github.com/F-2AN" className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
+                  Github
+                </Link>
               </div>
             </div>
 
@@ -209,9 +210,10 @@ export default function Home() {
                 <span className="text-slate-600">
                   well a place where dumb projects meets professional display.
                 </span>
-                <div className="w-[50%] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
-                  About Us
-                </div>
+                <br/>
+                <Link href="https://github.com/F-2AN" className="w-[50%] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
+                  Github
+                </Link>
               </div>
             </div>
           </div>

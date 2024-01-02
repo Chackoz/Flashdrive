@@ -23,7 +23,7 @@ function Navbar() {
 
   return (
     <>
-    <div className=" flex  justify-between items-center font-poppins mx-auto w-[90%]">
+    <div className=" flex  justify-between items-center font-poppins mx-auto w-[90%] scroll-smooth">
       <a href="/" className="flex cursor-pointer">
         <Image
           src="/logo.png"
@@ -35,10 +35,10 @@ function Navbar() {
         <div className="font-logo text-xl py-5">FLASH DRIVE</div>
       </a>
       <div className="md:flex hidden gap-6">
-        <Link href="/">Home</Link>
-        <Link href="/#portfolio">Portfolio</Link>
-        <Link href="/">Smthn</Link>
-        <Link href="/">Smthin</Link>
+        <Link href="/" >Home</Link>
+        <Link href="#portfolio" scroll={false} >Portfolio</Link>
+        <Link href="#team" scroll={false}>Team</Link>
+        <Link href="#" scroll={false}> Contact</Link>
       </div>
       {!user && (
         <a

@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     
-    <html lang="en" className='bg-[#e0e0e0] '>
+    <html lang="en" className='bg-[#e0e0e0] scroll-smooth' style={{scrollBehavior:'smooth'}}>
      
 
       <body className={inter.className}>
