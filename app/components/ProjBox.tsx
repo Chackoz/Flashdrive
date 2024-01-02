@@ -15,7 +15,7 @@ const useProjBoxAnimation = () => {
   const controls = useAnimation();
 
   useEffect(() => {
-    controls.set({
+    controls.start({
       transform: `translateY(150px)`,
     });
   }, [controls]);
