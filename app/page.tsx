@@ -166,7 +166,7 @@ export default function Home() {
                   well a place where dumb projects meets professional display.
                 </span>
                 <br/>
-                <Link href="https://github.com/F-2AN" className="max-w-[150px] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
+                <Link href="https://github.com/F-2AN" className="max-w-[150px] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase">
                   Github
                 </Link>
               </div>
@@ -211,7 +211,7 @@ export default function Home() {
                   well a place where dumb projects meets professional display.
                 </span>
                 <br/>
-                <Link href="https://github.com/F-2AN" className="w-[50%] border-black border-[1px] px-2 rounded-full text-center my-5 text-[1rem] uppercase">
+                <Link href="https://github.com/F-2AN" className="w-[50%] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase">
                   Github
                 </Link>
               </div>

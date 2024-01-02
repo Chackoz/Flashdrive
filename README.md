@@ -74,7 +74,7 @@ and added highscore,leaderboard and some cool annimations.
         </a>
     </td>
     <td align="center">
-        <a href=https://github.com/neviaseb03">
+        <a href="https://github.com/neviaseb03">
             <img src="https://avatars.githubusercontent.com/u/101114152?v=4" width="100;" alt="Jes-ny"/>
             <br />
             <sub><b>Nevia Sebastian</b></sub>
