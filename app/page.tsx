@@ -139,7 +139,10 @@ export default function Home() {
   }, [controls, rocketControl]);
 
   return (
-    <main className="realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 scroll-smooth transition-all duration-200 " style={{scrollBehavior:'smooth'}}>
+    <main
+      className="realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 scroll-smooth transition-all duration-200 "
+      style={{ scrollBehavior: "smooth" }}
+    >
       <div className=" z-10 ">
         <section className="flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10">
           <Navbar />
@@ -165,8 +168,11 @@ export default function Home() {
                 <span className="text-slate-600">
                   well a place where dumb projects meets professional display.
                 </span>
-                <br/>
-                <Link href="https://github.com/F-2AN" className="max-w-[150px] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase">
+                <br />
+                <Link
+                  href="https://github.com/F-2AN"
+                  className="max-w-[150px] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase"
+                >
                   Github
                 </Link>
               </div>
@@ -210,8 +216,11 @@ export default function Home() {
                 <span className="text-slate-600">
                   well a place where dumb projects meets professional display.
                 </span>
-                <br/>
-                <Link href="https://github.com/F-2AN" className="w-[50%] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase">
+                <br />
+                <Link
+                  href="https://github.com/F-2AN"
+                  className="w-[50%] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase"
+                >
                   Github
                 </Link>
               </div>
@@ -367,6 +376,16 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <section id="#team" className="min-h-screen z-10 w-full  bg-[#e0e0e0]">
+        <div
+          className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  "
+        >
+          <div className="flex md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start"> 
+            Meet the Team 
+            {/* Or something else to fill up the space */}
+          </div>
+        </div>
+      </section>
       <section className="min-h-screen bg-transparent z-[-1] ">.</section>
       <section
         id="Footer"
@@ -382,7 +401,7 @@ export default function Home() {
             <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
               T
             </div>
-            <div className="group-hover:rotate-45 group-hover:-translate-x-[50px] group-hover:translate-y-20 transition-all duration-[400] delay-200 letter">
+            <div className="group-hover:rotate-45 group-hover:-translate-x-[80px] group-hover:translate-y-25 transition-all duration-[400] delay-200 letter">
               h
             </div>
             <div className="group-hover:rotate-90 group-hover:translate-x-[-70px] group-hover:translate-y-[60px] transition-all duration-[400] delay-200 letter">
@@ -430,21 +449,21 @@ export default function Home() {
               href="https://github.com/F-2AN"
               className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
             >
-              Github{" "}
+              Github
             </Link>
             -
             <Link
               href="https://github.com/F-2AN"
               className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
             >
-              Github{" "}
+              Github
             </Link>
             -
             <Link
               href="https://github.com/F-2AN"
               className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
             >
-              Github{" "}
+              Github
             </Link>
           </div>
           <Marquee

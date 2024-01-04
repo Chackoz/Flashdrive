@@ -97,7 +97,7 @@ function Page() {
             >
               <LazyLoad offset={400}>
                 <Image
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full bg-[#d5d5d5] transition-all "
                   src={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${
                     index % imgc == 0 ? (index % imgc) + 1 : index % imgc
                   }).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
