@@ -28,7 +28,7 @@ export default function Page() {
     console.log("Email is " + email);
     console.log("Password is " + password);
     const loginFailed = () => toast.error('Login Failed');
-    const loginSuccess = async () => await toast.success('Login Success');
+    const loginSuccess =() => toast.success('Login Success');
     try {
       const res = await signInWithEmailAndPassword(email, password);
       setEmail("");
