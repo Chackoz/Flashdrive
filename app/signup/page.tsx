@@ -11,6 +11,8 @@ import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProf
 import signupPic from "@/public/images/hand2.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from 'react-hot-toast';
+import { log } from "console";
 
 export default function Page() {
   const router=useRouter();
@@ -26,7 +28,8 @@ export default function Page() {
 
   const handleSignUp = async () => {
     const auth = getAuth(); // Get the auth instance
-
+    const signUpFailed = () => toast.error('Sign Up Failed');
+    const signUpSuccess =() => toast.success('Sign Up Success');
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         if(username===""){
@@ -42,17 +45,21 @@ export default function Page() {
 
       if (res && res.user) {
         await updateProfile(res.user, { displayName: username }); // Update the profile
-
-        console.log(res);
+        (async () => { signUpSuccess()})();
+       // console.log("Res is"+res);
         setEmail("");
         setPassword("");
         setUsername("");
         setError(false) ;// Reset the username
       }else{
-        setError(true)
+        setError(true);
+     (async () => { signUpFailed()})();
       }
     } catch (error) {
-      setError(true)
+      setError(true);
+      console.log("Error Occured");
+      
+      signUpFailed();
       console.error("Error:",error);
       
     }
@@ -62,6 +69,7 @@ export default function Page() {
     <div
       className={`h-full md:min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}
     >
+      <Toaster   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />
          <div className="hidden md:flex md:w-1/2 h-screen items-center justify-center transition-all ease-out duration-500 ">
         <div className=" group   justify-center items-center">
           {/* <div className="text-4xl  text-black group-hover:text-5xl transition-all ease-in-out duration-500 font-bold">NAMMADA LOGO</div> */}
