@@ -9,6 +9,7 @@ import ProjBox from "./components/ProjBox";
 import { smoothScroll } from "./utils/smoothScroll";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Home() {
   const controls = useAnimation();
@@ -143,6 +144,7 @@ export default function Home() {
       className="realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 scroll-smooth transition-all duration-200 "
       style={{ scrollBehavior: "smooth" }}
     >
+      <Toaster   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />
       <div className=" z-10 ">
         <section className="flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10">
           <Navbar />
