@@ -155,7 +155,7 @@ function Page() {
   return (
     <main className="flex flex-col items-center justify-center w-full h-full min-h-screen md:p-0 pt-5">
       <Navbar />
-    {isConverting &&  <Toaster   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />}
+    {isConverting &&  <Toaster position="bottom-center"   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />}
       {user && (
         <div className="flex md:flex-row flex-col md:w-[80%] w-full h-full justify-center items-center mx-auto">
           <div className="flex flex-col md:hidden md:w-[50%] w-full items-center justify-center p-5">
