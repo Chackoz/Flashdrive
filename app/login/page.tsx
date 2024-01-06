@@ -11,8 +11,8 @@ import loginPic from "@/public/images/space.png";
 import { useRouter } from "next/navigation";
 import { usePathname } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
-import { toast } from "react-toastify";
 import { setUsername } from "../utils/localStorage";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function Page() {
@@ -27,20 +27,22 @@ export default function Page() {
   const handleLogin = async () => {
     console.log("Email is " + email);
     console.log("Password is " + password);
-
+    const loginFailed = () => toast.error('Login Failed');
+    const loginSuccess =() => toast.success('Login Success');
     try {
       const res = await signInWithEmailAndPassword(email, password);
       setEmail("");
       setPassword("");
       console.log(res);
       if (res && res.user) {
-
-        setUsername(email)
+        (async () => { loginSuccess()})();
+        setUsername(email);
+        
         router.push("/")
         setError("")
       } else {
         setError("Login failed. ");
-        
+        loginFailed();
       }
     } catch (error) {
       console.error(error);
@@ -53,6 +55,7 @@ export default function Page() {
     <div
       className={`h-full md:min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}
     >
+       <Toaster   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />
       <div className="hidden md:flex md:w-1/2 h-screen items-center justify-center transition-all ease-out duration-500 ">
         <div className=" group   justify-center items-center">
          
