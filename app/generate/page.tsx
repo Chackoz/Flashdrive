@@ -197,7 +197,7 @@ function Page() {
               className=" flex text-xl md:w-[600px] md:h-[150px] h-[100px] m-5 rounded-[10px] bg-[#cfcfcf]  text-center p-2 items-center justify-center border-black border-1"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              placeholder="Enter the prompt for generation"
+              placeholder="Enter the prompt for generation ( eg : 'a lovely riverside' "
             />
             <button
               onClick={handleConvert}

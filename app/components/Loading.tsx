@@ -1,38 +1,37 @@
 
 "use client"
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface LoadingProps {
   isLoading: boolean;
 }
 
 const Loading: React.FC<LoadingProps> = ({ isLoading }) => {
-  const [counter, setCounter] = useState<number>(0);
+  const [showLoading, setShowLoading] = useState(isLoading);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-
+    // Only update showLoading after 3 seconds if isLoading is true
     if (isLoading) {
-      interval = setInterval(() => {
-        setCounter((prevCounter) => prevCounter + 1);
-      }, 1000);
-    }
+      const timeoutId = setTimeout(() => {
+        setShowLoading(true);
+      }, 3000);
 
-    return () => {
-      clearInterval(interval);
-    };
+      // Clear the timeout if the component is unmounted
+      return () => clearTimeout(timeoutId);
+    }
   }, [isLoading]);
 
-  if (!isLoading) {
-    return null;
+  if (!showLoading) {
+    return null; // or replace with another component/content
   }
 
   return (
-    <div className='flex w-full h-full font-logo md:text-[7rem] text-[4rem] justify-center items-center transition-all '>
-        {counter}
-      
+    <div className='w-full h-full text-black text-6rem'>
+      {/* Your loading content here */}
+      Loading...
     </div>
   );
-};
+}
 
 export default Loading;
+
