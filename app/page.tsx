@@ -157,10 +157,10 @@ export default function Home() {
                     ⚡
                   </div>
                   <div className="border-black border-[1px] h-[25px] w-[25px] rounded-full text-white text-center">
-                    .
+                    {/* . */}
                   </div>
                   <div className="border-black border-[1px]  h-[25px] w-[25px] rounded-full text-white text-center">
-                    .
+                    {/* . */}
                   </div>
                 </div>
               </div>

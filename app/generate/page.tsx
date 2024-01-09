@@ -15,6 +15,9 @@ function Page() {
   };
 
   const user = useAuth();
+  // if(user) {
+  //   console.log("Logged in as", user.displayName);
+  // }
   if (!user) {
     console.log("Not logged in");
   }
@@ -162,7 +165,7 @@ function Page() {
             {error && (
               <div className="md:text-[3rem] text-[1.5rem] text-black p-5">
                 {" "}
-                Sorry the server is currenlty
+                Sorry the server is currently
                 <span className="text-red-700"> Offline</span>
               </div>
             )}
@@ -227,9 +230,9 @@ function Page() {
               {isConverting && <div className="animate-pulse">Generate</div>}
               {!isConverting && <div>Generate</div>}
             </button>
-            <div className="font-light text-center p-10">
+            <div className="font-light font-mono italic opacity-80 text-xs  text-center p-10">
               {" "}
-              *We are using Google Perspective AI to identify vulgar contents
+              *We are using Google's Perspective AI to identify vulgar contents
             </div>
           </div>
           <div className="md:flex hidden w-[50%] items-center justify-center">
@@ -268,7 +271,7 @@ function Page() {
         <div className="flex flex-col justify-center items-center w-full h-full text-6xl ">
           <img src="/images/gaurddog.png" />
           <div className="font-poppins p-5 text-center text-[3rem] md:text-[4rem]">
-            Please Log In to use the web service
+            Please Log in to use the web service
           </div>
           <a
             href="/login"

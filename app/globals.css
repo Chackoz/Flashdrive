@@ -17,6 +17,9 @@
   .error-message{
     @apply text-red-300 font-normal text-xl
   }
+  .bento{
+    @apply bg-white rounded-md shadow-md p-4 w-48 h-48 
+  }
 }
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
