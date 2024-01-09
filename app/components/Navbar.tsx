@@ -38,7 +38,7 @@ function Navbar() {
         <Link href="/" >Home</Link>
         <Link href="#portfolio" scroll={false} >Portfolio</Link>
         <Link href="#team" scroll={false}>Team</Link>
-        <Link href="#Footer" scroll={false}> Contact</Link>
+        <Link href="/profile" scroll={false}>Profile</Link>
       </div>
       {!user && (
         <a
