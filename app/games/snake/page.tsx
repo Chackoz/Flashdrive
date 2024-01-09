@@ -139,7 +139,7 @@ const Home: React.FC = () => {
   });
 
   return (
-    <div className="relative flex flex-col justify-between w-full min-h-screen md:p-10 transition-all">
+    <div className="relative flex flex-col justify-between w-full max-h-screen md:p-10 transition-all">
       <div className={`${screenHeight > 770 ? "mt-0" : "mt-10"}`}>
         <Navbar />
       </div>
@@ -222,9 +222,7 @@ const Home: React.FC = () => {
           <SnakeGame onValueChange={handleVariableChange} />
         </div>
       </div>
-      <footer className="flex w-full justify-center items-center font-poppins text-[2rem] pb-10">
-        Copyright @ F^2 AN
-      </footer>
+   
     </div>
   );
 };

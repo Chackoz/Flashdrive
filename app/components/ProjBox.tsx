@@ -47,7 +47,7 @@ function ProjBox(props: ItemProps) {
       onMouseOver={() => handleMouseOver()}
       onMouseOut={() => handleMouseOut()}
     >
-      <div className="relative  flex justify-center items-center max-w-[590px] md:min-h-[720px]  bg-black rounded-[20px] overflow-hidden m-[10px] my-[20px]">
+      <div className="relative flex justify-center items-center max-w-[100%] md:max-h-[50%]  bg-black rounded-[20px] overflow-hidden m-[10px] my-[20px]">
         <Image
           src={props.ImageUrl}
           alt=""
