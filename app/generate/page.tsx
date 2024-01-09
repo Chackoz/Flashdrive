@@ -231,7 +231,7 @@ function Page() {
             </button>
             <div className="font-light font-mono italic opacity-80 text-xs  text-center p-10">
               {" "}
-              *We are using Google's Perspective AI to identify vulgar contents
+              *We are using Googles`&apos;` Perspective AI to identify vulgar contents
             </div>
           </div>
           <div className="md:flex hidden w-[50%] items-center justify-center">
