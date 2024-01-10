@@ -239,7 +239,7 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
           }
           className={` bg-[#f8f8f8] ${go ? "hidden" : ""} p-5 ${
             screenWidth < 770 ? "hidden" : "flex" 
-          }  ${screenWidth > 770 && screenHeight  > 770 ? "":"scale-[55%]"} overflow-hidden`}
+          }  ${screenWidth > 770 && screenHeight  > 770 ? "":"scale-[80%]"} overflow-hidden`}
         ></canvas>
         {go && (
           <div

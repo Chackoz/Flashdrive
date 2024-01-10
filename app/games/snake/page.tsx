@@ -140,10 +140,10 @@ const Home: React.FC = () => {
 
   return (
     <div className="relative flex flex-col justify-between w-full max-h-screen h-full md:p-10 transition-all">
-      <div className={`${screenHeight > 770 ? "mt-0" : "mt-10"}`}>
+      <div className={`${screenHeight > 770 ? "mt-0" : "mt-10"} justify-start items-start mt-auto`}>
         <Navbar />
       </div>
-      <div className="flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ">
+      <div className={`flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear ${screenHeight > 770 ? "" : "scale-[80%]"}`}>
         <div className="flex h-full flex-col md:w-[50%]  justify-center items-start  order-1 md:order-1 px-[50px]">
           <div className=" font-poppins">
             <div className="text-[4rem]">{currentUser}</div>
