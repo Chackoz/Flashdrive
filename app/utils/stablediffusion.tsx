@@ -10,8 +10,11 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
+ 
 
-const convertTextToImage = async (text: string): Promise<string> => {
+const convertTextToImage = async (text: string): Promise<string> => { 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  
   let api = "";
   api = await FetchAPi();
   const url = `${api}/sdapi/v1/txt2img`;
@@ -49,6 +52,8 @@ const convertTextToImage = async (text: string): Promise<string> => {
       seed: -1,
     };
   }
+
+  
   const username = getUsername();
   if (text !== "") {
     console.log("Username", username, " Prompt", text);

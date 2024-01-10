@@ -43,11 +43,11 @@ function ProjBox(props: ItemProps) {
   return (
     <a
       href={props.href}
-      className="w-full h-full z-10 "
+      className="w-full h-full z-10 scale-90"
       onMouseOver={() => handleMouseOver()}
       onMouseOut={() => handleMouseOut()}
     >
-      <div className="relative flex justify-center items-center max-w-[100%] md:max-h-[50%]  bg-black rounded-[20px] overflow-hidden m-[10px] my-[20px]">
+      <div className="relative flex justify-center items-center max-w-[100%] md:max-h-[50%]  bg-black rounded-[20px] overflow-hidden m-[10px] my-[20px] ">
         <Image
           src={props.ImageUrl}
           alt=""

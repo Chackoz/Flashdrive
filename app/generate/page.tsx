@@ -203,7 +203,7 @@ function Page() {
             </div>
           </div>
 
-          <div className="flex flex-col md:w-[50%] justify-center items-center ">
+          <div className="flex flex-col md:w-[90%] justify-center items-center ">
             {error && (
               <div className="md:flex hidden text-[3rem] text-black ">
                 Sorry the server is currently-
@@ -230,8 +230,7 @@ function Page() {
               {!isConverting && <div>Generate</div>}
             </button>
             <div className="font-light font-mono italic opacity-80 text-xs  text-center p-10">
-              {" "}
-              *We are using Googles`&apos;` Perspective AI to identify vulgar contents
+              *We are using Google&apos;s Perspective AI to identify vulgar contents
             </div>
           </div>
           <div className="md:flex hidden w-[50%] items-center justify-center">

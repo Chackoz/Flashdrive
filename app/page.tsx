@@ -339,7 +339,7 @@ export default function Home() {
             </div>
 
             <div className="flex md:flex-row flex-col justify-around items-center  p-5 ">
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3">
                 <ProjBox
                   ImageUrl="/stb2.png"
                   header="Stable Diffusion"
@@ -348,7 +348,7 @@ export default function Home() {
                 />
                 <ProjBox
                   ImageUrl="/stb.png"
-                  header="Ferwin will add it.."
+                  header="Cool Something"
                   desc="Coming Soon"
                   href="/"
                 />

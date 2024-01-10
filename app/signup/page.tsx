@@ -13,11 +13,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from 'react-hot-toast';
 import { log } from "console";
+import { setUsername } from "../utils/localStorage";
 
 export default function Page() {
   const router=useRouter();
-  // const [userName, setUserName] = useState("");
-  const [username, setUsername] = useState(""); // Step 1: Add state for username
+  // const [userName, setUsername1] = useState("");
+  const [username, setUsername1] = useState(""); // Step 1: Add state for username
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [eyeClick, setEyeClick] = useState(true);
@@ -33,10 +34,11 @@ export default function Page() {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         if(username===""){
-          setUsername(email);
+          setUsername1(email);
         }
         await updateProfile(user, { displayName: username });
-        setUsername(""); 
+        setUsername1(""); 
+        setUsername(email)
         router.push("/")
       }
     });
@@ -49,7 +51,8 @@ export default function Page() {
        // console.log("Res is"+res);
         setEmail("");
         setPassword("");
-        setUsername("");
+        setUsername1("");
+        
         setError(false) ;// Reset the username
       }else{
         setError(true);
@@ -101,7 +104,7 @@ export default function Page() {
             placeholder="Name"
             value={userName}
             onChange={(e) => {
-              setUserName(e.target.value);
+              setUsername1(e.target.value);
             }}
             className="inputField"
           /> */}
@@ -114,7 +117,7 @@ export default function Page() {
         placeholder="Username"
         value={username}
         onChange={(e) => {
-          setUsername(e.target.value); // Set the username
+          setUsername1(e.target.value); // Set the username
         }}
         className="inputField"
       />
