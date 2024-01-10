@@ -472,7 +472,7 @@ export default function Home() {
             className=" animate-pulse md:text-[5rem] text-[4rem]"
             autoFill={true}
           >
-            ©️ F^2 NT 2023 &nbsp;
+            ©️ F^2 AN 2023 &nbsp;
           </Marquee>
         </div>
       </section>

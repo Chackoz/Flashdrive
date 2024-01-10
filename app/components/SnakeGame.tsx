@@ -226,20 +226,20 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
   };
 
   return (
-    <div className="flex w-full justify-center items-center  ">
+    <div className="flex w-full justify-center items-center max-h-screen overflow-hidden">
      
       <div>
         <canvas
           id="game"
           width={
-            screenWidth > 770 && screenHeight > 770 ? "700" : `${Math.round((screenHeight  - 400) / 100) * 100 }px`
+            screenWidth > 770 && screenHeight > 770 ? "700" : `700px`
           }
           height={
-            screenWidth > 770 && screenHeight  > 770 ? "700" : `${Math.round((screenHeight  - 400) / 100) * 100}px`
+            screenWidth > 770 && screenHeight  > 770 ? "700" : `700px`
           }
           className={` bg-[#f8f8f8] ${go ? "hidden" : ""} p-5 ${
-            screenWidth < 770 ? "hidden" : "flex"
-          }`}
+            screenWidth < 770 ? "hidden" : "flex" 
+          }  ${screenWidth > 770 && screenHeight  > 770 ? "":"scale-[55%]"} overflow-hidden`}
         ></canvas>
         {go && (
           <div
