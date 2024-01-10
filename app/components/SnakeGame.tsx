@@ -232,10 +232,10 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
         <canvas
           id="game"
           width={
-            screenWidth > 770 && screenHeight > 770 ? "700" : `${screenHeight  - 400}px`
+            screenWidth > 770 && screenHeight > 770 ? "700" : `${Math.round((screenHeight  - 400) / 100) * 100 }px`
           }
           height={
-            screenWidth > 770 && screenHeight  > 770 ? "700" : `${screenHeight  - 400}px`
+            screenWidth > 770 && screenHeight  > 770 ? "700" : `${Math.round((screenHeight  - 400) / 100) * 100}px`
           }
           className={` bg-[#f8f8f8] ${go ? "hidden" : ""} p-5 ${
             screenWidth < 770 ? "hidden" : "flex"
