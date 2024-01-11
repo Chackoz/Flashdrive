@@ -10,7 +10,7 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
   const scoreRef = useRef(0);
   const grid = 20;
   let count = 0;
-  let speed = 0;
+  let speed = 10;
   const [screenWidth, setScreenWidth] = useState<number>(800);
   const [screenHeight, setScreenHeight] = useState<number>(600);
 
@@ -149,33 +149,9 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
       }
     };
 
-    const handleTouchStart = (e: TouchEvent) => {
-      const { clientX, clientY } = e.touches[0];
-      const deltaX = clientX - snake.x;
-      const deltaY = clientY - snake.y;
+   
 
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        if (deltaX > 0 && snake.dx === 0) {
-          snake.dx = grid;
-          snake.dy = 0;
-        } else if (deltaX < 0 && snake.dx === 0) {
-          snake.dx = -grid;
-          snake.dy = 0;
-        }
-      } else {
-        if (deltaY > 0 && snake.dy === 0) {
-          snake.dy = grid;
-          snake.dx = 0;
-        } else if (deltaY < 0 && snake.dy === 0) {
-          snake.dy = -grid;
-          snake.dx = 0;
-        }
-      }
-    };
-
-    const handleTouchEnd = () => {
-      // Handle touch end if needed
-    };
+  
 
     const handleResize = () => {
       const canvas = document.getElementById("game") as HTMLCanvasElement;
@@ -199,8 +175,7 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
       window.addEventListener("resize", handleResize);
       window.addEventListener("resize", handleResize);
       document.addEventListener("keydown", handleKeyDown);
-      document.addEventListener("touchstart", handleTouchStart);
-      document.addEventListener("touchend", handleTouchEnd);
+
     }
 
     requestAnimationFrame(loop);
@@ -209,8 +184,7 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onValueChange }) => {
       if (typeof window !== "undefined") {
         window.removeEventListener("resize", handleResize);
         document.removeEventListener("keydown", handleKeyDown);
-        document.removeEventListener("touchstart", handleTouchStart);
-        document.removeEventListener("touchend", handleTouchEnd);
+      
         window.removeEventListener("resize", handleResize);
       }
     };
