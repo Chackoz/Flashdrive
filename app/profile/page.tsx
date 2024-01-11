@@ -46,7 +46,7 @@ const Page = () => {
       console.log(`Number ${number} already exists in the list.`);
     }
   };
-  const imgc = 200;
+  const imgc = 20000;
 
   const fetchHighscore = async () => {
     try {
