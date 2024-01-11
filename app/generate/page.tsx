@@ -7,6 +7,7 @@ import { useAuth } from "../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/config";
+import { IoMdDownload } from "react-icons/io";
 
 function Page() {
   const base64ToDataUrl = (
@@ -190,18 +191,25 @@ function Page() {
                   </div>
                 )}
               </h3>
-              <div className="flex h-[256px] w-[256px] bg-black rounded-3xl">
+              <div className="flex h-[256px] w-[256px] bg-black overflow-hidden rounded-3xl relative">
                 {isConverting ? (
                   <div className="flex items-center justify-center h-full w-full">
                     <p className="text-white text-3xl">Creating...</p>
                   </div>
                 ) : (
                   imageSrc && (
+                    <>
                     <img
                       src={imageSrc}
                       alt="Converted"
                       className="rounded-3xl h-[256px] w-[256px]"
                     />
+                 {imageSrc !== '/images/duck.png' && (
+              <button className="px-3 py-3 bg-teal-800 text-gray-500 font-poppins absolute bottom-1 right-2">
+                    <a href={imageSrc} download={'FlashDrive Image.jpg'}><IoMdDownload /></a>
+               </button>
+                )}
+                </>
                   )
                 )}
               </div>
@@ -250,7 +258,7 @@ function Page() {
                 )}
               </h3>
 
-              <div className="flex h-[512px] w-[512px] bg-black rounded-3xl justify-center items-center">
+              <div className="flex h-[512px] w-[512px] bg-black overflow-hidden relative rounded-3xl justify-center items-center">
                 {isConverting ? (
                   <div className="flex items-center justify-center h-full w-full">
                     <p className="text-white text-3xl animate-pulse">
@@ -259,11 +267,21 @@ function Page() {
                   </div>
                 ) : (
                   imageSrc && (
+            
+                   <>
                     <img
                       src={imageSrc}
                       alt="Converted"
                       className="rounded-3xl"
+                   
                     />
+                     {imageSrc !== '/images/duck.png' && (
+              <button className="px-3 py-3 bg-white text-gray-500 font-poppins absolute bottom-4 right-4 opacity-85 rounded shadow-md hover:opacity-70">
+                    <a href={imageSrc} download={'FlashDrive Image.jpg'}><IoMdDownload size='1rem' /></a>
+               </button>
+                )}
+                    </>
+
                   )
                 )}
               </div>
