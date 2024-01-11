@@ -1,6 +1,9 @@
 // Optimised 
 import { motion, HTMLMotionProps } from "framer-motion";
+
+
 interface FadeUpProps extends HTMLMotionProps<"div"> {}
+
 const FadeUp: React.FC<FadeUpProps> = ({ children }) => {
   return (
     <motion.div

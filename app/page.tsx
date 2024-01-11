@@ -404,15 +404,41 @@ export default function Home() {
         </section>
       </div>
 
-      <section id="about" className="min-h-screen z-10 w-full  bg-[#e0e0e0]">
-        <div
-          className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  "
-        >
-          <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start"> 
-            About Us
-           
+      <section id="about" className="flex flex-col items-center min-h-screen z-10 w-full  bg-[#e0e0e0] ">
+        <div className="flex flex-col md:w-[85%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight   justify-center">
+          <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
+            Meet the Team
           </div>
-          <TeamBox/>
+          <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center">
+            <div className="flex md:md:flex-row flex-col">
+              <TeamBox
+                name="Nevia Sebastian"
+                imgurl="https://avatars.githubusercontent.com/u/101114152?v=4"
+                githuburl="https://github.com/neviaseb03"
+                linkedinurl="https://www.linkedin.com/in/nevia-sebastian-086566234/"
+              />
+              <TeamBox
+                name="Ferwin Lopez"
+                imgurl="https://avatars.githubusercontent.com/u/102341775?v=4"
+                githuburl="https://github.com/Fer-Win"
+                linkedinurl="https://www.linkedin.com/in/ferwin-lopez/"
+              />
+            </div>
+            <div className="flex md:md:flex-row flex-col">
+              <TeamBox
+                name="Adithya Krishnan"
+                imgurl="https://avatars.githubusercontent.com/u/79042374?v=4"
+                githuburl="https://github.com/fal3n-4ngel"
+                linkedinurl="https://www.linkedin.com/in/fal3n-4ngel/"
+              />
+              <TeamBox
+                name="Faris Ziyad"
+                imgurl="https://avatars.githubusercontent.com/u/80464044?v=4"
+                githuburl="https://github.com/AFK-Trixo"
+                linkedinurl="https://www.linkedin.com/in/faris-ziyad-5a6055247/"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
