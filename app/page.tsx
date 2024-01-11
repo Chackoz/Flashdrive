@@ -403,16 +403,16 @@ export default function Home() {
         </section>
       </div>
 
-      {/* <section id="#team" className="min-h-screen z-10 w-full  bg-[#e0e0e0]">
+      <section id="about" className="min-h-screen z-10 w-full  bg-[#e0e0e0]">
         <div
           className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  "
         >
           <div className="flex md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start"> 
-            Meet the Team 
+            About Us
             
           </div>
         </div>
-      </section> */}
+      </section>
 
       <section className="min-h-screen bg-transparent z-[-1] ">.</section>
       <section
