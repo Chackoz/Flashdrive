@@ -114,7 +114,7 @@ export default function Home() {
       scrollPosition = window.scrollY;
 
       const width = interpolate(scrollPosition, [0, 300], [60, 100]);
-      const height = interpolate(scrollPosition, [0, 300], [500, 800]);
+      const height = interpolate(scrollPosition, [0, 300], [400, 800]);
       const marginTop = interpolate(scrollPosition, [0, 500], [0, 100]);
       const translateY = interpolate(scrollPosition, [0, 300], [0, 10]);
 
@@ -127,13 +127,13 @@ export default function Home() {
       if (window.innerWidth <= 768) {
         controls.set({
           width: `90%`,
-          height: `500px`,
+          height: `400px`,
           transition: { duration: 0.5 },
         });
 
         controls.start({
           width: `90%`,
-          height: `500px`,
+          height: `400px`,
         });
       } else {
         controls.start({
@@ -204,7 +204,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col md:w-[80%] h-[80%] justify-start items-start font-poppins ">
-              <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] p-5">
+              <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] ">
                 <div className="md:h-[100px] overflow-hidden">
                   <FadeText className=" flex text-black  font-poppins ">
                     Captured scenes,
@@ -253,12 +253,12 @@ export default function Home() {
           </div>
           <div className="flex h-full w-full justify-end ">
             <div
-              className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center mt-[4.4rem] md:mx-20 md:p-0 p-5 `}
+              className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center mt-[4rem] md:mx-20 md:p-0 p-5 `}
             >
               <motion.div
                 ref={constraintsRef}
                 animate={controls}
-                className="flex bg-[#1b1b1b] opacity-[100%] md:w-[60%] w-[90%] h-[500px] rounded-2xl text-center items-center justify-around px-10"
+                className="flex bg-[#1b1b1b] opacity-[100%] md:w-[60%] w-[90%] h-[400px] rounded-2xl text-center items-center justify-around px-10"
               >
                 <div className="flex md:flex-row flex-col text-white text-[4rem] uppercase font-logo items-center justify-center ">
                   <motion.div
