@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react";
 import convertTextToImage from "../utils/stablediffusion";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../hooks/useAuth";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 function Page() {
   const base64ToDataUrl = (
@@ -29,13 +31,11 @@ function Page() {
 
   const [nsfwWarning, setWarning] = useState(false);
 
-
-
   const handleConvert = async () => {
     setIsConverting(true);
     setWarning(false);
 
-    toast.loading('Creating Image');
+    toast.loading("Creating Image");
 
     try {
       const imageData = await convertTextToImage(text);
@@ -60,23 +60,6 @@ function Page() {
 
       const nsfwArray = [
         "nsfw",
-        "nigga",
-        "nigger",
-        "faggot",
-        "hitler",
-        "Israel",
-        "negrito",
-        "negro",
-        "nggar",
-        "ni**a",
-        "nig",
-        "nig**",
-        "nigga",
-        "niggah",
-        "niggar",
-        "niggas",
-        "nigger",
-        "Palestine",
         "rape",
         "raped",
         "retard",
@@ -88,6 +71,7 @@ function Page() {
       for (let word of nsfwArray) {
         if (text.includes(word)) {
           setWarning(true);
+          console.log("word in wordlist");
           break;
         }
       }
@@ -129,24 +113,32 @@ function Page() {
       } catch (error) {
         console.error("Error analyzing the text:", error);
       }
-
+      if (nsfwWarning) {
+        const userRef = collection(db, "nsfw-users");
+        await addDoc(userRef, {
+          username: user?.displayName || Date(),
+          prompt: text,
+          time: Date(),
+        });
+      }
+      
       //
       // END OF API
       //
     }
   };
-  const handleKeyDown = (e:any) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (e: any) => {
+    if (e.key === "Enter") {
       handleConvert();
     }
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       // Cleanup the event listener on component unmount
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [handleConvert]);
 
@@ -157,7 +149,16 @@ function Page() {
   return (
     <main className="flex flex-col items-center justify-center w-full h-full min-h-screen md:p-0 pt-5">
       <Navbar />
-    {isConverting &&  <Toaster position="bottom-center"   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />}
+      {isConverting && (
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            className: "",
+            duration: 3000,
+            style: { background: "#363636", color: "#fff" },
+          }}
+        />
+      )}
       {user && (
         <div className="flex md:flex-row flex-col md:w-[80%] w-full h-full justify-center items-center mx-auto">
           <div className="flex flex-col md:hidden md:w-[50%] w-full items-center justify-center p-5">
@@ -230,7 +231,8 @@ function Page() {
               {!isConverting && <div>Generate</div>}
             </button>
             <div className="font-light font-mono italic opacity-80 text-xs  text-center p-10">
-              *We are using Google&apos;s Perspective AI to identify vulgar contents
+              *We are using Google&apos;s Perspective AI to identify vulgar
+              contents
             </div>
           </div>
           <div className="md:flex hidden w-[50%] items-center justify-center">

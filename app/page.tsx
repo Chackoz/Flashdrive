@@ -9,24 +9,24 @@ import ProjBox from "./components/ProjBox";
 import { smoothScroll } from "./utils/smoothScroll";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const controls = useAnimation();
   const [screenWidth, setScreenWidth] = useState<number>(800);
-const [screenHeight, setScreenHeight] = useState<number>(800);
-useEffect(() => {
-  if (typeof window !== "undefined") {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-      setScreenHeight(window.innerHeight);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-  }
+  const [screenHeight, setScreenHeight] = useState<number>(800);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+        setScreenHeight(window.innerHeight);
+      };
+      handleResize();
+      window.addEventListener("resize", handleResize);
+    }
 
-  return () => {};
-});
+    return () => {};
+  });
 
   const rocketControl = useAnimation();
   const rocketRef = useRef<HTMLDivElement>(null);
@@ -158,9 +158,17 @@ useEffect(() => {
       className={`realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 scroll-smooth transition-all duration-200  `}
       style={{ scrollBehavior: "smooth" }}
     >
-      <Toaster   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />
+      <Toaster
+        toastOptions={{
+          className: "",
+          duration: 3000,
+          style: { background: "#363636", color: "#fff" },
+        }}
+      />
       <div className=" z-10 ">
-        <section className={`flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}>
+        <section
+          className={`flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}
+        >
           <Navbar />
 
           <div className="flex md:flex-row flex-col  mx-auto h-full items-start justify-between mt-[100px] md:max-w-[1500px]">
@@ -352,7 +360,9 @@ useEffect(() => {
               Mixing up work and play , proffesionaly 😉.
             </div>
 
-            <div className={`flex md:flex-row flex-col justify-around items-center  p-5 `}>
+            <div
+              className={`flex md:flex-row flex-col justify-around items-center  p-5 `}
+            >
               <div className="flex flex-col gap-3">
                 <ProjBox
                   ImageUrl="/stb2.png"
@@ -403,7 +413,7 @@ useEffect(() => {
           </div>
         </div>
       </section> */}
-      
+
       <section className="min-h-screen bg-transparent z-[-1] ">.</section>
       <section
         id="Footer"
