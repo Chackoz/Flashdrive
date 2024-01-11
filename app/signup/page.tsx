@@ -5,7 +5,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "@/app/firebase/config";
+import { auth, db } from "@/app/firebase/config";
 import Image from "next/image";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import signupPic from "@/public/images/hand2.png";
@@ -14,6 +14,8 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from 'react-hot-toast';
 import { log } from "console";
 import { setUsername } from "../utils/localStorage";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+const userRef = collection(db, "user");
 
 export default function Page() {
   const router=useRouter();
@@ -52,6 +54,18 @@ export default function Page() {
         setEmail("");
         setPassword("");
         setUsername1("");
+        try{const querySnapshot = await getDocs(
+          query(userRef, where("email", "==",email ))
+        );
+        if (querySnapshot.empty) {
+          await addDoc(userRef, {
+            email:email,
+            pfp:1,
+            username:username
+          });
+        }}catch(e){
+
+        }
         
         setError(false) ;// Reset the username
       }else{

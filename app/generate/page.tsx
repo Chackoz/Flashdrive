@@ -244,7 +244,7 @@ function Page() {
                 )}
               </h3>
 
-              <div className="flex h-[512px] w-[512px] bg-black rounded-3xl">
+              <div className="flex h-[512px] w-[512px] bg-black rounded-3xl justify-center items-center">
                 {isConverting ? (
                   <div className="flex items-center justify-center h-full w-full">
                     <p className="text-white text-3xl animate-pulse">

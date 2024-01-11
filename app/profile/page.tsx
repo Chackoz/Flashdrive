@@ -15,16 +15,38 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
+import { LazyMotion, domAnimation, motion } from "framer-motion";
+import Masonry from "react-masonry-css";
+import LazyLoad from "react-lazy-load";
+import Image from "next/image";
+
+let breakpointColumnsObj = {
+  default: 6,
+  1100: 5,
+  700: 4,
+  500: 2,
+};
 const userRef = collection(db, "user");
 const scoreRef = collection(db, "snake");
-
-
+const imgRef = collection(db, "images");
 const Page = () => {
   const user = useAuth();
   const [modal, setModal] = useState(false);
   const [ifpfp, setIfpfp] = useState(false);
   const [imgurl, setimgurl] = useState(0);
   const [highscore, setHighscore] = useState(0);
+  const[result,setResult]=useState(0);
+  const [imgCount, setImgCount] = useState(0);
+  const [images, setImages] = useState<number[]>([]);
+  const insertNumber = (number: number) => {
+    // Check if the number already exists in the images array
+    if (!images.includes(number)) {
+      setImages((prevImages) => [...prevImages, number]);
+    } else {
+      console.log(`Number ${number} already exists in the list.`);
+    }
+  };
+  const imgc = 200;
 
   const fetchHighscore = async () => {
     try {
@@ -48,15 +70,53 @@ const Page = () => {
     }
   };
 
+  const fetchImages = async () => {
+    let currentUser = "";
+    if (user) {
+      currentUser = user.email || "";
+    }
+    const querySnapshot = await getDocs(
+      query(imgRef, where("email", "==", currentUser))
+    );
+    
+
+    if (querySnapshot.size > 6) {
+      setResult(8)
+    } else {
+      setResult(querySnapshot.size+2);
+    }
+    breakpointColumnsObj = {
+      default: result,
+      1100: 5,
+      700: 4,
+      500: 2,
+    };
+    if (!querySnapshot.empty) {
+      setImgCount(querySnapshot.size);
+      console.log("imgCount", imgCount);
+      for (let i = 0; i <= imgCount - 1; i++) {
+        const docData = querySnapshot.docs[i].data();
+        if (docData) {
+          if (!images.includes(docData.imgno)) {
+            insertNumber(docData.imgno);
+          }
+        }
+      }
+    } else {
+      // Add a new document
+    }
+    console.log("Images : ", images);
+  };
+
   const Getpfp = async () => {
     try {
       let currentUser = "";
       if (user) {
-        currentUser = user.displayName || "";
+        currentUser = user.email || "";
       }
       console.log("Current User :", currentUser);
       const querySnapshot = await getDocs(
-        query(userRef, where("username", "==", currentUser))
+        query(userRef, where("email", "==", currentUser))
       );
       if (!querySnapshot.empty) {
         const docData = querySnapshot.docs[0].data();
@@ -71,20 +131,20 @@ const Page = () => {
       console.error("Error fetching pfp:", error);
     }
     fetchHighscore();
+    fetchImages();
   };
 
   Getpfp();
-  
 
   const Setpfp = async (newValue: number) => {
     try {
       let currentUser = "";
       if (user) {
-        currentUser = user.displayName || "";
+        currentUser = user.email || "";
       }
       console.log("Current User :", currentUser);
       const querySnapshot = await getDocs(
-        query(userRef, where("username", "==", currentUser))
+        query(userRef, where("email", "==", currentUser))
       );
       if (!querySnapshot.empty) {
         const docId = querySnapshot.docs[0].id;
@@ -130,12 +190,12 @@ const Page = () => {
         <div
           className={`  ${
             modal ? "blur" : ""
-          } flex bg-red w-[80%] h-full items-center justify-center `}
+          } flex md:flex-row flex-col bg-red w-[80%] h-full items-center justify-center `}
         >
-          <div className="w-[80%] gap-4  flex  justify-between">
+          <div className="w-[80%] gap-4  flex  justify-between md:flex-row flex-col">
             <div
               onClick={() => setModal(!modal)}
-              className="bento flex justify-center group items-center cursor-pointer"
+              className="md:bento flex justify-center group items-center cursor-pointer"
             >
               <div className=" flex w-full h-full group-hover:scale-150  justify-center items-center transition-all ease duration-100 ">
                 {!ifpfp && (
@@ -148,18 +208,21 @@ const Page = () => {
                 )}
               </div>
             </div>
-            <div className="bento w-[80%] flex flex-col justify-center items-center">
+            <div className="md:bento md:w-[80%] flex flex-col justify-center items-center">
               {user && (
-                <div className="text-7xl font-logo">{user.displayName}</div>
-                
+                <div className="md:text-7xl text-4xl font-logo">
+                  {user.displayName}
+                </div>
               )}
               {user && (
-                <div className="text-2xl font-poppins text-start">{user.email}</div>
+                <div className="md:text-2xl text-lg font-poppins text-start">
+                  {user.email}
+                </div>
               )}
             </div>
-            <div className="bento flex justify-around items-center flex-col">
-              <div className="text-center">High Score</div>
-              <div className="font-logo text-5xl">{highscore}</div>
+            <div className="md:bento flex justify-center items-center flex-col">
+              <div className="text-center text-3xl md:text-5xl">High Score</div>
+              <div className="font-logo md:text-5xl text-2xl">{highscore}</div>
             </div>
           </div>
         </div>
@@ -179,6 +242,45 @@ const Page = () => {
           </a>
         </div>
       )}
+
+      <div className="flex w-[80%] h-full mx-auto">
+        <LazyMotion features={domAnimation}>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {images.slice(0, imgCount).map((index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ ease: "easeInOut", duration: 0.5 }}
+                className="relative rounded-lg overflow-hidden bg-green-300"
+              >
+                <LazyLoad offset={400}>
+                  <Image
+                    className="object-cover w-full h-full bg-[#d5d5d5]  hover:scale-110 transition-all "
+                    src={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${
+                      index % imgc == 0 ? (index % imgc) + 1 : index % imgc
+                    }).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
+                    alt={`Image ${
+                      index % 125 == 0 ? (index % 125) + 1 : index % 125
+                    }`}
+                    width={512}
+                    height={512}
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${
+                      index % imgc == 0 ? (index % imgc) + 1 : index % imgc
+                    }).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
+                  />
+                </LazyLoad>
+              </motion.div>
+            ))}
+          </Masonry>
+        </LazyMotion>
+      </div>
     </main>
   );
 };

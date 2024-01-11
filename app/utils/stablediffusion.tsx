@@ -36,6 +36,8 @@ const convertTextToImage = async (text: string): Promise<string> => {
     steps: 25,
     sampler_name: "DPM++ 2M Karras",
     seed: -1,
+    width: 512,
+  height: Math.random() < 3/4 ? 512 : 720,
   };
 
   if (text[0] == "*") {
@@ -50,6 +52,8 @@ const convertTextToImage = async (text: string): Promise<string> => {
       steps: 25,
       sampler_name: "DPM++ 2M Karras",
       seed: -1,
+      width: 512,
+  height: 512,
     };
   }
 
