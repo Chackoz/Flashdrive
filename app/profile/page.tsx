@@ -169,7 +169,7 @@ const Page = () => {
 
   return (
     <main
-      className={` flex flex-col items-center justify-center w-full h-full relative min-h-screen md:p-0 pt-5 `}
+      className={` flex flex-col items-center justify-between w-full h-full relative min-h-screen md:p-0 pt-5 `}
     >
       {modal && (
         <div className="h-screen w-screen  z-20 flex flex-col justify-center items-center absolute">
@@ -243,7 +243,7 @@ const Page = () => {
         </div>
       )}
 
-      <div className="flex w-[80%] h-full mx-auto">
+      <div className="flex w-[80%] h-full mx-auto md:m-[40px]">
         <LazyMotion features={domAnimation}>
           <Masonry
             breakpointCols={breakpointColumnsObj}
