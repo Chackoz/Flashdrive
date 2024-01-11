@@ -109,10 +109,12 @@ const Home: React.FC = () => {
         query(userRef, where("username", "==", passuser))
       );
       if (querySnapshot.empty) {
+        if(highscore>0){
         await addDoc(userRef, {
           highscore: newValue,
           username: currentUser,
         });
+      }
       }
     }
   };
