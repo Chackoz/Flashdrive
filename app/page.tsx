@@ -10,6 +10,7 @@ import { smoothScroll } from "./utils/smoothScroll";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import TeamBox from "./components/TeamBox";
 
 export default function Home() {
   const controls = useAnimation();
@@ -407,10 +408,11 @@ export default function Home() {
         <div
           className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  "
         >
-          <div className="flex md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start"> 
+          <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start"> 
             About Us
-            
+           
           </div>
+          <TeamBox/>
         </div>
       </section>
 
