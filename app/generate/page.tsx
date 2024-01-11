@@ -74,6 +74,9 @@ function Page() {
           console.log("word in wordlist");
           break;
         }
+        else{
+          
+        }
       }
       //
       //
@@ -113,7 +116,8 @@ function Page() {
       } catch (error) {
         console.error("Error analyzing the text:", error);
       }
-      if (nsfwWarning) {
+
+      if (nsfwWarning===true) {
         const userRef = collection(db, "nsfw-users");
         await addDoc(userRef, {
           username: user?.displayName || Date(),
