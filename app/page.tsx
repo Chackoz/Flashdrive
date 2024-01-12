@@ -207,17 +207,17 @@ export default function Home() {
               <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] ">
                 <div className="md:h-[100px] overflow-hidden">
                   <FadeText className=" flex text-black  font-poppins ">
-                    Captured scenes,
+                    Pixel Plays,
                   </FadeText>
                 </div>
                 <div className="md:h-[100px] overflow-hidden">
-                  <FadeText className="  text-black   ">
-                    Shared stories,
-                  </FadeText>
+                  <FadeText className="  text-black   "> 
+                    Shared Joys, 
+                    </FadeText>
                 </div>
                 <div className="md:h-[100px] overflow-hidden">
                   <FadeText className=" text-black   ">
-                    Timeless frames.
+                    Timeless Games.
                   </FadeText>
                 </div>
               </div>
@@ -404,7 +404,10 @@ export default function Home() {
         </section>
       </div>
 
-      <section id="about" className="flex flex-col items-center min-h-screen z-10 w-full  bg-[#e0e0e0] ">
+      <section
+        id="about"
+        className="flex flex-col items-center min-h-screen z-10 w-full  bg-[#e0e0e0] "
+      >
         <div className="flex flex-col md:w-[85%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight   justify-center">
           <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
             Meet the Team
