@@ -23,10 +23,10 @@ function TeamBox (props: TeamBoxProps) {
             </div>
             <div className=' flex w-full gap-2 justify-end items-center h-[50px]'>
               <a href={props.linkedinurl}>
-                 <FaLinkedin size="25"/>
+                 <FaLinkedin size="25" color="#2a2a2a"/>
               </a>
               <a href={props.githuburl}>
-                 <BsGithub size="25"/>
+                 <BsGithub size="25" color="#2a2a2a"/>
               </a>
             </div>
         </div>

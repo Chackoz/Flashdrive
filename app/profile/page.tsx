@@ -195,14 +195,15 @@ const Page = () => {
           <div className="w-[80%] gap-4  flex  justify-between md:flex-row flex-col">
             <div
               onClick={() => setModal(!modal)}
-              className="md:bento flex justify-center group items-center cursor-pointer"
+              className="md:bento flex justify-center group items-center overflow-hidden cursor-pointer"
             >
-              <div className=" flex w-full h-full group-hover:scale-150  justify-center items-center transition-all ease duration-100 ">
+              <div className=" flex w-full h-full group-hover:scale-150   justify-center items-center transition-all ease duration-100 ">
                 {!ifpfp && (
                   <FaUserPen size="3rem" color="gray" className="opacity-55" />
                 )}
                 {ifpfp && (
                   <img
+                  className="rounded"
                     src={`https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/pfp%2Fpfp%20(${imgurl}).png?alt=media&token=6f312ab2-f540-4379-9b9c-fba7f0848d60`}
                   />
                 )}
