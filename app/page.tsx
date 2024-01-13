@@ -400,8 +400,8 @@ export default function Home() {
                   href="/collection"
                 />
                 <ProjBox
-                  ImageUrl="/stb.png"
-                  header="Cool Something"
+                  ImageUrl="/stb4.png"
+                  header="Slide 8"
                   desc="Coming Soon"
                   href="/"
                 />
@@ -416,7 +416,7 @@ export default function Home() {
                 <ProjBox
                   ImageUrl="/stb6.png"
                   header="The Duck"
-                  desc="Coming Soon"
+                  desc="Ahem"
                   href="/duck"
                 />
               </div>
