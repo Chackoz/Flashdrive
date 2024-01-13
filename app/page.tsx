@@ -440,11 +440,12 @@ export default function Home() {
           </div>
           <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-fit">
             <div className="flex md:md:flex-row flex-col h-full">
+             
               <TeamBox
-                name="Nevia Sebastian"
-                imgurl="https://assets-global.website-files.com/632ac1a36830f75c7e5b16f0/64f116759667a1fbf0c59c60_fOqQSv2iutbUbwh3tXUdPBe4m_mX5ChHOYvM7taH_SE.webp"
-                githuburl="https://github.com/neviaseb03"
-                linkedinurl="https://www.linkedin.com/in/nevia-sebastian-086566234/"
+                name="Faris Ziyad"
+                imgurl="https://avatars.githubusercontent.com/u/80464044?v=4"
+                githuburl="https://github.com/AFK-Trixo"
+                linkedinurl="https://www.linkedin.com/in/faris-ziyad-5a6055247/"
               />
               <TeamBox
                 name="Ferwin Lopez"
@@ -458,12 +459,13 @@ export default function Home() {
                 githuburl="https://github.com/fal3n-4ngel"
                 linkedinurl="https://www.linkedin.com/in/fal3n-4ngel/"
               />
-              <TeamBox
-                name="Faris Ziyad"
-                imgurl="https://avatars.githubusercontent.com/u/80464044?v=4"
-                githuburl="https://github.com/AFK-Trixo"
-                linkedinurl="https://www.linkedin.com/in/faris-ziyad-5a6055247/"
+               <TeamBox
+                name="Nevia Sebastian"
+                imgurl="https://assets-global.website-files.com/632ac1a36830f75c7e5b16f0/64f116759667a1fbf0c59c60_fOqQSv2iutbUbwh3tXUdPBe4m_mX5ChHOYvM7taH_SE.webp"
+                githuburl="https://github.com/neviaseb03"
+                linkedinurl="https://www.linkedin.com/in/nevia-sebastian-086566234/"
               />
+              
             </div>
           </div>
         </div>

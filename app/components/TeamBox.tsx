@@ -17,7 +17,7 @@ function TeamBox (props: TeamBoxProps) {
           </div>
         <div className='flex w-[300px] items-center h-[80px]'>
             <div className='flex flex-col justify-between w-[200px] h-[80px]'>
-                <div className='flex w-[200px] h-[50px] text-2xl'>{props.name}</div>
+                <div className='flex w-[200px] h-[50px] text-2xl'><span className='font-semibold'>{props.name}</span></div>
                 <div className='flex w-[200px] h-[50px] text-lg'>S5 CS1</div>
             </div>
             <div className=' flex w-full gap-2 justify-end items-center h-[50px]'>
