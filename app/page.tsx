@@ -416,7 +416,7 @@ export default function Home() {
             <div className="flex md:md:flex-row flex-col h-full">
               <TeamBox
                 name="Nevia Sebastian"
-                imgurl="https://avatars.githubusercontent.com/u/101114152?v=4"
+                imgurl="https://assets-global.website-files.com/632ac1a36830f75c7e5b16f0/64f116759667a1fbf0c59c60_fOqQSv2iutbUbwh3tXUdPBe4m_mX5ChHOYvM7taH_SE.webp"
                 githuburl="https://github.com/neviaseb03"
                 linkedinurl="https://www.linkedin.com/in/nevia-sebastian-086566234/"
               />
@@ -426,8 +426,6 @@ export default function Home() {
                 githuburl="https://github.com/Fer-Win"
                 linkedinurl="https://www.linkedin.com/in/ferwin-lopez/"
               />
-            </div>
-            <div className="flex md:md:flex-row flex-col">
               <TeamBox
                 name="Adithya Krishnan"
                 imgurl="/Adi.jpg"
@@ -454,7 +452,7 @@ export default function Home() {
         <div className="text-black">.</div>
         <div className="flex flex-col justify-center items-center text-center">
           <div className="md:text-[4rem] text-[2.5rem] font-poppins opacity-75">
-            So this it it..
+            So this is it...
           </div>
           <div className="flex group md:text-[6.5rem] text-[3.2rem] font-poppins cursor-pointer">
             <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
