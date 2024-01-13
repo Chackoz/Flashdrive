@@ -47,13 +47,14 @@ export default function Page() {
     ],
     long: [
       "Excellent choice! This is a strong and secure password.👮💪",
+      "You've created a password masterpiece! It's practically a work of art!👨‍🎨🎨",
       "Well done! A longer password is like a fortress for your digital kingdom!👑🏰",
       "Impressive length! Your password is longer than a giraffe's neck. Keep it up!🦒📏",
     ],
     veryLong: [
       "Wow! Your password is longer than a Shakespearean play! Impressive!🎭✍️",
       "Bravo! This password is so long it might as well have its own theme song!🎶🎸",
-      "You've created a password masterpiece! It's practically a work of art!👨‍🎨🎨",
+      "Predicting you'll remember this? Your password is more mysterious than a cat in a magic show! Abracadabra, make it unforgettable!🐈🪄"
     ],
   };
 
