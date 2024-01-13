@@ -150,14 +150,15 @@ export default function Page() {
       </div>
       {/* <div className="w-[1px] absolute bg-gray-950 opacity-30 h-[90%]"></div> */}
       <div className="md:w-1/2 w-full flex flex-col items-center justify-center">
-        <div className="flex md:w-[50%] font-poppins text-4xl justify-items-start -ml-20 md:-ml-12 items-center  mb-5 ">
+        <div className="flex md:w-[50%] font-poppins text-4xl justify-items-start -ml-20 md:-ml-12 items-center   ">
           <img src="/logo.png" className="w-[80px] scale-150 " />
           <div className="font-bold -ml-3">Flash Drive</div>
         </div>
-        <div className="text-gray-950 md:text-2xl text-xl opacity-80 font-medium flex-col mb-3 text-left md:w-1/2 w-full md:px-0 px-8 justify-start flex">
-     {error && <div className="text-red-500">Error in SIgnup</div>}  {!error && <div className=""> Let&apos;s go...</div>} 
+        <div className="text-gray-950 md:text-2xl text-xl opacity-80 font-medium flex-col mb-3 text-left w-full  md:px-0 px-8 justify-start items-center flex">
+     {error && <div className="text-red-500">Error in SIgnup</div>}  {!error && <div className="text-left w-full md:px-[200px] md:block hidden"> Let&apos;s go...</div>} 
+     {!error && <h2 className="text-xl md:hidden w-full font-poppins h-20 mb-5 align-middle">{comment}</h2>}
         </div>
-        <div className="flex-col flex md:w-1/2   justify-items-start items-start ">
+        <div className="flex-col flex w-[87%] md:w-1/2 justify-items-start items-start ">
           {/* <label htmlFor="name" className="text-xl my-3 font-normal ml-2">
             Username
           </label>
