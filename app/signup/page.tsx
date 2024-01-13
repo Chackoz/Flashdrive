@@ -25,6 +25,34 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const [eyeClick, setEyeClick] = useState(true);
   const [error, setError] = useState(false);
+  const [comment,setComment] =useState('');
+
+
+
+  const comments = {
+    short: [
+      "A bit too short. Consider a longer password for better security.",
+      "Hmm, seems a tad brief. Longer passwords are generally more secure.",
+    ],
+    medium: [
+      "Good job! This is a decent length.",
+      "Nice! A medium-length password is a good choice.",
+    ],
+    long: [
+      "Excellent choice! This is a strong and secure password.",
+      "Well done! A longer password is a great way to enhance security.",
+    ],
+  };
+  const selectComment=(password:any)=> {
+   console.log(password,password.length)
+    if (password.length < 5) {
+        setComment(comments.short[Math.floor(Math.random() * comments.short.length)]);
+    } else if (password.length >= 5 && password.length <= 10) {
+      setComment(comments.medium[Math.floor(Math.random() * comments.medium.length)]);
+    } else {
+     setComment(comments.long[Math.floor(Math.random() * comments.long.length)]);
+    }
+  }
 
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
@@ -89,14 +117,17 @@ export default function Page() {
       <Toaster   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />
          <div className="hidden md:flex md:w-1/2 h-screen items-center justify-center transition-all ease-out duration-500 ">
         <div className=" group   justify-center items-center">
-          {/* <div className="text-4xl  text-black group-hover:text-5xl transition-all ease-in-out duration-500 font-bold">NAMMADA LOGO</div> */}
-          <Image
+         
+
+         {(comment == '')?  <Image
             src={signupPic}
             alt="signup"
             width={600}
             height={600}
             className="scale-110"
-          ></Image>
+          ></Image>: <h2 className="text-6xl  font-poppins ml-10 px-10">{comment}</h2>}
+        
+         
         </div>
       </div>
       {/* <div className="w-[1px] absolute bg-gray-950 opacity-30 h-[90%]"></div> */}
@@ -161,7 +192,9 @@ export default function Page() {
               placeholder="Password (8 + chars)"
               value={password}
               onChange={(e) => {
+               
                 setPassword(e.target.value);
+                selectComment(password);
               }}
               className="inputField"
             ></input>
