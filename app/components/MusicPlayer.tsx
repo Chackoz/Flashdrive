@@ -18,7 +18,7 @@ const MusicPlayer = () => {
 
   return (
     <div>
-      <audio ref={audioRef} src="/music.mp3" />
+      <audio ref={audioRef} src="/audio.MP3" />
       <button onClick={togglePlay}>
         
           <img src="/qr.png" className="w-[200px] " />
