@@ -31,29 +31,29 @@ export default function Page() {
 
   const comments = {
     veryShort: [
-      "Whoa, slow down! Your password is shorter than a sneeze. Add some flair!",
-      "Brevity is the soul of wit, but let's not get too brief with the password, shall we?",
-      "This password is shorter than a goldfish's attention span! Let's spice it up a bit.",
+      "Whoa, slow down! Your password is shorter than a sneeze. Add some flair!🤧🌟",
+      "Brevity is the soul of wit, but let's not get too brief with the password, shall we?🚶🏻👻",
+      "This password is shorter than a goldfish's attention span! Let's spice it up a bit.🐡🌶️",
     ],
     short: [
-      "A bit too short. Consider a longer password for better security.",
-      "Hmm, seems a tad brief. Add a sprinkle of characters for an extra dash of security!",
-      "Short and snappy, just like a haiku! How about stretching it out a bit?",
+      "A bit too short. Consider a longer password for better security.🩳🔐",
+      "Hmm, seems a tad brief. Add a sprinkle of characters for an extra dash of security!🔑✨",
+      "Short and snappy, just like a haiku! How about stretching it out a bit?📝🤸‍♂️",
     ],
     medium: [
-      "Good job! This is a decent length.",
-      "Nice! A password like this is like a good joke - not too short, not too long!",
-      "You're in the sweet spot! Not too short, not too long. Keep rocking!",
+      "Good job! This is a decent length.🤗🤑",
+      "Nice! A password like this is like a good joke - not too short, not too long!😁🤡",
+      "You're in the sweet spot! Not too short, not too long. Keep rocking!🎸🙌",
     ],
     long: [
-      "Excellent choice! This is a strong and secure password.",
-      "Well done! A longer password is like a fortress for your digital kingdom!",
-      "Impressive length! Your password is longer than a giraffe's neck. Keep it up!",
+      "Excellent choice! This is a strong and secure password.👮💪",
+      "Well done! A longer password is like a fortress for your digital kingdom!👑🏰",
+      "Impressive length! Your password is longer than a giraffe's neck. Keep it up!🦒📏",
     ],
     veryLong: [
-      "Wow! Your password is longer than a Shakespearean play! Impressive!",
-      "Bravo! This password is so long it might as well have its own theme song!",
-      "You've created a password masterpiece! It's practically a work of art!",
+      "Wow! Your password is longer than a Shakespearean play! Impressive!🎭✍️",
+      "Bravo! This password is so long it might as well have its own theme song!🎶🎸",
+      "You've created a password masterpiece! It's practically a work of art!👨‍🎨🎨",
     ],
   };
 
@@ -142,7 +142,7 @@ export default function Page() {
             width={600}
             height={600}
             className="scale-110"
-          ></Image>: <h2 className="text-6xl  font-poppins ml-10 px-10">{comment}</h2>}
+          ></Image>: <h2 className="text-6xl font-poppins ml-10 px-2">{comment}</h2>}
         
          
         </div>
