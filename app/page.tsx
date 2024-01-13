@@ -63,7 +63,6 @@ export default function Home() {
     return () => {};
   });
 
-  
   let scrollPosition = 0;
 
   useEffect(() => {
@@ -431,17 +430,15 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-      </div>
-
-      <section
+        <section
         id="about"
-        className="flex flex-col items-center md:min-h-screen min-h-fit h-full z-10 w-full  bg-[#e0e0e0] "
+        className="flex flex-col items-center md:min-h-screen min-h-fit  z-10 w-full  bg-[#e0e0e0] "
       >
-        <div className="flex flex-col md:w-[85%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight   justify-center">
+        <div className="flex flex-col md:w-[85%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
           <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
             Meet the Team
           </div>
-          <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-full">
+          <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-fit">
             <div className="flex md:md:flex-row flex-col h-full">
               <TeamBox
                 name="Nevia Sebastian"
@@ -471,11 +468,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </div>
+      <section className="min-h-screen bg-transparent"></section>
 
-      <section className="min-h-screen bg-transparent z-[-1] ">.</section>
+     
+
+
       <section
         id="Footer"
- 
         ref={footerRef}
         className=" fixed   flex flex-col min-h-screen w-full h-full justify-between items-center  bg-[#1c1c1c] z-1 text-[#e0e0e0] "
       >
@@ -533,7 +533,6 @@ export default function Home() {
         <div className="w-full text-[3rem] font-logo mb-10">
           <motion.main
             className="flex flex-col w-full h-full  font-poppins    text-black  transition-all duration-200 z-[1]"
-          
             animate={{ x: 0, y: 0 }}
             transition={
               {
@@ -584,36 +583,34 @@ export default function Home() {
               <MusicPlayer />
             </motion.div>
             <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5 text-white">
-            <Link
-              href="https://github.com/F-2AN"
-              className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+              <Link
+                href="https://github.com/F-2AN"
+                className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+              >
+                Github
+              </Link>
+              -
+              <Link
+                href="https://github.com/F-2AN"
+                className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+              >
+                Github
+              </Link>
+              -
+              <Link
+                href="https://github.com/F-2AN"
+                className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+              >
+                Github
+              </Link>
+            </div>
+            <Marquee
+              className=" animate-pulse md:text-[5rem] text-[4rem] text-white"
+              autoFill={true}
             >
-              Github
-            </Link>
-            -
-            <Link
-              href="https://github.com/F-2AN"
-              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
-            >
-              Github
-            </Link>
-            -
-            <Link
-              href="https://github.com/F-2AN"
-              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
-            >
-              Github
-            </Link>
-          </div>
-          <Marquee
-            className=" animate-pulse md:text-[5rem] text-[4rem] text-white"
-            autoFill={true}
-          >
-            ©️ F^2 AN 2023 &nbsp;
-          </Marquee>
+              ©️ F^2 AN 2023 &nbsp;
+            </Marquee>
           </motion.main>
-
-        
         </div>
       </section>
     </main>
