@@ -11,6 +11,8 @@ function Page() {
   const [images, setImages] = useState<number[]>([]);
   const [page, setPage] = useState(1);
   const [imgc, updateImgcount] = useState(125);
+  const [imgurl, setImgurl] = useState("");
+  const [togValue, settogValue] = useState(false);
 
   const breakpointColumnsObj = {
     default: 8,
@@ -73,13 +75,15 @@ function Page() {
   }, []);
 
   return (
-    <main className="relative flex flex-col w-full h-full p-5 items-center">
+    <main className={`relative flex flex-col w-full h-full px-5 items-center ${togValue?"overflow-hidden":""} transition-all duration-200`} >
       <Navbar />
-      <div className="flex items-center justify-around w-[70%] min-h-[200px] mx-auto"> 
-      <a href='/generate' className="flex items-center justify-center w-fit p-5 h-[70px] bg-[#1d1d1d] rounded-[20px] text-white font-poppins text-xl hover:scale-110 transition-all">Generate Your Own</a>
-    
-  
-      
+      <div className="flex items-center justify-around w-[70%] min-h-[200px] mx-auto">
+        <a
+          href="/generate"
+          className="flex items-center justify-center w-fit p-5 h-[70px] bg-[#1d1d1d] rounded-[20px] text-white font-poppins text-xl hover:scale-110 transition-all"
+        >
+          Generate Your Own
+        </a>
       </div>
       <LazyMotion features={domAnimation}>
         <Masonry
@@ -94,6 +98,14 @@ function Page() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ ease: "easeInOut", duration: 0.5 }}
               className="relative rounded-lg overflow-hidden bg-green-300"
+              onClick={() => {
+                setImgurl(
+                  `https://firebasestorage.googleapis.com/v0/b/flashdrive-6e8c3.appspot.com/o/art%20(${
+                    index % imgc == 0 ? (index % imgc) + 1 : index % imgc
+                  }).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`
+                );
+                settogValue(true);
+              }}
             >
               <LazyLoad offset={400}>
                 <Image
@@ -117,6 +129,23 @@ function Page() {
           ))}
         </Masonry>
       </LazyMotion>
+      {togValue && (
+        <section
+          className="absolute flex justify-center items-center h-full w-full z-10 bg-white "
+          onClick={() => settogValue(false)}
+        >
+          <Image
+                  className="object-contain max-w-[600px] bg-[#d5d5d5] transition-all "
+                  src={imgurl}
+                 alt="Image"
+                  width={512}
+                  height={512}
+                  loading="lazy"
+               
+                 
+                />
+        </section>
+      )}
     </main>
   );
 }
