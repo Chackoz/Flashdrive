@@ -54,7 +54,7 @@ export default function Page() {
     veryLong: [
       "Wow! Your password is longer than a Shakespearean play! Impressive!🎭✍️",
       "Bravo! This password is so long it might as well have its own theme song!🎶🎸",
-      "Predicting you'll remember this? Your password is more mysterious than a cat in a magic show! Abracadabra, make it unforgettable!🐈🪄"
+      "Predicting you'll remember this? Your password is more mysterious than a cat in a magic show! Abracadabra!🐈🪄"
     ],
   };
 
@@ -143,7 +143,7 @@ export default function Page() {
             width={600}
             height={600}
             className="scale-110"
-          ></Image>: <h2 className="text-6xl font-poppins ml-10 px-2">{comment}</h2>}
+          ></Image>: <h2 className="text-5xl font-poppins ml-10 px-2">{comment}</h2>}
         
          
         </div>
