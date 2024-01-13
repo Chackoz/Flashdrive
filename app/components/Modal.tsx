@@ -24,16 +24,16 @@ const Modal:React.FC<ModalProps> = ({onSelectImage}) => {
       
   }
   return (
-    <div className='bg-white shadow-xl w-[800px] rounded-md px-5 flex-col  flex overflow-hidden justify-center items-center'>
+    <div className='bg-white shadow-xl md:w-[800px] w-[350px]  rounded-md px-5 flex-col  flex justify-center items-center'>
       <Toaster position="top-center"   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />
-     <h2 className='text-xl mt-8 font-poppins'>Choose a profile picture</h2>
-     <div className='pfp-images h-72 w-[650px] flex flex-wrap justify-around px-4 gap-y-3 gap-x-3 items-center '>
+     <h2 className='text-xl mt-8 md:mb-0 mb-4 font-poppins'>Choose a profile picture</h2>
+     <div className='pfp-images md:h-72 h-72 md:w-[650px] md:mb-0 mb- flex flex-wrap justify-around px-4 md:gap-y-3 gap-x-3 gap-y-1 items-center '>
     {
      imgarray.map((num,index)=>{
     
 
       return (
-      <div className='w-[100px] h-[100px] overflow-hidden cursor-pointer rounded-sm focus:border-blue-500 focus:border-4'
+      <div className='md:w-[100px] md:h-[100px] w-[70px] h-[70px] overflow-hidden cursor-pointer rounded-sm focus:border-blue-500 focus:border-4'
        tabIndex={0}
        key={index}
        onClick={()=>handleSelect(num)}>
@@ -54,11 +54,11 @@ const Modal:React.FC<ModalProps> = ({onSelectImage}) => {
      })
     }
      </div>
-      <div className='text-right'>
-        <button className='bg-black px-5 p-2 text-white rounded-md text-[2rem] font-poppins text-sm hover:bg-[#e0e0e0] border-[1px] hover:border-black hover:text-black transition-all disabled:bg-gray-600 delay-75 duration-150' onClick={()=>{handleSelect(selectedImage)}}>Select Profile Picture</button>
-      </div>
+      {/* <div className='text-right'>
+        <button className='bg-black px-5 p-2 md:mt-0 mt-6 mb-6 text-white rounded-md text-[2rem] font-poppins text-sm hover:bg-[#e0e0e0] border-[1px] hover:border-black hover:text-black transition-all disabled:bg-gray-600 delay-75 duration-150' onClick={()=>{handleSelect(selectedImage)}}>Select Profile Picture</button>
+      </div> */}
     
-     <p className='font-normal italic font-mono opacity-80 text-xs text-center mt-6 mb-3 '> *Image Options change everytime</p>
+
       </div>
   )
 }
