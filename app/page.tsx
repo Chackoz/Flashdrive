@@ -389,7 +389,7 @@ export default function Home() {
                   ImageUrl="/stb6.png"
                   header="The Duck"
                   desc="Coming Soon"
-                  href="/"
+                  href="/duck"
                 />
               </div>
             </div>

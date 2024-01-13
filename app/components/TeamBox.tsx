@@ -7,14 +7,13 @@ interface TeamBoxProps {
   imgurl:string;
   githuburl:string;
   linkedinurl:string;
-
 }
 
 function TeamBox (props: TeamBoxProps) { 
   return (
     <div className='flex flex-col w-[350px] h-[550px] items-center justify-around bg-[#f1f1f1] rounded-2xl m-5'>
         <div className='flex w-[300px] h-[420px] bg-blue-400 rounded-2xl justify-center items-center '>
-          <img src={props.imgurl} alt="Image" className='h-full w-full' />
+          <img src={props.imgurl} alt="Image" className='h-full w-full object-cover' />
           </div>
         <div className='flex w-[300px] items-center h-[80px]'>
             <div className='flex flex-col justify-between w-[200px] h-[80px]'>
@@ -34,4 +33,4 @@ function TeamBox (props: TeamBoxProps) {
   )
 }
 
-export default TeamBox
+export default TeamBox;
