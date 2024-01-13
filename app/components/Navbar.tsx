@@ -23,7 +23,7 @@ function Navbar() {
 
   return (
     <>
-    <div className=" flex  justify-between items-center font-poppins mx-auto w-[90%] scroll-smooth">
+    <div className=" flex  justify-between items-center font-poppins mx-auto w-[90%] scroll-smooth md:pt-0 pt-10 ">
       <a href="/" className="flex cursor-pointer">
         <Image
           src="/logo.png"

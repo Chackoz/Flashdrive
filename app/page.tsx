@@ -11,8 +11,42 @@ import Marquee from "react-fast-marquee";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import TeamBox from "./components/TeamBox";
+import MusicPlayer from "./components/MusicPlayer";
+import { useFollowPointer } from "./utils/FollowPointer";
+import { debounce } from "lodash";
 
 export default function Home() {
+  const ref = useRef(null);
+  const rocketControl = useAnimation();
+  const rocketRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const constraintsRef = useRef<HTMLDivElement>(null);
+  const { x, y } = useFollowPointer(footerRef);
+  const [xd, setxd] = useState(0);
+  const [yd, setyd] = useState(0);
+
+  const debouncedX = debounce((value) => {
+    setxd(x % 2000);
+    console.log("Debounced x:", value);
+  }, 16);
+
+  const debouncedY = debounce((value) => {
+    setyd(y % 1500);
+    console.log("Debounced y:", value);
+  }, 16);
+
+  type Transition$1 =
+    | {
+        ease: string;
+        type: string; // The type can be more specific if necessary
+        damping: number;
+        stiffness: number;
+        restDelta: number;
+      }
+    | undefined;
+
+  debouncedX(x);
+  debouncedY(y);
   const controls = useAnimation();
   const [screenWidth, setScreenWidth] = useState<number>(800);
   const [screenHeight, setScreenHeight] = useState<number>(800);
@@ -29,10 +63,6 @@ export default function Home() {
     return () => {};
   });
 
-  const rocketControl = useAnimation();
-  const rocketRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-  const constraintsRef = useRef<HTMLDivElement>(null);
   let scrollPosition = 0;
 
   useEffect(() => {
@@ -156,7 +186,7 @@ export default function Home() {
 
   return (
     <main
-      className={`realtive flex flex-col min-h-screen h-full w-full  md:pt-0 pt-10 scroll-smooth transition-all duration-200  `}
+      className={`realtive flex flex-col min-h-screen h-full w-full  scroll-smooth transition-all duration-200  `}
       style={{ scrollBehavior: "smooth" }}
     >
       <Toaster
@@ -204,16 +234,14 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col md:w-[80%] h-[80%] justify-start items-start font-poppins ">
-              <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] ">
+              <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] p-5">
                 <div className="md:h-[100px] overflow-hidden">
                   <FadeText className=" flex text-black  font-poppins ">
                     Pixel Plays,
                   </FadeText>
                 </div>
                 <div className="md:h-[100px] overflow-hidden">
-                  <FadeText className="  text-black   "> 
-                    Shared Joys, 
-                    </FadeText>
+                  <FadeText className="  text-black   ">Shared Joys,</FadeText>
                 </div>
                 <div className="md:h-[100px] overflow-hidden">
                   <FadeText className=" text-black   ">
@@ -402,17 +430,15 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-      </div>
-
-      <section
+        <section
         id="about"
-        className="flex flex-col items-center md:min-h-screen min-h-fit h-full z-10 w-full  bg-[#e0e0e0] "
+        className="flex flex-col items-center md:min-h-screen min-h-fit  z-10 w-full  bg-[#e0e0e0] "
       >
-        <div className="flex flex-col md:w-[85%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight   justify-center">
+        <div className="flex flex-col md:w-[85%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
           <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
             Meet the Team
           </div>
-          <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-full">
+          <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-fit">
             <div className="flex md:md:flex-row flex-col h-full">
               <TeamBox
                 name="Nevia Sebastian"
@@ -442,15 +468,19 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
-      <section className="min-h-screen bg-transparent z-[-1] ">.</section>
+      </div>
+      <section className="min-h-screen bg-transparent"></section>
+
+     
+
+
       <section
         id="Footer"
         ref={footerRef}
         className=" fixed   flex flex-col min-h-screen w-full h-full justify-between items-center  bg-[#1c1c1c] z-1 text-[#e0e0e0] "
       >
         <div className="text-black">.</div>
-        <div className="flex flex-col justify-center items-center text-center">
+        <div className="flex flex-col justify-center items-center text-center z-[1]">
           <div className="md:text-[4rem] text-[2.5rem] font-poppins opacity-75">
             So this is it...
           </div>
@@ -501,34 +531,86 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full text-[3rem] font-logo mb-10">
-          <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5">
-            <Link
-              href="https://github.com/F-2AN"
-              className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
-            >
-              Github
-            </Link>
-            -
-            <Link
-              href="https://github.com/F-2AN"
-              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
-            >
-              Github
-            </Link>
-            -
-            <Link
-              href="https://github.com/F-2AN"
-              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
-            >
-              Github
-            </Link>
-          </div>
-          <Marquee
-            className=" animate-pulse md:text-[5rem] text-[4rem]"
-            autoFill={true}
+          <motion.main
+            className="flex flex-col w-full h-full  font-poppins    text-black  transition-all duration-200 z-[1]"
+            animate={{ x: 0, y: 0 }}
+            transition={
+              {
+                ease: "easein",
+                type: "spring",
+                damping: 10,
+                stiffness: 45,
+                restDelta: 0.0001,
+              } as Transition$1
+            }
           >
-            ©️ F^2 AN 2023 &nbsp;
-          </Marquee>
+            <motion.div
+              className="opacity-[60%]"
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+              }}
+              animate={{ x: xd, y: yd, top: 0, left: 0 }}
+              transition={
+                {
+                  type: "spring",
+                  damping: 10,
+                  stiffness: 80,
+                  restDelta: 0.01,
+                } as Transition$1
+              }
+            >
+              <div className="w-[200px] h-[200px] bg-white"></div>
+            </motion.div>
+
+            <motion.div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+              }}
+              animate={{ x: xd, y: yd, top: 0, left: 0 }}
+              transition={
+                {
+                  type: "spring",
+                  damping: 10,
+                  stiffness: 90,
+                  restDelta: 0.01,
+                } as Transition$1
+              }
+            >
+              <MusicPlayer />
+            </motion.div>
+            <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5 text-white">
+              <Link
+                href="https://github.com/F-2AN"
+                className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+              >
+                Github
+              </Link>
+              -
+              <Link
+                href="https://github.com/F-2AN"
+                className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+              >
+                Github
+              </Link>
+              -
+              <Link
+                href="https://github.com/F-2AN"
+                className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+              >
+                Github
+              </Link>
+            </div>
+            <Marquee
+              className=" animate-pulse md:text-[5rem] text-[4rem] text-white"
+              autoFill={true}
+            >
+              ©️ F^2 AN 2023 &nbsp;
+            </Marquee>
+          </motion.main>
         </div>
       </section>
     </main>

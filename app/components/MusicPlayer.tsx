@@ -21,7 +21,7 @@ const MusicPlayer = () => {
       <audio ref={audioRef} src="/audio.MP3" />
       <button onClick={togglePlay}>
         
-          <img src="/qr.png" className="w-[200px] " />
+          <img src="/qr.png" className="w-[200px] z-[-1] " />
         
       </button>
     </div>
