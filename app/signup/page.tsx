@@ -30,28 +30,45 @@ export default function Page() {
 
 
   const comments = {
+    veryShort: [
+      "Whoa, slow down! Your password is shorter than a sneeze. Add some flair!",
+      "Brevity is the soul of wit, but let's not get too brief with the password, shall we?",
+      "This password is shorter than a goldfish's attention span! Let's spice it up a bit.",
+    ],
     short: [
       "A bit too short. Consider a longer password for better security.",
-      "Hmm, seems a tad brief. Longer passwords are generally more secure.",
+      "Hmm, seems a tad brief. Add a sprinkle of characters for an extra dash of security!",
+      "Short and snappy, just like a haiku! How about stretching it out a bit?",
     ],
     medium: [
       "Good job! This is a decent length.",
-      "Nice! A medium-length password is a good choice.",
+      "Nice! A password like this is like a good joke - not too short, not too long!",
+      "You're in the sweet spot! Not too short, not too long. Keep rocking!",
     ],
     long: [
       "Excellent choice! This is a strong and secure password.",
-      "Well done! A longer password is a great way to enhance security.",
+      "Well done! A longer password is like a fortress for your digital kingdom!",
+      "Impressive length! Your password is longer than a giraffe's neck. Keep it up!",
+    ],
+    veryLong: [
+      "Wow! Your password is longer than a Shakespearean play! Impressive!",
+      "Bravo! This password is so long it might as well have its own theme song!",
+      "You've created a password masterpiece! It's practically a work of art!",
     ],
   };
+
   const selectComment=(password:any)=> {
-   console.log(password,password.length)
-    if (password.length < 5) {
-        setComment(comments.short[Math.floor(Math.random() * comments.short.length)]);
-    } else if (password.length >= 5 && password.length <= 10) {
-      setComment(comments.medium[Math.floor(Math.random() * comments.medium.length)]);
-    } else {
-     setComment(comments.long[Math.floor(Math.random() * comments.long.length)]);
-    }
+     if (password.length < 5) {
+    setComment(comments.veryShort[Math.floor(Math.random() * comments.veryShort.length)]) ;
+  } else if (password.length >= 5 && password.length < 8) {
+    setComment(comments.short[Math.floor(Math.random() * comments.short.length)]) ;
+  } else if (password.length >= 8 && password.length <= 10) {
+    setComment(comments.medium[Math.floor(Math.random() * comments.medium.length)]) ;
+  } else if (password.length > 10 && password.length <= 15) {
+    setComment(comments.long[Math.floor(Math.random() * comments.long.length)]) ;
+  } else {
+    setComment(comments.veryLong[Math.floor(Math.random() * comments.veryLong.length)]) ;
+  }
   }
 
   const [createUserWithEmailAndPassword] =
