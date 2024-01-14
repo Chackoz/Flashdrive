@@ -196,9 +196,9 @@ export default function Home() {
           style: { background: "#363636", color: "#fff" },
         }}
       />
-      <div className=" z-10 ">
+      <div className=" z-10 max-w-[100%]">
         <section
-          className={`flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}
+          className={`flex flex-col h-max w-full max-w-screen  justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}
         >
           <Navbar />
 
