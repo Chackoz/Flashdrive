@@ -225,7 +225,7 @@ export default function Home() {
                 </span>
                 <br />
                 <Link
-                  href="https://github.com/F-2AN"
+                  href="https://github.com/F-2AN/flashdrive"
                   className="max-w-[150px] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase"
                 >
                   Github
@@ -271,7 +271,7 @@ export default function Home() {
                 </span>
                 <br />
                 <Link
-                  href="https://github.com/F-2AN"
+                  href="https://github.com/F-2AN/flashdrive"
                   className="w-[50%] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase"
                 >
                   Github

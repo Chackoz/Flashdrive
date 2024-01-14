@@ -36,8 +36,6 @@ function Page() {
     setIsConverting(true);
     setWarning(false);
 
-    toast.loading("Creating Image");
-
     try {
       const imageData = await convertTextToImage(text);
 
@@ -45,6 +43,9 @@ function Page() {
       if (imageData === "") {
         setImageSrc("/images/duck.png");
         return;
+      }
+      else if(imageData[0]==="h"){
+        setImageSrc(imageData);
       }
       const decodedData = base64ToDataUrl(base64Data);
       setImageSrc(decodedData);
@@ -63,6 +64,9 @@ function Page() {
         "nsfw",
         "rape",
         "raped",
+        "nude",
+        "naked",
+        "sexy",
         "retard",
         "retarded",
         "slut",
@@ -114,18 +118,21 @@ function Page() {
             `The text is not toxic with a score of ${data.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value}`
           );
         }
+        if (nsfwWarning) {
+          console.log("Nsfw User ")
+          const userRef = collection(db, "nsfw-users");
+          await addDoc(userRef, {
+            username: user?.displayName || Date(),
+            prompt: text,
+            time: Date(),
+            url:imageSrc
+          });
+        }
       } catch (error) {
         console.error("Error analyzing the text:", error);
       }
 
-      if (nsfwWarning===true) {
-        const userRef = collection(db, "nsfw-users");
-        await addDoc(userRef, {
-          username: user?.displayName || Date(),
-          prompt: text,
-          time: Date(),
-        });
-      }
+      
       
       //
       // END OF API
@@ -168,14 +175,14 @@ function Page() {
         <div className="flex md:flex-row flex-col md:w-[80%] w-full h-full justify-center items-center mx-auto">
           <div className="flex flex-col md:hidden md:w-[50%] w-full items-center justify-center p-5">
             {error && (
-              <div className="md:text-[3rem] text-[1.5rem] text-black p-5">
+              <div className="md:text-[3rem] text-[1.5rem] text-black p-5 text-center">
                 {" "}
                 Sorry the server is currently
                 <span className="text-red-700"> Offline</span>
               </div>
             )}
             {!error && (
-              <div className="md:text-[3rem] text-[1.5rem] text-black p-5">
+              <div className="md:text-[3rem] text-[1.5rem] text-black p-5 text-center">
                 {" "}
                 Let your dreams meet{" "}
                 <span className="text-green-700"> Reality</span>
@@ -202,7 +209,7 @@ function Page() {
                     <img
                       src={imageSrc}
                       alt="Converted"
-                      className="rounded-3xl h-[256px] w-[256px]"
+                      className="rounded-3xl w-full h-full rounded-3xl object-contain"
                     />
                  {imageSrc !== '/images/duck.png' && (
               <button className="px-3 py-3 bg-teal-800 text-gray-500 font-poppins absolute bottom-1 right-2">
@@ -224,7 +231,7 @@ function Page() {
               </div>
             )}
             {!error && (
-              <div className="md:flex hidden text-[3rem] text-black p-5">
+              <div className="md:flex hidden text-[3rem] text-black p-5 text-center">
                 Let your dreams meet -
                 <span className="text-green-700">Reality</span>
               </div>
@@ -272,7 +279,7 @@ function Page() {
                     <img
                       src={imageSrc}
                       alt="Converted"
-                      className="rounded-3xl"
+                      className="w-full h-full rounded-3xl object-contain"
                    
                     />
                      {imageSrc !== '/images/duck.png' && (

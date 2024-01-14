@@ -13,7 +13,7 @@ import {
  
 
 const convertTextToImage = async (text: string): Promise<string> => { 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   
   let api = "";
   api = await FetchAPi();
@@ -152,15 +152,29 @@ const convertTextToImage = async (text: string): Promise<string> => {
       //     "track_id": null
       //   }
       //   const response = await axios.post(backupapi, backupprompt);
-      //   const futureLinks = response.data.future_links;
-      //   console.log("Future Link",futureLinks)
-      //   return futureLinks;
+      //   const id = response.data.id;
+      //   const backupapifetch="https://stablediffusionapi.com/api/v4/dreambooth/fetch"
+      //   const backupapifetchPrompt={
+      //     "key": "m6P6LFE7PjxUJjbmLkCYfdoLk0XBm8Lt9o9Ar8Z30rnnXxni87lT4acnJ15c",
+      //     "request_id": `${id}`
+      //    }
+        
+      //    const response2 = await axios.post( backupapifetch, backupapifetchPrompt);
+      //    let imagebackup = response2.data.output[0];
+      //    while(imagebackup===""){
+      //     console.log("Finding..")
+      //     const response2 = await axios.post( backupapifetch, backupapifetchPrompt);
+      //     imagebackup = response2.data.output[0];
+      //    }
+      //    console.log(response2)
+      //    console.log("Backup Image" ,imagebackup)
+      //   return imagebackup;
 
       // }catch(error){
       //   console.log("Error converting text to image:", error);
       //   throw error;
       // }
-      throw error;
+     throw error;
     }
   } else {
     return "";

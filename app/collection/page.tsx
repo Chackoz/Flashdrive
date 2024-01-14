@@ -80,7 +80,7 @@ function Page() {
       <div className="flex items-center justify-around w-[70%] min-h-[200px] mx-auto">
         <a
           href="/generate"
-          className="flex items-center justify-center w-fit p-5 h-[70px] bg-[#1d1d1d] rounded-[20px] text-white font-poppins text-xl hover:scale-110 transition-all"
+          className="flex items-center text-center justify-center w-fit p-5 h-[70px] bg-[#1d1d1d] rounded-[20px] text-white font-poppins text-xl hover:scale-110 transition-all"
         >
           Generate Your Own
         </a>
@@ -114,7 +114,7 @@ function Page() {
                     index % imgc == 0 ? (index % imgc) + 1 : index % imgc
                   }).png?alt=media&token=939b465c-bd94-4482-be4e-283f4fa0dad9`}
                   alt={`Image ${
-                    index % 125 == 0 ? (index % 125) + 1 : index % 125
+                    index % 125 == 0 ? (index % imgc) + 1 : index % imgc
                   }`}
                   width={512}
                   height={512}
