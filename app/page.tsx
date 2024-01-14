@@ -186,7 +186,7 @@ export default function Home() {
 
   return (
     <main
-      className={`realtive flex flex-col min-h-screen h-full w-full  scroll-smooth transition-all duration-200  `}
+      className={`realtive flex flex-col  min-h-screen h-full w-full  scroll-smooth transition-all duration-200  `}
       style={{ scrollBehavior: "smooth" }}
     >
       <Toaster
@@ -196,9 +196,9 @@ export default function Home() {
           style: { background: "#363636", color: "#fff" },
         }}
       />
-      <div className=" z-10 ">
+      <div className=" z-10 min-w-full md:min-w-full bg-red-100">
         <section
-          className={`flex flex-col h-max w-full   justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}
+          className={`flex flex-col h-max md:w-full w-[100%] justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}
         >
           <Navbar />
 
@@ -210,10 +210,10 @@ export default function Home() {
                     ⚡
                   </div>
                   <div className="border-black border-[1px] h-[25px] w-[25px] rounded-full text-white text-center">
-                    {/* . */}
+            
                   </div>
                   <div className="border-black border-[1px]  h-[25px] w-[25px] rounded-full text-white text-center">
-                    {/* . */}
+                 
                   </div>
                 </div>
               </div>
@@ -225,10 +225,10 @@ export default function Home() {
                 </span>
                 <br />
                 <Link
-                  href="https://github.com/F-2AN"
+                  href="https://github.com/F-2AN/flashdrive"
                   className="max-w-[150px] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase"
                 >
-                  Github
+                  Source Code
                 </Link>
               </div>
             </div>
@@ -271,10 +271,10 @@ export default function Home() {
                 </span>
                 <br />
                 <Link
-                  href="https://github.com/F-2AN"
+                  href="https://github.com/F-2AN/flashdrive"
                   className="w-[50%] border-black border-[1px] px-4 rounded-full text-center my-5 text-[1rem] uppercase"
                 >
-                  Github
+                  Source Code
                 </Link>
               </div>
             </div>
