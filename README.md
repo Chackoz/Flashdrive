@@ -1,9 +1,8 @@
 # The Flash Drive
   
 ## What is  Flash Drive?
-  Well it's a mini project for our DBMS ( Database Management Systems ) in Semester 5 of Btech in CSE 🚶‍♀️. <br>
-  Flash Drive is simply a website that showcases a few projects that we build based on the stuffs we learned this year. Rather than focusing on a socailly relevant theme we just decided to have fun and focus more on the development side.
-   
+  This is a mini-project for our DBMS (Database Management Systems) course in Semester 5 of B.Tech in CSE 🚶‍♀️.<br/>
+  Flash Drive is a website that highlights several projects we developed, drawing from our learnings throughout the year. Instead of centering on a socially relevant theme, we opted to have fun and emphasize the development aspect.
 ## Technical Stuffs
  ```markdown
 # Website
@@ -19,7 +18,7 @@ Google's Perspective API for recognizing vulgar or nsfw prompts
 # Stable Diffusion
 
 Thanks to  HuggingFace and AUTOMATIC1111 for the models and api tools for the stable diffusion
-Model used : Custom trained version of DreamShaper 5
+Model used : Custom trained version of DreamShaper v8
 
 Prompt used :
 Mononoke hime studio image of { prompt here } ,
