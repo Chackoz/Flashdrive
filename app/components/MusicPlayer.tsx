@@ -7,10 +7,8 @@ const MusicPlayer = () => {
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
-        console.log("Audio Ref:", audioRef.current);
         audioRef.current.pause();
       } else {
-        console.log("Audio Ref:", audioRef.current);
         audioRef.current.play();
       }
     }
@@ -20,8 +18,7 @@ const MusicPlayer = () => {
 
   return (
     <div>
-      <audio ref={audioRef} src="/audio.mp3" />
-      
+      <audio ref={audioRef} src="/audio.MP3" />
       <button onClick={togglePlay}>
         
           <img src="/qr.png" className="w-[200px] z-[-1] " />

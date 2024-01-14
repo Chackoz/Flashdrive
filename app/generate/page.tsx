@@ -216,7 +216,7 @@ function Page() {
             </div>
           </div>
 
-          <div className="flex flex-col md:w-[90%] justify-center items-center text-center">
+          <div className="flex flex-col md:w-[90%] justify-center items-center ">
             {error && (
               <div className="md:flex hidden text-[3rem] text-black ">
                 Sorry the server is currently-
@@ -224,7 +224,7 @@ function Page() {
               </div>
             )}
             {!error && (
-              <div className="md:flex hidden text-[3rem] text-black p-5 text-center">
+              <div className="md:flex hidden text-[3rem] text-black p-5">
                 Let your dreams meet -
                 <span className="text-green-700">Reality</span>
               </div>
