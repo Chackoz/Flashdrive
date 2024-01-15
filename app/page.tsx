@@ -385,7 +385,7 @@ export default function Home() {
             className="flex flex-col md:w-[80%] w-[95%] mx-auto h-fit  text-[5rem] font-poppins2 leading-none tracking-tight  "
             id="portfolio"
           >
-            <div className="flex md:w-[50%] md:text-[4.5rem] text-[3rem] justify-end items-start">
+            <div className="flex md:w-[55%] md:text-[4.5rem] text-[3rem] justify-end items-start">
               Mixing up work and play , proffesionaly 😉.
             </div>
 
@@ -434,12 +434,12 @@ export default function Home() {
           id="about"
           className="z-10 flex flex-col items-center  min-h-fit  w-full  bg-[#e0e0e0] "
         >
-          <div className="flex flex-col md:w-[85%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
-            <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
+          <div className="flex flex-col md:w-[99%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
+            <div className="flex flex-col md:w-[90%] md:text-[4.5rem] text-[3rem] justify-start items-start p-5">
               Meet the Team
             </div>
             <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center  min-h-fit">
-              <div className="flex md:md:flex-row flex-col h-full">
+              <div className="w-full flex md:flex-row flex-wrap flex-col h-full items-center justify-center">
                 <TeamBox
                   name="Faris Ziyad"
                   imgurl="https://avatars.githubusercontent.com/u/80464044?v=4"
