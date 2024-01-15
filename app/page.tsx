@@ -198,11 +198,11 @@ export default function Home() {
       />
       <div className=" z-10 min-w-[100%] flex flex-col items-center justify-center">
         <section
-          className={`flex flex-col h-max w-full max-w-screen  justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}
+          className={`flex flex-col h-max w-full max-w-screen  justify-between  pb-[200px]  bg-[#e0e0e0] z-10 min-h-screen`}
         >
           <Navbar />
 
-          <div className="flex md:flex-row flex-col  mx-auto h-full items-start justify-between mt-[100px] md:max-w-[1500px]">
+          <div className="flex md:flex-row flex-col  mx-auto h-full  items-start justify-between mt-[100px] md:max-w-[1500px]">
             <div className="md:flex flex-col hidden h-full mx-auto justify-start max-w-[40%] ">
               <div className="flex items-start justify-start">
                 <div className="flex md:rotate-90 h-[5px] items-start justify-start text-start ">
