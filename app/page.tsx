@@ -196,7 +196,7 @@ export default function Home() {
           style: { background: "#363636", color: "#fff" },
         }}
       />
-      <div className=" z-10 max-w-[100%]">
+      <div className=" z-10 min-w-[100%] flex flex-col items-center justify-center">
         <section
           className={`flex flex-col h-max w-full max-w-screen  justify-between  pb-[200px]  bg-[#e0e0e0] z-10 `}
         >
@@ -432,13 +432,13 @@ export default function Home() {
         </section>
         <section
           id="about"
-          className="flex flex-col items-center md:min-h-screen min-h-fit  z-10 w-full  bg-[#e0e0e0] "
+          className="z-10 flex flex-col items-center  min-h-fit  w-full  bg-[#e0e0e0] "
         >
           <div className="flex flex-col md:w-[85%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
             <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
               Meet the Team
             </div>
-            <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-fit">
+            <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center  min-h-fit">
               <div className="flex md:md:flex-row flex-col h-full">
                 <TeamBox
                   name="Faris Ziyad"
@@ -468,101 +468,102 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </div>
-      <section className="min-h-screen bg-transparent md:flex hidden"></section>
 
-      <section className=" flex-col bg-[#1b1b1b] flex md:hidden pt-[100px]">
-      <div className="flex flex-col justify-center items-center text-center z-[1] text-slate-100">
-          <div className="md:text-[4rem] text-[2.5rem] font-poppins opacity-75">
-            So this is it...
+        {/* <section className="w-full  flex-col bg-[#1b1b1b] flex md:hidden pt-[100px]">
+          <div className="flex flex-col justify-center items-center text-center z-[1] text-slate-100">
+            <div className="md:text-[4rem] text-[2.5rem] font-poppins opacity-75">
+              So this is it...
+            </div>
+            <div className="flex group md:text-[6.5rem] text-[3.2rem] font-poppins cursor-pointer">
+              <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
+                T
+              </div>
+              <div className="group-hover:rotate-45 group-hover:-translate-x-[80px] group-hover:translate-y-25 transition-all duration-[400] delay-200 letter">
+                h
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[-70px] group-hover:translate-y-[60px] transition-all duration-[400] delay-200 letter">
+                e
+              </div>
+              <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
+              &nbsp;
+              <div className="group-hover:rotate-90 group-hover:translate-x-[40px] group-hover:translate-y-[80px] transition-all duration-[400] delay-200 letter">
+                F
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[10px] group-hover:translate-y-[-40px] transition-all duration-[400] delay-200 letter">
+                l
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[-90px] group-hover:translate-y-[30px] transition-all duration-[400] delay-200 letter">
+                a
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[70px] group-hover:translate-y-[-20px] transition-all duration-[400] delay-200 letter">
+                s
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[-20px] group-hover:translate-y-[90px] transition-all duration-[400] delay-200 letter">
+                h
+              </div>
+              <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
+              &nbsp;
+              <div className="group-hover:rotate-90 group-hover:translate-x-[80px] group-hover:translate-y-[10px] transition-all duration-[400] delay-200 letter">
+                D
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[-50px] group-hover:translate-y-[50px] transition-all duration-[400] delay-200 letter">
+                r
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[60px] group-hover:translate-y-[70px] transition-all duration-[400] delay-200 letter">
+                i
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[-30px] group-hover:translate-y-[-60px] transition-all duration-[400] delay-200 letter">
+                v
+              </div>
+              <div className="group-hover:rotate-90 group-hover:translate-x-[20px] group-hover:translate-y-[40px] transition-all duration-[400] delay-200 letter">
+                e
+              </div>
+            </div>
           </div>
-          <div className="flex group md:text-[6.5rem] text-[3.2rem] font-poppins cursor-pointer">
-            <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
-              T
-            </div>
-            <div className="group-hover:rotate-45 group-hover:-translate-x-[80px] group-hover:translate-y-25 transition-all duration-[400] delay-200 letter">
-              h
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[-70px] group-hover:translate-y-[60px] transition-all duration-[400] delay-200 letter">
-              e
-            </div>
-            <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
-            &nbsp;
-            <div className="group-hover:rotate-90 group-hover:translate-x-[40px] group-hover:translate-y-[80px] transition-all duration-[400] delay-200 letter">
-              F
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[10px] group-hover:translate-y-[-40px] transition-all duration-[400] delay-200 letter">
-              l
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[-90px] group-hover:translate-y-[30px] transition-all duration-[400] delay-200 letter">
-              a
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[70px] group-hover:translate-y-[-20px] transition-all duration-[400] delay-200 letter">
-              s
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[-20px] group-hover:translate-y-[90px] transition-all duration-[400] delay-200 letter">
-              h
-            </div>
-            <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
-            &nbsp;
-            <div className="group-hover:rotate-90 group-hover:translate-x-[80px] group-hover:translate-y-[10px] transition-all duration-[400] delay-200 letter">
-              D
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[-50px] group-hover:translate-y-[50px] transition-all duration-[400] delay-200 letter">
-              r
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[60px] group-hover:translate-y-[70px] transition-all duration-[400] delay-200 letter">
-              i
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[-30px] group-hover:translate-y-[-60px] transition-all duration-[400] delay-200 letter">
-              v
-            </div>
-            <div className="group-hover:rotate-90 group-hover:translate-x-[20px] group-hover:translate-y-[40px] transition-all duration-[400] delay-200 letter">
-              e
-            </div>
+          <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5 text-white">
+            <Link
+              href="https://github.com/F-2AN"
+              className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+            >
+              Github
+            </Link>
+            -
+            <Link
+              href="https://github.com/F-2AN"
+              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+            >
+              Github
+            </Link>
+            -
+            <Link
+              href="https://github.com/F-2AN"
+              className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+            >
+              Github
+            </Link>
           </div>
-        </div>
-        <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5 text-white">
-          <Link
-            href="https://github.com/F-2AN"
-            className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+          <Marquee
+            className=" animate-pulse md:text-[5rem] text-[4rem] text-white"
+            autoFill={true}
           >
-            Github
-          </Link>
-          -
-          <Link
-            href="https://github.com/F-2AN"
-            className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
-          >
-            Github
-          </Link>
-          -
-          <Link
-            href="https://github.com/F-2AN"
-            className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
-          >
-            Github
-          </Link>
-        </div>
-        <Marquee
-          className=" animate-pulse md:text-[5rem] text-[4rem] text-white"
-          autoFill={true}
-        >
-          ©️ F^2 AN 2023 &nbsp;
-        </Marquee>
-      </section>
+            ©️ F^2 AN 2023 &nbsp;
+          </Marquee>
+        </section> */}
+
+      </div>
+      <section className="min-h-screen bg-transparent flex "></section>
 
       <section
         id="Footer"
         ref={footerRef}
-        className=" fixed md:flex hidden flex-col min-h-screen w-full h-full justify-between items-center  bg-[#1c1c1c] z-1 text-[#e0e0e0] "
+        className=" fixed flex flex-col min-h-screen w-full h-full justify-between items-center  bg-[#1c1c1c] z-1 text-[#e0e0e0] "
       >
         <div className="text-black">.</div>
         <div className="flex flex-col justify-center items-center text-center z-[1]">
-          <div className="md:text-[4rem] text-[2.5rem] font-poppins opacity-75">
+          <div className="md:text-[4rem] text-[2.0rem] font-poppins opacity-75">
             So this is it...
           </div>
-          <div className="flex group md:text-[6.5rem] text-[3.2rem] font-poppins cursor-pointer">
+          <div className="flex group md:text-[6.5rem] text-[2.5rem] font-poppins cursor-pointer">
             <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
               T
             </div>
@@ -660,7 +661,7 @@ export default function Home() {
             >
               <MusicPlayer />
             </motion.div>
-            <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5 text-white">
+            <div className="flex md:text-[2rem] text-[1.0rem] text-center justify-center items-center gap-6 p-5 text-white">
               <Link
                 href="https://github.com/F-2AN"
                 className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
