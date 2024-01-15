@@ -431,55 +431,131 @@ export default function Home() {
           </div>
         </section>
         <section
-        id="about"
-        className="flex flex-col items-center md:min-h-screen min-h-fit  z-10 w-full  bg-[#e0e0e0] "
-      >
-        <div className="flex flex-col md:w-[85%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
-          <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
-            Meet the Team
+          id="about"
+          className="flex flex-col items-center md:min-h-screen min-h-fit  z-10 w-full  bg-[#e0e0e0] "
+        >
+          <div className="flex flex-col md:w-[85%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
+            <div className="flex flex-col md:w-[50%] md:text-[4.5rem] text-[3rem] justify-start items-start">
+              Meet the Team
+            </div>
+            <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-fit">
+              <div className="flex md:md:flex-row flex-col h-full">
+                <TeamBox
+                  name="Faris Ziyad"
+                  imgurl="https://avatars.githubusercontent.com/u/80464044?v=4"
+                  githuburl="https://github.com/AFK-Trixo"
+                  linkedinurl="https://www.linkedin.com/in/faris-ziyad-5a6055247/"
+                />
+                <TeamBox
+                  name="Ferwin Lopez"
+                  imgurl="/Ferwin.jpg"
+                  githuburl="https://github.com/Fer-Win"
+                  linkedinurl="https://www.linkedin.com/in/ferwin-lopez/"
+                />
+                <TeamBox
+                  name="Adithya Krishnan"
+                  imgurl="/Adi.jpg"
+                  githuburl="https://github.com/fal3n-4ngel"
+                  linkedinurl="https://www.linkedin.com/in/fal3n-4ngel/"
+                />
+                <TeamBox
+                  name="Nevia Sebastian"
+                  imgurl="https://assets-global.website-files.com/632ac1a36830f75c7e5b16f0/64f116759667a1fbf0c59c60_fOqQSv2iutbUbwh3tXUdPBe4m_mX5ChHOYvM7taH_SE.webp"
+                  githuburl="https://github.com/neviaseb03"
+                  linkedinurl="https://www.linkedin.com/in/nevia-sebastian-086566234/"
+                />
+              </div>
+            </div>
           </div>
-          <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center scale-[80%] min-h-fit">
-            <div className="flex md:md:flex-row flex-col h-full">
-             
-              <TeamBox
-                name="Faris Ziyad"
-                imgurl="https://avatars.githubusercontent.com/u/80464044?v=4"
-                githuburl="https://github.com/AFK-Trixo"
-                linkedinurl="https://www.linkedin.com/in/faris-ziyad-5a6055247/"
-              />
-              <TeamBox
-                name="Ferwin Lopez"
-                imgurl="/Ferwin.jpg"
-                githuburl="https://github.com/Fer-Win"
-                linkedinurl="https://www.linkedin.com/in/ferwin-lopez/"
-              />
-              <TeamBox
-                name="Adithya Krishnan"
-                imgurl="/Adi.jpg"
-                githuburl="https://github.com/fal3n-4ngel"
-                linkedinurl="https://www.linkedin.com/in/fal3n-4ngel/"
-              />
-               <TeamBox
-                name="Nevia Sebastian"
-                imgurl="https://assets-global.website-files.com/632ac1a36830f75c7e5b16f0/64f116759667a1fbf0c59c60_fOqQSv2iutbUbwh3tXUdPBe4m_mX5ChHOYvM7taH_SE.webp"
-                githuburl="https://github.com/neviaseb03"
-                linkedinurl="https://www.linkedin.com/in/nevia-sebastian-086566234/"
-              />
-              
+        </section>
+      </div>
+      <section className="min-h-screen bg-transparent md:flex hidden"></section>
+
+      <section className=" flex-col bg-[#1b1b1b] flex md:hidden pt-[100px]">
+      <div className="flex flex-col justify-center items-center text-center z-[1] text-slate-100">
+          <div className="md:text-[4rem] text-[2.5rem] font-poppins opacity-75">
+            So this is it...
+          </div>
+          <div className="flex group md:text-[6.5rem] text-[3.2rem] font-poppins cursor-pointer">
+            <div className="group-hover:-rotate-20 group-hover:translate-x-[100px] group-hover:translate-y-[-100px]  transition-all duration-[400] delay-200">
+              T
+            </div>
+            <div className="group-hover:rotate-45 group-hover:-translate-x-[80px] group-hover:translate-y-25 transition-all duration-[400] delay-200 letter">
+              h
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-70px] group-hover:translate-y-[60px] transition-all duration-[400] delay-200 letter">
+              e
+            </div>
+            <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
+            &nbsp;
+            <div className="group-hover:rotate-90 group-hover:translate-x-[40px] group-hover:translate-y-[80px] transition-all duration-[400] delay-200 letter">
+              F
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[10px] group-hover:translate-y-[-40px] transition-all duration-[400] delay-200 letter">
+              l
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-90px] group-hover:translate-y-[30px] transition-all duration-[400] delay-200 letter">
+              a
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[70px] group-hover:translate-y-[-20px] transition-all duration-[400] delay-200 letter">
+              s
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-20px] group-hover:translate-y-[90px] transition-all duration-[400] delay-200 letter">
+              h
+            </div>
+            <div className="group-hover:rotate-90 transition-all duration-[400] delay-200 letter"></div>
+            &nbsp;
+            <div className="group-hover:rotate-90 group-hover:translate-x-[80px] group-hover:translate-y-[10px] transition-all duration-[400] delay-200 letter">
+              D
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-50px] group-hover:translate-y-[50px] transition-all duration-[400] delay-200 letter">
+              r
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[60px] group-hover:translate-y-[70px] transition-all duration-[400] delay-200 letter">
+              i
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[-30px] group-hover:translate-y-[-60px] transition-all duration-[400] delay-200 letter">
+              v
+            </div>
+            <div className="group-hover:rotate-90 group-hover:translate-x-[20px] group-hover:translate-y-[40px] transition-all duration-[400] delay-200 letter">
+              e
             </div>
           </div>
         </div>
+        <div className="flex md:text-[2rem] text-[1.5rem] text-center justify-center items-center gap-6 p-5 text-white">
+          <Link
+            href="https://github.com/F-2AN"
+            className=" hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+          >
+            Github
+          </Link>
+          -
+          <Link
+            href="https://github.com/F-2AN"
+            className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+          >
+            Github
+          </Link>
+          -
+          <Link
+            href="https://github.com/F-2AN"
+            className="hover:text-white hover:scale-125 transition-all duration-[400] delay-200"
+          >
+            Github
+          </Link>
+        </div>
+        <Marquee
+          className=" animate-pulse md:text-[5rem] text-[4rem] text-white"
+          autoFill={true}
+        >
+          ©️ F^2 AN 2023 &nbsp;
+        </Marquee>
       </section>
-      </div>
-      <section className="min-h-screen bg-transparent"></section>
-
-     
-
 
       <section
         id="Footer"
         ref={footerRef}
-        className=" fixed   flex flex-col min-h-screen w-full h-full justify-between items-center  bg-[#1c1c1c] z-1 text-[#e0e0e0] "
+        className=" fixed md:flex hidden flex-col min-h-screen w-full h-full justify-between items-center  bg-[#1c1c1c] z-1 text-[#e0e0e0] "
       >
         <div className="text-black">.</div>
         <div className="flex flex-col justify-center items-center text-center z-[1]">
