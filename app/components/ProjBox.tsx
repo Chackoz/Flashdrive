@@ -53,7 +53,7 @@ function ProjBox(props: ItemProps) {
           alt=""
           width={590}
           height={720}
-          className="-z-5 md:min-w-[590px] md:min-h-[720px] "
+          className="-z-5 md:min-w-[500px] md:min-h-[600px] "
           unoptimized={true}
         ></Image>
 

@@ -233,8 +233,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-col md:w-[80%] h-[80%] justify-start items-start font-poppins ">
-              <div className="tracking-tighter leading-none md:text-[6.2rem] text-[2.8rem] p-5">
+            <div className="flex flex-col md:w-[80%] justify-start items-start font-poppins ">
+              <div className="tracking-tighter leading-none md:text-[5.5rem] text-[2.8rem] p-5">
                 <div className="md:h-[100px] overflow-hidden">
                   <FadeText className=" flex text-black  font-poppins ">
                     Pixel Plays,
@@ -281,7 +281,7 @@ export default function Home() {
           </div>
           <div className="flex h-full w-full justify-end ">
             <div
-              className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center mt-[4rem] md:mx-20 md:p-0 p-5 `}
+              className={`flex md:w-[90%] w-full h-full items-center md:justify-end justify-center  md:mx-20 md:p-0 p-5 `}
             >
               <motion.div
                 ref={constraintsRef}
