@@ -133,25 +133,13 @@ export default function Page() {
             Forgot Password?
           </a>
           <button
-            className="bg-[#f4fd6b] hover:bg-[#faffaf] transition-all duration-100 ease text-xxl py-4 md:px-6 mx-6 md:mx-0  rounded-lg"
+            className="bg-[#1b1b1b] hover:bg-[#3f3f3f] text-white transition-all duration-100 ease text-xl py-4 md:px-6 mx-6 md:mx-0  rounded-lg"
             onClick={handleLogin}
           >
             Log In
           </button>
         </div>
-        <div className="flex justify-between  items-center w-full md:px-0 px-6 md:w-[50%] my-5 ">
-          <div className="bg-gray-950 w-[80px] h-[1px] opacity-30"></div>
-          Or login with
-          <div className="bg-gray-950 w-[80px] h-[1px] opacity-30"></div>
-        </div>
-        <div className=" flex justify-between  w-full md:px-0 px-6 md:w-[50%] ">
-          <button className="bg-blue-300 w-[48%] py-3 hover:bg-blue-200 rounded-lg">
-            Google
-          </button>
-          <button className="bg-blue-300 w-[48%]  py-3 hover:bg-blue-200 rounded-lg">
-            GitHub
-          </button>
-        </div>
+        
         <div className="  md:w-1/2 mt-10 flex  justify-center items-center">
           <p className="mr-2">Newbie??</p>
           <button className=" mr-1 flex rounded-full px-3 py-[2px] text-sm justify-center items-center bg-transparent border border-gray-950">
