@@ -1,4 +1,4 @@
-// Optimised 
+// Optimised
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -54,9 +54,10 @@ function ProjBox(props: ItemProps) {
           width={590}
           height={720}
           className="-z-5 md:min-w-[500px] md:min-h-[600px] "
-          unoptimized={true}
+        
         ></Image>
-
+        {/* <img src={props.ImageUrl} alt="" width={590} height={720} className="-z-5 md:min-w-[500px] md:min-h-[600px] "/>
+         */}
         <div className="absolute h-[80px] overflow-hidden ">
           <motion.div
             animate={controls}

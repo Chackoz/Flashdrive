@@ -251,7 +251,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex   md:hidden h-full  justify-start items-center  ">
+            <div className="flex   md:hidden h-full  justify-start items-center my-[20px]  ">
               <div className="flex rotate-90 h-[5px] items-start justify-start text-start ">
                 <div className="bg-black h-[25px] w-[35px] rounded-full text-white text-center">
                   ⚡
