@@ -48,16 +48,16 @@ function ProjBox(props: ItemProps) {
       onMouseOut={() => handleMouseOut()}
     >
       <div className="relative flex justify-center items-center max-w-[100%] md:max-h-[50%]  bg-black rounded-[20px] overflow-hidden m-[10px] my-[20px] ">
-        <Image
+        {/* <Image
           src={props.ImageUrl}
           alt=""
           width={590}
           height={720}
           className="-z-5 md:min-w-[500px] md:min-h-[600px] "
         
-        ></Image>
-        {/* <img src={props.ImageUrl} alt="" width={590} height={720} className="-z-5 md:min-w-[500px] md:min-h-[600px] "/>
-         */}
+        ></Image> */}
+        <img src={props.ImageUrl} alt="" width={590} height={720} className="-z-5 md:min-w-[500px] md:min-h-[600px] "/>
+        
         <div className="absolute h-[80px] overflow-hidden ">
           <motion.div
             animate={controls}
