@@ -32,7 +32,7 @@ export default function Home() {
   type Transition$1 =
     | {
         ease: string;
-        type: string; // The type can be more specific if necessary
+        type: string; 
         damping: number;
         stiffness: number;
         restDelta: number;
@@ -125,7 +125,7 @@ export default function Home() {
           });
         }
       }
-    }, 0);
+    }, 10);
     
 
     const handleScroll = throttle(() => {
@@ -162,7 +162,7 @@ export default function Home() {
           transform: `translateY(${translateY}px)`,
         });
       }
-    }, 16);
+    }, 10);
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("scroll", rocketScroll);
