@@ -43,8 +43,7 @@ function Page() {
       if (imageData === "") {
         setImageSrc("/images/duck.png");
         return;
-      }
-      else if(imageData[0]==="h"){
+      } else if (imageData[0] === "h") {
         setImageSrc(imageData);
       }
       const decodedData = base64ToDataUrl(base64Data);
@@ -78,9 +77,7 @@ function Page() {
           setWarning(true);
           console.log("word in wordlist");
           break;
-        }
-        else{
-          
+        } else {
         }
       }
       //
@@ -118,22 +115,10 @@ function Page() {
             `The text is not toxic with a score of ${data.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value}`
           );
         }
-        if (nsfwWarning) {
-          console.log("Nsfw User ")
-          const userRef = collection(db, "nsfw-users");
-          await addDoc(userRef, {
-            username: user?.displayName || Date(),
-            prompt: text,
-            time: Date(),
-            url:imageSrc
-          });
-        }
       } catch (error) {
         console.error("Error analyzing the text:", error);
       }
 
-      
-      
       //
       // END OF API
       //
@@ -144,6 +129,18 @@ function Page() {
       handleConvert();
     }
   };
+  useEffect(() => {
+    if (nsfwWarning) {
+      console.log("Nsfw User ");
+      const userRef = collection(db, "nsfw-users");
+      addDoc(userRef, {
+        username: user?.displayName || Date(),
+        prompt: text,
+        time: Date(),
+        url: imageSrc,
+      });
+    }
+  }, [nsfwWarning]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -206,17 +203,19 @@ function Page() {
                 ) : (
                   imageSrc && (
                     <>
-                    <img
-                      src={imageSrc}
-                      alt="Converted"
-                      className="rounded-3xl w-full h-full rounded-3xl object-contain"
-                    />
-                 {imageSrc !== '/images/duck.png' && (
-              <button className="px-3 py-3 bg-teal-800 text-gray-500 font-poppins absolute bottom-1 right-2">
-                    <a href={imageSrc} download={'FlashDrive Image.jpg'}><IoMdDownload /></a>
-               </button>
-                )}
-                </>
+                      <img
+                        src={imageSrc}
+                        alt="Converted"
+                        className="rounded-3xl w-full h-full rounded-3xl object-contain"
+                      />
+                      {imageSrc !== "/images/duck.png" && (
+                        <button className="px-3 py-3 bg-teal-800 text-gray-500 font-poppins absolute bottom-1 right-2">
+                          <a href={imageSrc} download={"FlashDrive Image.jpg"}>
+                            <IoMdDownload />
+                          </a>
+                        </button>
+                      )}
+                    </>
                   )
                 )}
               </div>
@@ -243,6 +242,7 @@ function Page() {
               placeholder="Enter the prompt for generation ( eg : 'a lovely riverside' "
             />
             <button
+              disabled={isConverting}
               onClick={handleConvert}
               className="bg-black px-5 p-2 text-white rounded-2xl text-[2rem] font-poppins hover:bg-[#e0e0e0] border-[1px] hover:border-black hover:text-black transition-all delay-75 duration-150"
             >
@@ -274,21 +274,20 @@ function Page() {
                   </div>
                 ) : (
                   imageSrc && (
-            
-                   <>
-                    <img
-                      src={imageSrc}
-                      alt="Converted"
-                      className="w-full h-full rounded-3xl object-contain"
-                   
-                    />
-                     {imageSrc !== '/images/duck.png' && (
-              <button className="px-3 py-3 bg-white text-gray-500 font-poppins absolute bottom-4 right-4 opacity-85 rounded shadow-md hover:opacity-70">
-                    <a href={imageSrc} download={'FlashDrive Image.jpg'}><IoMdDownload size='1rem' /></a>
-               </button>
-                )}
+                    <>
+                      <img
+                        src={imageSrc}
+                        alt="Converted"
+                        className="w-full h-full rounded-3xl object-contain"
+                      />
+                      {imageSrc !== "/images/duck.png" && (
+                        <button className="px-3 py-3 bg-white text-gray-500 font-poppins absolute bottom-4 right-4 opacity-85 rounded shadow-md hover:opacity-70">
+                          <a href={imageSrc} download={"FlashDrive Image.jpg"}>
+                            <IoMdDownload size="1rem" />
+                          </a>
+                        </button>
+                      )}
                     </>
-
                   )
                 )}
               </div>

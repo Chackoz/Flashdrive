@@ -1,37 +1,62 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+const LoadingScreen: React.FC = () => {
 
-"use client"
-import React, { useState, useEffect } from 'react';
+  
+  const colors = ["#1b1b1b", "#1b1b1b", "#1b1b1b", "#1b1b1b", "#1b1b1b"];
 
-interface LoadingProps {
-  isLoading: boolean;
-}
+  const containerVariants = {
+    initial: {},
+    animate: {
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-const Loading: React.FC<LoadingProps> = ({ isLoading }) => {
-  const [showLoading, setShowLoading] = useState(isLoading);
+  const dotVariants = {
+    initial: {},
+    animate: {
+      height: [40, 100, 40],
+      transition: {
+        repeat: Infinity,
+      },
+    },
+  };
+  let count = 5 ;
 
-  useEffect(() => {
-    // Only update showLoading after 3 seconds if isLoading is true
-    if (isLoading) {
-      const timeoutId = setTimeout(() => {
-        setShowLoading(true);
-      }, 3000);
+  return <div className="w-full h-full flex justify-center items-center">
+    <motion.div
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      style={{
+        display: "flex",
+        gap: 16,
+        height: 100,
+        alignItems: "center"
+      }}
+    >
+      {Array(count)
+        .fill(null)
+        .map((_, index) => {
+          return (
+            <motion.div
+              key={index}
+              variants={dotVariants}
+              style={{
+                height: 40,
+                width: 40,
+                backgroundColor: colors[index % colors.length],
+                borderRadius: 20
+              }}
+            />
+          );
+        })}
+    </motion.div>
+  </div>;
+};
 
-      // Clear the timeout if the component is unmounted
-      return () => clearTimeout(timeoutId);
-    }
-  }, [isLoading]);
-
-  if (!showLoading) {
-    return null; // or replace with another component/content
-  }
-
-  return (
-    <div className='w-full h-full text-black text-6rem'>
-      {/* Your loading content here */}
-      Loading...
-    </div>
-  );
-}
-
-export default Loading;
-
+export default LoadingScreen;

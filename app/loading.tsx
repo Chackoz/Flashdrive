@@ -3,7 +3,7 @@ import Loading from './components/Loading'
 
 function loading() {
   return (
-    <Loading isLoading={false}/>
+    <Loading/>
   )
 }
 

@@ -14,6 +14,7 @@ import TeamBox from "./components/TeamBox";
 import MusicPlayer from "./components/MusicPlayer";
 import { useFollowPointer } from "./utils/FollowPointer";
 import { debounce } from "lodash";
+import Loading from "./components/Loading";
 
 export default function Home() {
   const ref = useRef(null);
@@ -68,6 +69,18 @@ export default function Home() {
   useEffect(() => {
     smoothScroll();
   }, []);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading time with setTimeout
+    const timeoutId = setTimeout(() => {
+      setIsLoaded(true);
+    }, 2000); // Adjust the time as needed
+
+    // Clean up the timeout on component unmount
+    return () => clearTimeout(timeoutId);
+  }, []);
+
 
   useEffect(() => {
     const throttle = (callback: Function, delay: number) => {
@@ -184,8 +197,10 @@ export default function Home() {
     };
   }, [controls, rocketControl]);
 
-  return (
-    <main
+  const renderMainContent = () => {
+    // Render your main content when loaded
+    return (
+      <main
       className={`realtive flex flex-col min-h-screen h-full w-full  scroll-smooth transition-all duration-200  `}
       style={{ scrollBehavior: "smooth" }}
     >
@@ -693,5 +708,24 @@ export default function Home() {
         </div>
       </section>
     </main>
+    );
+  };
+  useEffect(() => {
+    // Scroll to the top after content is loaded
+    window.scrollTo(0, 0);
+  }, []); 
+
+  return (
+    <div className="flex justify-center items-center w-full h-full">
+    {!isLoaded ? (
+      // Display the loading screen while waiting for data to load
+      <Loading />
+    ) : (
+      // Render the main content when data is loaded
+      renderMainContent()
+     
+    )}
+  
+  </div>
   );
 }
