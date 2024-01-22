@@ -20,7 +20,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
   const url = `${api}/sdapi/v1/txt2img`;
 
   let option_payload = {
-    sd_model_checkpoint: "DreamShaper_8_pruned.safetensors [879db523c3]",
+    sd_model_checkpoint: "dreamshaper_8.safetensors [879db523c3]",
     CLIP_stop_at_last_layers: 2,
   };
   const base64ToDataUrl = (
