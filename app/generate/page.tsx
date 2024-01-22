@@ -8,6 +8,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { IoMdDownload } from "react-icons/io";
+import { getAuth, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
+import { debounce } from "lodash";
 
 function Page() {
   const base64ToDataUrl = (
@@ -29,8 +31,57 @@ function Page() {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [text, setText] = useState<string>(""); // Default text
-
+  const [verified, setVerified] = useState(false);// Default text
   const [nsfwWarning, setWarning] = useState(false);
+  const auth = getAuth();
+  const checkUserVerification = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (user.emailVerified) {
+          console.log("User is verified.");
+          toast.success("User is verified.");
+          setVerified(true);
+          // Perform actions for verified users
+        } else {
+          console.log("User is not verified.");
+          setVerified(false);
+          // Perform actions for non-verified users
+        }
+      } else {
+        console.log("No user is signed in.");
+      }
+    });
+    
+  };
+  
+
+  const resendEmailVerification = debounce(async () => {
+    checkUserVerification();
+    
+    try{
+      toast.success('Verification email sent successfully.');
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          try {
+            await sendEmailVerification(user);
+            toast.success('Verification email sent successfully.');
+          } catch (error) {
+            console.error("Error sending verification email:", error);
+            toast.error('Failed to send verification email.');
+          }
+        } else {
+          console.error("No user is signed in.");
+          toast.error('User not signed in.');
+        }
+   
+      });
+    }catch{
+      toast.error('User not signed in.');
+      console.error("No user is signed in.");
+    }
+    
+    
+  }, 5000);
 
   const handleConvert = async () => {
     setIsConverting(true);
@@ -129,6 +180,9 @@ function Page() {
       handleConvert();
     }
   };
+
+  
+
   useEffect(() => {
     if (nsfwWarning) {
       console.log("Nsfw User ");
@@ -153,22 +207,21 @@ function Page() {
 
   useEffect(() => {
     handleConvert();
-  }, []);
+    checkUserVerification();
+  }, [auth]);
 
   return (
     <main className="flex flex-col items-center justify-center w-full h-full min-h-screen md:p-0 pt-5">
       <Navbar />
-      {isConverting && (
         <Toaster
-          position="bottom-center"
+          position="top-center"
           toastOptions={{
             className: "",
             duration: 3000,
             style: { background: "#363636", color: "#fff" },
           }}
         />
-      )}
-      {user && (
+      {(user && verified) && (
         <div className="flex md:flex-row flex-col md:w-[80%] w-full h-full justify-center items-center mx-auto">
           <div className="flex flex-col md:hidden md:w-[50%] w-full items-center justify-center p-5">
             {error && (
@@ -307,6 +360,20 @@ function Page() {
           >
             Log In
           </a>
+        </div>
+      )}
+      {(user && !verified)  && (
+        <div className="flex flex-col justify-center items-center w-full h-full text-6xl ">
+          <img src="/images/gaurddog.png" />
+          <div className="font-poppins p-5 text-center text-[3rem] md:text-[4rem]">
+           Please verify your email to continue..
+          </div>
+          <button onClick={resendEmailVerification}
+      
+            className="text-[1.5rem] border-black border-[1px] rounded-full px-5 p-1 hover:bg-black hover:text-white transition-all hover:scale-110"
+          >
+            verify
+          </button>
         </div>
       )}
     </main>
