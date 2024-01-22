@@ -48,7 +48,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
     };
     payload = {
       prompt: ` ${text} `,
-      negative_prompt: "",
+      negative_prompt: "underage , child  ",
       steps: 25,
       sampler_name: "DPM++ 2M Karras",
       seed: -1,
