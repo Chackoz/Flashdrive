@@ -10,6 +10,7 @@ import { db } from "../firebase/config";
 import { IoMdDownload } from "react-icons/io";
 import { getAuth, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
 import { debounce } from "lodash";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const base64ToDataUrl = (
@@ -26,13 +27,15 @@ function Page() {
   if (!user) {
     console.log("Not logged in");
   }
-
+  const router=useRouter();
   const [isConverting, setIsConverting] = useState(false);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [text, setText] = useState<string>(""); // Default text
   const [verified, setVerified] = useState(false);// Default text
   const [nsfwWarning, setWarning] = useState(false);
+  const [isverifing, setisverifing] = useState(false);
+
   const auth = getAuth();
   const checkUserVerification = () => {
     onAuthStateChanged(auth, (user) => {
@@ -54,34 +57,88 @@ function Page() {
     
   };
   
-
-  const resendEmailVerification = debounce(async () => {
-    checkUserVerification();
-    
-    try{
-      toast.success('Verification email sent successfully.');
-      onAuthStateChanged(auth, async (user) => {
+    const resendEmailVerification = debounce(async () => {
+      setisverifing(true);
+      try {
+        const user = auth.currentUser;
         if (user) {
-          try {
+          if (user.emailVerified) {
+            console.log("User is verified.");
+            toast.success("User is verified.");
+            setVerified(true);
+          } else {
             await sendEmailVerification(user);
             toast.success('Verification email sent successfully.');
-          } catch (error) {
-            console.error("Error sending verification email:", error);
-            toast.error('Failed to send verification email.');
+            router.push("/")
           }
         } else {
           console.error("No user is signed in.");
           toast.error('User not signed in.');
         }
+  
+        setisverifing(false);
+      } catch (error) {
+        console.error("Error during email verification:", error);
+        toast.error('Failed to perform email verification.');
+        setisverifing(false);
+      }
+    }, 5000);
+
+    useEffect(() => {
+      // Clean up the debounce function when the component unmounts
+      return () => {
+        resendEmailVerification.cancel();
+      };
+    }, []);
+  
+
+  // const resendEmailVerification = debounce(async () => {
+  //   setisverifing(true);
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       if (user.emailVerified) {
+  //         console.log("User is verified.");
+  //         toast.success("User is verified.");
+  //         setVerified(true);
+  //         return;
+  //         // Perform actions for verified users
+  //       } else {
+  //         console.log("User is not verified.");
+  //         setVerified(false);
+  //         // Perform actions for non-verified users
+  //       }
+  //     } else {
+  //       console.log("No user is signed in.");
+  //     }
+  //   });
+    
+  //   try{
+  //     onAuthStateChanged(auth, async (user) => {
+  //       if (user) {
+  //         try {
+  //           await sendEmailVerification(user);
+  //           toast.success('Verification email sent successfully.');
+  //           setisverifing(false);
+  //         } catch (error) {
+  //           console.error("Error sending verification email:", error);
+  //           toast.error('Failed to send verification email.');
+  //           setisverifing(false);
+  //         }
+  //       } else {
+  //         console.error("No user is signed in.");
+  //         toast.error('User not signed in.');
+  //         setisverifing(false);
+  //       }
    
-      });
-    }catch{
-      toast.error('User not signed in.');
-      console.error("No user is signed in.");
-    }
+  //     });
+  //   }catch{
+  //     toast.error('User not signed in.');
+  //     console.error("No user is signed in.");
+  //     setisverifing(false);
+  //   }
     
     
-  }, 5000);
+  // }, 5000);
 
   const handleConvert = async () => {
     setIsConverting(true);
@@ -206,7 +263,6 @@ function Page() {
   }, [handleConvert]);
 
   useEffect(() => {
-    handleConvert();
     checkUserVerification();
   }, [auth]);
 
@@ -368,11 +424,12 @@ function Page() {
           <div className="font-poppins p-5 text-center text-[3rem] md:text-[4rem]">
            Please verify your email to continue..
           </div>
-          <button onClick={resendEmailVerification}
+          <button onClick={ resendEmailVerification}
       
-            className="text-[1.5rem] border-black border-[1px] rounded-full px-5 p-1 hover:bg-black hover:text-white transition-all hover:scale-110"
+            className="text-[1.5rem] border-black border-[1px] rounded-full px-5 p-2 hover:bg-black hover:text-white transition-all hover:scale-110"
           >
-            verify
+              {isverifing && <div className="animate-pulse">verify</div>}
+              {!isverifing && <div >Verify</div>}
           </button>
         </div>
       )}
