@@ -7,9 +7,9 @@ interface LayoutProps {
 }
 
 const pageTransition = {
-    initial: { opacity: 0, scale: 0.8},
-    animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.8},
+    initial: { opacity: 0, },
+    animate: { opacity: 1,},
+    exit: { opacity: 0,},
   };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => (
@@ -18,6 +18,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
     initial="initial"
     animate="animate"
     exit="exit"
+    transition={
+        {duration:0.8}
+    }
     >
       {children}
     </motion.div>
