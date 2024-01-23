@@ -10,11 +10,8 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
- 
 
-const convertTextToImage = async (text: string): Promise<string> => { 
-
-  
+const convertTextToImage = async (text: string): Promise<string> => {
   let api = "";
   api = await FetchAPi();
   const url = `${api}/sdapi/v1/txt2img`;
@@ -31,13 +28,14 @@ const convertTextToImage = async (text: string): Promise<string> => {
   };
 
   let payload = {
-    prompt: `Mononoke hime studio image of ${text} ,stylized volumetric lighting, 4k beautifull detailled painting, --ar 2:3 --uplight`,
+    prompt: `Mononoke hime studio image of { ${text} }  ,stylized volumetric lighting, 4k beautifull detailled painting, --ar 2:3 --uplight`,
     negative_prompt: " nsfw , nude , sex , rape ,naked  ",
-    steps: 25,
+    steps: 20,
+    enable_hr: false,
     sampler_name: "DPM++ 2M Karras",
     seed: -1,
     width: 512,
-  height: Math.random() < 3/4 ? 512 : 720,
+    height: Math.random() < 3 / 4 ? 512 : 720,
   };
 
   if (text[0] == "*") {
@@ -50,14 +48,32 @@ const convertTextToImage = async (text: string): Promise<string> => {
       prompt: ` ${text} `,
       negative_prompt: "underage , child  ",
       steps: 25,
+      enable_hr: false,
       sampler_name: "DPM++ 2M Karras",
       seed: -1,
       width: 512,
-  height: 512,
+      height: 512,
+    };
+  }
+  if (text[0] == "+") {
+    option_payload = {
+      sd_model_checkpoint:
+        "epicrealism_pureEvolutionV3.safetensors [52484e6845]",
+      CLIP_stop_at_last_layers: 2,
+    };
+    payload = {
+      prompt: ` Mononoke hime studio image of { ${text} }  ,stylized volumetric lighting, 4k beautifull detailled painting, --ar 2:3 --uplight `,
+      negative_prompt: "underage , child  ",
+      steps: 25,
+      enable_hr: false,
+      sampler_name: "DPM++ 2M Karras",
+      seed: -1,
+      width: 512,
+      height: 512,
     };
   }
 
-  
+
   const username = getUsername();
   if (text !== "") {
     console.log("Username", username, " Prompt", text);
@@ -158,7 +174,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
       //     "key": "m6P6LFE7PjxUJjbmLkCYfdoLk0XBm8Lt9o9Ar8Z30rnnXxni87lT4acnJ15c",
       //     "request_id": `${id}`
       //    }
-        
+
       //    const response2 = await axios.post( backupapifetch, backupapifetchPrompt);
       //    let imagebackup = response2.data.output[0];
       //    while(imagebackup===""){
@@ -174,7 +190,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
       //   console.log("Error converting text to image:", error);
       //   throw error;
       // }
-     throw error;
+      throw error;
     }
   } else {
     return "";
