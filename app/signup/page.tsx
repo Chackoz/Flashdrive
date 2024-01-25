@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, db } from "@/app/firebase/config";
 import Image from "next/image";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, sendEmailVerification } from "firebase/auth";
 import signupPic from "@/public/images/hand2.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -95,6 +95,7 @@ export default function Page() {
 
       if (res && res.user) {
         await updateProfile(res.user, { displayName: username }); // Update the profile
+        await sendEmailVerification(res.user);
         (async () => { signUpSuccess()})();
        // console.log("Res is"+res);
         setEmail("");
