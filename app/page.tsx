@@ -225,7 +225,7 @@ export default function Home() {
 
               <div className="flex flex-col md:w-[80%] justify-start items-start font-poppins ">
                 <div className="tracking-tighter leading-none md:text-[5.5rem] text-[2.8rem] p-5">
-                  <div className="md:h-[100px] overflow-hidden">
+                <div className="md:h-[100px] overflow-hidden ">
                     <FadeText className=" flex text-black  font-poppins ">
                       Pixel Plays,
                     </FadeText>
@@ -378,7 +378,7 @@ export default function Home() {
               id="portfolio"
             >
               <div className="flex md:w-[55%] md:text-[4.5rem] text-[3rem] justify-end items-start">
-                Mixing up work and play , proffesionaly 😉.
+                Mixing up work and play , professionally 😉.
               </div>
 
               <div
