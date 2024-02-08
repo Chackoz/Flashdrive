@@ -1,11 +1,9 @@
 import { initializeApp,getApp,getApps } from "firebase/app";
 import {getAuth} from "firebase/auth"
 import { collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
-
 import { getDatabase } from "firebase/database";
 import { useState } from "react";
-import { getPerformance } from "firebase/performance";
+
 
 
 
@@ -24,7 +22,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app =!getApps.length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
-const perf = getPerformance(app);
 const db = getFirestore(app)
   
 

@@ -12,6 +12,7 @@
   "dependencies": {
     "@firebase/app": "^0.9.25",
     "@firebase/storage": "^0.12.0",
+    "@vercel/speed-insights": "^1.0.9",
     "axios": "^1.6.3",
     "firebase": "^10.7.1",
     "framer-motion": "^10.16.16",
