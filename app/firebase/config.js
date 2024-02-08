@@ -1,10 +1,11 @@
 import { initializeApp,getApp,getApps } from "firebase/app";
 import {getAuth} from "firebase/auth"
 import { collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
-
 import { getDatabase } from "firebase/database";
 import { useState } from "react";
+
+
+
 
 
 
@@ -21,8 +22,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app =!getApps.length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
-
 const db = getFirestore(app)
+  
 
 let val1=0;
 let val2="";

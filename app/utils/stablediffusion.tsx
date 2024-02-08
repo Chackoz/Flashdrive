@@ -106,7 +106,7 @@ const convertTextToImage = async (text: string): Promise<string> => {
         try {
           const imgcount = await FetchValue();
 
-          result = imgcount; // You can further process 'result' if needed
+          result = imgcount; 
           console.log(result);
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -115,10 +115,10 @@ const convertTextToImage = async (text: string): Promise<string> => {
         UpdateValue(result);
         //
 
-        // Create a storage reference
-        const storageRef = ref(storage, `art (${result}).png`); // You can adjust the filename as needed
+     
+        const storageRef = ref(storage, `art (${result}).png`); 
         try {
-          // Upload the blob
+
           const snapshot = await uploadBytes(storageRef, blob);
           const downloadURL = await getDownloadURL(storageRef);
           const imgRef = collection(db, "images");

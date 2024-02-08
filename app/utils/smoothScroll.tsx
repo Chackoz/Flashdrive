@@ -5,7 +5,7 @@ export const smoothScroll = () => {
   
         const targetId = this.getAttribute('href');
         
-        if (targetId) { // Check if targetId is not null
+        if (targetId) { 
           const targetElement = document.querySelector(targetId);
           
           if (targetElement) {
