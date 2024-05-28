@@ -52,13 +52,13 @@ and added highscore,leaderboard and some cool annimations.
 <table>
 <tr>
     <td align="center">
-        <a href="https://github.com/AFK-Trixo">
-            <img src="https://avatars.githubusercontent.com/u/80464044?v=4" width="100;" alt="fal3n-4ngel"/>
+        <a href="https://github.com/fal3n-4ngel">
+            <img src="https://avatars.githubusercontent.com/u/79042374?v=4" width="100;" alt="Jes-ny"/>
             <br />
-            <sub><b>Faris Ziyad</b></sub>
+            <sub><b>Adithya Krishnan</b></sub>
         </a>
     </td>
-    <td align="center">
+   <td align="center">
         <a href="https://github.com/Fer-Win">
             <img src="https://avatars.githubusercontent.com/u/102341775?v=4" width="100;" alt="ChristinaMathews"/>
             <br />
@@ -66,17 +66,17 @@ and added highscore,leaderboard and some cool annimations.
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/fal3n-4ngel">
-            <img src="https://avatars.githubusercontent.com/u/79042374?v=4" width="100;" alt="Jes-ny"/>
-            <br />
-            <sub><b>Adithya Krishnan</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/neviaseb03">
             <img src="https://avatars.githubusercontent.com/u/101114152?v=4" width="100;" alt="Jes-ny"/>
             <br />
             <sub><b>Nevia Sebastian</b></sub>
+        </a>
+    </td>
+      <td align="center">
+        <a href="https://github.com/AFK-Trixo">
+            <img src="https://avatars.githubusercontent.com/u/80464044?v=4" width="100;" alt="fal3n-4ngel"/>
+            <br />
+            <sub><b>Faris Ziyad</b></sub>
         </a>
     </td>
    </tr>
