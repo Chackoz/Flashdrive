@@ -14,6 +14,7 @@ import MusicPlayer from "./components/MusicPlayer";
 import { useFollowPointer } from "./utils/FollowPointer";
 import { debounce } from "lodash";
 import Loading from "./components/Loading";
+import BlogBox from "./components/BlogBox";
 
 export default function Home() {
   const ref = useRef(null);
@@ -32,7 +33,7 @@ export default function Home() {
   type Transition$1 =
     | {
         ease: string;
-        type: string; 
+        type: string;
         damping: number;
         stiffness: number;
         restDelta: number;
@@ -112,7 +113,7 @@ export default function Home() {
           duration: 0.5,
           ease: "linear",
         };
-    
+
         if (window.innerWidth <= 768) {
           rocketControl.start({
             rotate: yPos < 500 ? 90 : 0,
@@ -126,7 +127,6 @@ export default function Home() {
         }
       }
     }, 10);
-    
 
     const handleScroll = throttle(() => {
       scrollPosition = window.scrollY;
@@ -225,7 +225,7 @@ export default function Home() {
 
               <div className="flex flex-col md:w-[80%] justify-start items-start font-poppins ">
                 <div className="tracking-tighter leading-none md:text-[5.5rem] text-[2.8rem] p-5">
-                <div className="md:h-[100px] overflow-hidden ">
+                  <div className="md:h-[100px] overflow-hidden ">
                     <FadeText className=" flex text-black  font-poppins ">
                       Pixel Plays,
                     </FadeText>
@@ -427,34 +427,27 @@ export default function Home() {
             className="z-10 flex flex-col items-center  min-h-fit  w-full  bg-[#e0e0e0] "
           >
             <div className="flex flex-col md:w-[99%] w-[full] mx-auto min-h-fit  text-[5rem] font-poppins2 leading-none tracking-tight bg-[#e0e0e0]  justify-center">
-              <div className="flex flex-col md:w-[90%] md:text-[4.5rem] text-[3rem] justify-start items-start p-5">
-                Meet the Team
+              <div className="flex flex-col md:w-[90%] md:text-[4.5rem] text-[3rem] justify-start items-start px-5">
+                Explore our <br /> ongoing projects.
               </div>
-              <div className="flex md:md:flex-row flex-col md:pt-[100px] h-full justify-center items-center  min-h-fit">
-                <div className="w-full flex md:flex-row flex-wrap flex-col h-full items-center justify-center">
-                  <TeamBox
-                    name="Faris Ziyad"
-                    imgurl="https://avatars.githubusercontent.com/u/80464044?v=4"
-                    githuburl="https://github.com/AFK-Trixo"
-                    linkedinurl="https://www.linkedin.com/in/faris-ziyad-5a6055247/"
+              <div className="flex md:md:flex-row flex-col md:pt-[50px] h-full justify-center items-center  min-h-fit mb-10">
+                <div className="w-full flex md:flex-row flex-wrap flex-col h-full items-center justify-center gap-2">
+                  <BlogBox
+                    name="Flash Drive"
+                    imgurl="/Flash.webp"
+                    githuburl="https://github.com/Chackoz/Flashdrive"
+                    desc="Flash Drive is a website that highlights several projects we developed, drawing from our learnings throughout the year. "                  />
+                  <BlogBox
+                    name="Tuples"
+                    imgurl="/Tuples.png"
+                    githuburl="https://github.com/Chackoz/Tuples"
+                    desc="A vibrant online community for engineers to share knowledge, collaborate on projects, and network with peers."
                   />
-                  <TeamBox
-                    name="Ferwin Lopez"
-                    imgurl="/Ferwin.jpg"
-                    githuburl="https://github.com/Fer-Win"
-                    linkedinurl="https://www.linkedin.com/in/ferwin-lopez/"
-                  />
-                  <TeamBox
-                    name="Adithya Krishnan"
-                    imgurl="/Adi.jpg"
-                    githuburl="https://github.com/fal3n-4ngel"
-                    linkedinurl="https://www.linkedin.com/in/fal3n-4ngel/"
-                  />
-                  <TeamBox
-                    name="Nevia Sebastian"
-                    imgurl="https://assets-global.website-files.com/632ac1a36830f75c7e5b16f0/64f116759667a1fbf0c59c60_fOqQSv2iutbUbwh3tXUdPBe4m_mX5ChHOYvM7taH_SE.webp"
-                    githuburl="https://github.com/neviaseb03"
-                    linkedinurl="https://www.linkedin.com/in/nevia-sebastian-086566234/"
+                  <BlogBox
+                    name="Coming Soon"
+                    imgurl="/soon.jpg"
+                    githuburl="/"
+                    desc="Latest work in progress. Stay tuned for more updates."
                   />
                 </div>
               </div>
