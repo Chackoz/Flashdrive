@@ -1,4 +1,4 @@
-// MemoryGameLeaderboard.tsx
+"use client"
 import React, { useState, useEffect } from "react";
 import { db } from "@/app/firebase/config";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
@@ -6,16 +6,28 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const MemoryGameLeaderboard: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState<any[]>([]);
-  const screenHeight = window.innerHeight;
+  const [screenHeight, setScreenHeight] = useState<number>(window.innerHeight); // Set initial height
 
   useEffect(() => {
+    const handleResize = () => {
+      setScreenHeight(window.innerHeight);
+    };
+
+    // Fetch leaderboard data
     const fetchLeaderboard = async () => {
       const scoresSnapshot = await getDocs(
         query(collection(db, "memoryGameScores"), orderBy("score", "asc"), limit(5))
       );
       setLeaderboard(scoresSnapshot.docs.map((doc) => doc.data()));
     };
+
     fetchLeaderboard();
+
+    // Listen for window resize
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
