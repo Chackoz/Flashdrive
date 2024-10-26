@@ -392,10 +392,10 @@ export default function Home() {
                     href="/collection"
                   />
                   <ProjBox
-                    ImageUrl="/stb4.png"
-                    header="Slide 8"
-                    desc="Coming Soon"
-                    href="/"
+                    ImageUrl="/stb5.png"
+                    header="Pair Game"
+                    desc="Memory Match Game"
+                    href="/games/pairgame"
                   />
                 </div>
                 <div className="flex flex-col gap-6 md:mt-[200px]">
