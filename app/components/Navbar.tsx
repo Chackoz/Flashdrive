@@ -1,11 +1,11 @@
 // Semi Optmised
 import React, { useEffect} from "react";
-import { useAuth } from "../hooks/useAuth";
 import { signOut } from "firebase/auth";
-import { auth } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { auth } from "../(services)/firebase/config";
+import { useAuth } from "../(services)/hooks/useAuth";
 
 function Navbar() {
   const user = useAuth();

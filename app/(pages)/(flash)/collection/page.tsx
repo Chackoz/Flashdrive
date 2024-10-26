@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import Masonry from "react-masonry-css";
-import Navbar from "../components/Navbar";
 import Image from "next/image";
 import { LazyMotion, domAnimation, m, motion } from "framer-motion";
 import LazyLoad from "react-lazy-load";
-import { FetchValue } from "../firebase/config";
+import { FetchValue } from "@/app/(services)/firebase/config";
+import Navbar from "@/app/components/Navbar";
 
 function Page() {
   const [images, setImages] = useState<number[]>([]);

@@ -1,8 +1,6 @@
-// pages/index.tsx
 "use client";
 import SnakeGame from "@/app/components/SnakeGame";
-import { db } from "@/app/firebase/config";
-import { useAuth } from "@/app/hooks/useAuth";
+
 
 import React, { useEffect, useState } from "react";
 import {
@@ -19,6 +17,8 @@ import {
 
 import Navbar from "@/app/components/Navbar";
 import { AnimatePresence, motion } from "framer-motion";
+import { useAuth } from "@/app/(services)/hooks/useAuth";
+import { db } from "@/app/(services)/firebase/config";
 
 let displayName = "Anonymous";
 

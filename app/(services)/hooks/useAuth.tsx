@@ -1,7 +1,8 @@
 // hooks/useAuth.ts
 import { useState, useEffect } from 'react';
-import { auth } from '@/app/firebase/config';
+
 import firebase from 'firebase/app';
+import { auth } from '../firebase/config';
 
 interface CustomUser {
   uid: string;

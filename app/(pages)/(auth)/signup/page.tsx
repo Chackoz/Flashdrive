@@ -1,11 +1,9 @@
 "use client";
-
-import { spaceGrotesk } from "../fonts";
 import { MdArrowOutward } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth, db } from "@/app/firebase/config";
+
 import Image from "next/image";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, sendEmailVerification } from "firebase/auth";
 import signupPic from "@/public/images/hand2.png";
@@ -13,8 +11,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from 'react-hot-toast';
 import { log } from "console";
-import { setUsername } from "../utils/localStorage";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { auth, db } from "@/app/(services)/firebase/config";
+import { setUsername } from "@/app/(services)/utils/localStorage";
 const userRef = collection(db, "user");
 
 export default function Page() {

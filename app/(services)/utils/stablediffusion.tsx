@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useAuth } from "../hooks/useAuth";
 import { getUsername } from "./localStorage";
 import { addDoc, collection } from "firebase/firestore";
 import { db, FetchAPi, FetchValue, UpdateValue } from "../firebase/config";

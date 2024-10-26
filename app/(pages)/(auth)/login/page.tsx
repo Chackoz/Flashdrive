@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
-import { spaceGrotesk } from "../fonts";
 import { MdArrowOutward } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { auth } from "@/app/firebase/config";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,8 +9,9 @@ import loginPic from "@/public/images/space.png";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { setUsername } from "../utils/localStorage";
 import toast, { Toaster } from "react-hot-toast";
+import { setUsername } from "@/app/(services)/utils/localStorage";
+import { auth } from "@/app/(services)/firebase/config";
 
 export default function Page() {
   const [error, setError] = useState("");

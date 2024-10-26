@@ -1,11 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import { useAuth } from "../hooks/useAuth";
 import { FaUserAlt } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaUserPen } from "react-icons/fa6";
-import Modal from "../components/Modal";
 import {
   collection,
   doc,
@@ -14,11 +11,14 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { db } from "../firebase/config";
 import { LazyMotion, domAnimation, motion } from "framer-motion";
 import Masonry from "react-masonry-css";
 import LazyLoad from "react-lazy-load";
 import Image from "next/image";
+import { db } from "@/app/(services)/firebase/config";
+import { useAuth } from "@/app/(services)/hooks/useAuth";
+import Navbar from "@/app/components/Navbar";
+import Modal from "@/app/components/Modal";
 
 let breakpointColumnsObj = {
   default: 6,

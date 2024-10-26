@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { db } from "@/app/firebase/config";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
+import { db } from "../(services)/firebase/config";
 
 const MemoryGameLeaderboard: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState<any[]>([]);

@@ -1,10 +1,9 @@
-// MemoryGame.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { db } from "@/app/firebase/config";
 import { collection, addDoc, getDocs, query, orderBy, limit, updateDoc, where } from "firebase/firestore";
-import { useAuth } from "@/app/hooks/useAuth";
+import { useAuth } from "../(services)/hooks/useAuth";
+import { db } from "../(services)/firebase/config";
 
 interface Card {
   id: number;

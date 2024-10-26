@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import convertTextToImage from "../utils/stablediffusion";
-import Navbar from "../components/Navbar";
-import { useAuth } from "../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebase/config";
 import { IoMdDownload } from "react-icons/io";
 import { getAuth, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
 import { debounce } from "lodash";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/(services)/hooks/useAuth";
+import convertTextToImage from "@/app/(services)/utils/stablediffusion";
+import { db } from "@/app/(services)/firebase/config";
+import Navbar from "@/app/components/Navbar";
 
 function Page() {
   const base64ToDataUrl = (

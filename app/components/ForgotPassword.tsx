@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { auth } from "@/app/firebase/config";
+
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
@@ -9,6 +9,7 @@ import { MdArrowOutward } from "react-icons/md";
 import Image from "next/image";
 import loginPic from "@/public/images/space.png";
 import Navbar from "./Navbar";
+import { auth } from "../(services)/firebase/config";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");

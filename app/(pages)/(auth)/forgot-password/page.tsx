@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import ForgotPassword from '../components/ForgotPassword'
-import Navbar from '../components/Navbar'
+import ForgotPassword from '../../../components/ForgotPassword'
+import Navbar from '../../../components/Navbar'
 import Link from 'next/link'
 
 function page() {

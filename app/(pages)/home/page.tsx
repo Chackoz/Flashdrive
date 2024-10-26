@@ -1,8 +1,8 @@
 'use client'
 import {useAuthState} from 'react-firebase-hooks/auth'
-import {auth} from '@/app/firebase/config'
 import { useRouter } from 'next/navigation'
 import { signOut } from 'firebase/auth'
+import { auth } from '@/app/(services)/firebase/config'
 
 const Home = () => {
   const router = useRouter();

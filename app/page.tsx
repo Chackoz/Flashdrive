@@ -11,10 +11,10 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import TeamBox from "./components/TeamBox";
 import MusicPlayer from "./components/MusicPlayer";
-import { useFollowPointer } from "./utils/FollowPointer";
 import { debounce } from "lodash";
 import Loading from "./components/Loading";
 import BlogBox from "./components/BlogBox";
+import { useFollowPointer } from "./(services)/utils/FollowPointer";
 
 export default function Home() {
   const ref = useRef(null);
@@ -444,10 +444,10 @@ export default function Home() {
                     desc="A vibrant online community for engineers to share knowledge, collaborate on projects, and network with peers."
                   />
                   <BlogBox
-                    name="Coming Soon"
+                    name="DASH"
                     imgurl="/soon.jpg"
-                    githuburl="/"
-                    desc="Latest work in progress. Stay tuned for more updates."
+                    githuburl="https://github.com/Chackoz/DASH"
+                    desc="Distributed Adaptive Serverless Hosting (DASH) is a platform that allows developers to deploy and scale applications in a peer to peer method."
                   />
                 </div>
               </div>

@@ -2,11 +2,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import MemoryGame from "@/app/components/MemoryGame"; // Import the MemoryGame component
-import { db } from "@/app/firebase/config";
-import { useAuth } from "@/app/hooks/useAuth";
 import Navbar from "@/app/components/Navbar";
 import { collection, addDoc, getDocs, query, where, updateDoc, doc, orderBy, limit } from "firebase/firestore";
 import MemoryGameLeaderboard from "@/app/components/MemoryGameLeaderBoard";
+import { db } from "@/app/(services)/firebase/config";
+import { useAuth } from "@/app/(services)/hooks/useAuth";
 
 const Home: React.FC = () => {
   const [memoryScore, setMemoryScore] = useState<number>(0);
