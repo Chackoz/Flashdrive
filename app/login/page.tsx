@@ -9,11 +9,10 @@ import Link from "next/link";
 import Image from "next/image";
 import loginPic from "@/public/images/space.png";
 import { useRouter } from "next/navigation";
-import { usePathname } from 'next/navigation';
-import { useSearchParams } from 'next/navigation'
+import { usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { setUsername } from "../utils/localStorage";
-import toast, { Toaster } from 'react-hot-toast';
-
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const [error, setError] = useState("");
@@ -22,32 +21,32 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const [eyeClick, setEyeClick] = useState(true);
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   const handleLogin = async () => {
     console.log("Email is " + email);
     console.log("Password is " + password);
-    const loginFailed = () => toast.error('Login Failed');
-    const loginSuccess =() => toast.success('Login Success');
+    const loginFailed = () => toast.error("Login Failed");
+    const loginSuccess = () => toast.success("Login Success");
     try {
       const res = await signInWithEmailAndPassword(email, password);
       setEmail("");
       setPassword("");
       console.log(res);
       if (res && res.user) {
-        (async () => { loginSuccess()})();
+        (async () => {
+          loginSuccess();
+        })();
         setUsername(email);
-        
-        router.push("/")
-        setError("")
+
+        router.push("/");
+        setError("");
       } else {
         setError("Login failed. ");
         loginFailed();
       }
     } catch (error) {
       console.error(error);
-     
-     
     }
   };
 
@@ -55,10 +54,15 @@ export default function Page() {
     <div
       className={`h-full md:min-h-screen relative overflow-hidden flex justify-center items-center min-w-full bg-gray-50`}
     >
-       <Toaster   toastOptions={{ className: '',duration: 3000,style: { background: '#363636',color: '#fff',}}} />
+      <Toaster
+        toastOptions={{
+          className: "",
+          duration: 3000,
+          style: { background: "#363636", color: "#fff" },
+        }}
+      />
       <div className="hidden md:flex md:w-1/2 h-screen items-center justify-center transition-all ease-out duration-500 ">
         <div className=" group   justify-center items-center">
-         
           <Image
             src={loginPic}
             alt="login"
@@ -68,14 +72,18 @@ export default function Page() {
           ></Image>
         </div>
       </div>
-      
+
       <div className="md:w-1/2 w-full flex flex-col items-center justify-center">
         <div className="flex md:w-[50%] font-poppins text-4xl justify-items-start -ml-20 md:-ml-12 items-center  mb-5">
           <img src="/logo.png" className="w-[80px] scale-150 " />
           <div className="font-bold -ml-3">Flash Drive</div>
         </div>
         <div className="text-gray-950 md:text-2xl text-xl opacity-80 font-medium flex-col mb-3 text-left md:w-1/2 w-full md:px-0 px-8 justify-start flex ">
-        {error ? <div className="error-message">{error}</div> : <div>Nice to see you again.</div>}  
+          {error ? (
+            <div className="error-message">{error}</div>
+          ) : (
+            <div>Nice to see you again.</div>
+          )}
         </div>
         <div className="flex-col flex md:w-1/2   justify-items-start items-start ">
           <label htmlFor="email" className="text-xl my-3 font-normal ml-2">
@@ -127,7 +135,7 @@ export default function Page() {
         </div>
         <div className="flex flex-col mt-4 gap-4 md:w-[50%] w-full">
           <a
-            href=""
+            href="/forgot-password"
             className="text-right text-blue-700 hover:text-blue-500 mb-3 mr-6 md:mr-0"
           >
             Forgot Password?
@@ -139,7 +147,7 @@ export default function Page() {
             Log In
           </button>
         </div>
-        
+
         <div className="  md:w-1/2 mt-10 flex  justify-center items-center">
           <p className="mr-2">Newbie??</p>
           <button className=" mr-1 flex rounded-full px-3 py-[2px] text-sm justify-center items-center bg-transparent border border-gray-950">
