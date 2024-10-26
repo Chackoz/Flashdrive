@@ -65,11 +65,11 @@ const Home: React.FC = () => {
       <div className="flex flex-col items-center w-full h-full justify-center transition-all">
         
         
-        <div className="flex md:w-[80%] justify-between items-center mt-8">
+        <div className="flex md:flex-row flex-col md:w-[80%] justify-between items-center mt-8">
       
           <MemoryGame onScoreChange={handleMemoryScoreChange} />
-          <div>
-          <div className="text-[4rem]">{currentUser}<MemoryGameLeaderboard /></div>
+          <div className={`flex md:flex-row flex-col  w-full h-full justify-center items-center transition-all ease-linear  "scale-[80%]"}`}>
+          <div className="text-[4rem] ">{currentUser}<MemoryGameLeaderboard /></div>
           </div>
           
         </div>
