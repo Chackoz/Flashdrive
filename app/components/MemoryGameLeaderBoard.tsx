@@ -36,7 +36,7 @@ const MemoryGameLeaderboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center m-5">
       <div className={`md:flex hidden uppercase py-2 ${screenHeight > 770 ? "text-[3.0rem]" : "text-[2rem]"}`}>
         Leaderboard 🏆
       </div>

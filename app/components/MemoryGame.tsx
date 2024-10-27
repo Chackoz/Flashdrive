@@ -116,7 +116,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onScoreChange }) => {
   const gridSize = Math.ceil(Math.sqrt(cards.length));
 
   return (
-    <div className="flex flex-col items-center bg-[#3d3d3d] p-12 rounded-xl shadow-xl">
+    <div className="flex flex-col items-center bg-[#3d3d3d] md:p-12 p-6 rounded-xl shadow-xl">
       <div className="text-white mb-4">
         <div className="text-xl">Moves: {moves}</div>
         <div className="text-xl">Time: {timer}s</div>
@@ -128,7 +128,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onScoreChange }) => {
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
-            className={`w-16 h-16 md:w-32 md:h-32 rounded-xl cursor-pointer flex items-center justify-center text-2xl
+            className={`w-[15vw] h-[15vw] md:w-[6vw] md:h-[6vw] rounded-xl cursor-pointer flex items-center justify-center text-2xl p-5
               ${matchedPairs.includes(card.content)
                 ? "bg-green-600" // Matched pairs turn green
                 : flippedIndices.includes(index)
