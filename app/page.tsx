@@ -408,7 +408,7 @@ export default function Home() {
                   <ProjBox
                     ImageUrl="/stb6.png"
                     header="The Duck"
-                    desc="Ahem"
+                    desc="Pixel Art"
                     href="/duck"
                   />
                 </div>
