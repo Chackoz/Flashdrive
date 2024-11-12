@@ -1,3 +1,4 @@
+// components/MemoryGameLeaderboard.tsx
 import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
