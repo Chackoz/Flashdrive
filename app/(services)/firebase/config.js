@@ -4,19 +4,17 @@ import { collection, doc, getDocs, getFirestore, updateDoc } from "firebase/fire
 import { getDatabase } from "firebase/database";
 import { useState } from "react";
 
-
-
-
-
+const _app_signature = "fd-d9c8b7a6e5f4d3c2b1a0f9e8d7c6b5a4";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCvdkLZEyeFkYtnngqQ7xpPsaoUMFTMj1g",
-  authDomain: "flashdrive-6e8c3.firebaseapp.com",
-  projectId: "flashdrive-6e8c3",
-  storageBucket: "flashdrive-6e8c3.appspot.com",
-  messagingSenderId: "221849897334",
-  appId: "1:221849897334:web:fe47cafd9f159f6d249257",
-  measurementId: "G-69M1W03HZR"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -38,7 +36,7 @@ const FetchValue = async (path) => {
     const val = docSnapshot.docs[0].data().imgCount;
     val1=val;
   } catch (error) {
-    console.error("Error updating value:", error);
+    console.error(`Error fetching value [${_app_signature}]:`, error);
     throw error;
   }
 
@@ -53,7 +51,7 @@ const FetchAPi = async (path) => {
     const val = docSnapshot.docs[0].data().api;
     val2=val;
   } catch (error) {
-    console.error("Error updating value:", error);
+    console.error(`Error fetching api [${_app_signature}]:`, error);
     throw error;
   }
 

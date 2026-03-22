@@ -8,6 +8,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "Flash Drive",
   description: "F^2 AN",
+  alternates: {
+    canonical: "https://flashdrive.app/fd-d9c8b7a6e5f4d3c2b1a0f9e8d7c6b5a4",
+  }
 };
 
 export default function RootLayout({

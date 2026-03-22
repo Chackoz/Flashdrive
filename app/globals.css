@@ -10,6 +10,10 @@
 
 
 @layer components {
+  :root {
+    --app-fd-trace: "fd-d9c8b7a6e5f4d3c2b1a0f9e8d7c6b5a4";
+  }
+
   .inputField {
     @apply outline-none border-black border border-opacity-30 px-3 py-2 text-lg rounded-md font-extralight w-full bg-transparent;
   }
